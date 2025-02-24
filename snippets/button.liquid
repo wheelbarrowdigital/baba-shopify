@@ -1,0 +1,85 @@
+{% comment %}
+  Renders a button component
+
+  Accepts:
+  - text: {String} Text to display on button (required)
+  - style: {String} Style of button: 'fill' (default), 'outline', 'link'
+  - color: {String} Color scheme: 'primary' (default), 'secondary', 'light', 'dark', 'success', 'error'
+  - url: {String} URL to link to (optional)
+  - type: {String} Button type attribute (default: 'button')
+  - class: {String} Additional classes (optional)
+  - disabled: {Boolean} Disable the button (optional)
+  - name: {String} name attribute (optional)
+  - id: {String} id attribute (optional)
+  - aria_label: {String} aria-label attribute (optional)
+  - data_attributes: {Object} Additional data attributes (optional)
+
+  Usage:
+  {% render 'button',
+    text: 'Click me',
+    style: 'fill',
+    color: 'primary',
+    url: product.url,
+    class: 'my-custom-class',
+    disabled: false
+  %}
+{% endcomment %}
+
+{%- liquid
+  assign button_style = style | default: 'fill'
+  assign button_color = color | default: 'primary'
+  assign button_type = type | default: 'button'
+  assign button_class = class | default: ''
+
+  assign full_class = 'button' | append: ' ' | append: button_style | append: ' ' | append: button_color
+  if button_class != ''
+    assign full_class = full_class | append: ' ' | append: button_class
+  endif
+  if disabled
+    assign full_class = full_class | append: ' button--disabled'
+  endif
+-%}
+
+{%- if url != blank and disabled != true -%}
+  <a
+    href="{{ url }}"
+    class="{{ full_class }}"
+    {% if id %}
+      id="{{ id }}"
+    {% endif %}
+    {% if aria_label %}
+      aria-label="{{ aria_label }}"
+    {% endif %}
+    {% if data_attributes %}
+      {% for attr in data_attributes %}
+        data-{{ attr[0] }}="{{ attr[1] }}"
+      {% endfor %}
+    {% endif %}
+  >
+    {{ text }}
+  </a>
+{%- else -%}
+  <button
+    type="{{ button_type }}"
+    class="{{ full_class }}"
+    {% if disabled %}
+      disabled
+    {% endif %}
+    {% if name %}
+      name="{{ name }}"
+    {% endif %}
+    {% if id %}
+      id="{{ id }}"
+    {% endif %}
+    {% if aria_label %}
+      aria-label="{{ aria_label }}"
+    {% endif %}
+    {% if data_attributes %}
+      {% for attr in data_attributes %}
+        data-{{ attr[0] }}="{{ attr[1] }}"
+      {% endfor %}
+    {% endif %}
+  >
+    {{ text }}
+  </button>
+{%- endif -%}

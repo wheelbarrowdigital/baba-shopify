@@ -1,0 +1,121 @@
+{{ 'section-cover.css' | asset_url | stylesheet_tag }}
+
+<div class="container container-xl {% if request.design_mode %} design-mode{% endif %}">
+  {% assign background_image = section.settings.background_image | default: settings.default_background_image %}
+
+  {% if background_image != blank %}
+    {% render 'image', image: background_image, class: 'background' %}
+  {% else %}
+    {% render 'image',
+      src: 'https://images.unsplash.com/photo-1616672239881-aec9f3f43521?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      class: 'background'
+    %}
+  {% endif %}
+
+  <div class="content">
+    <div class="text">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'heading' %}
+            <h2 class="heading-3xl">
+              {{ block.settings.content }}
+            </h2>
+          {% when 'paragraph' %}
+            <p class="text-md">
+              {{ block.settings.content }}
+            </p>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    <div class="buttons">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'buttons' %}
+            {% if block.settings.button_text and block.settings.button_url %}
+              {% render 'button', text: block.settings.button_text, url: block.settings.button_url %}
+            {% endif %}
+            {% if block.settings.secondary_button_text and block.settings.secondary_button_url %}
+              {% render 'button',
+                text: block.settings.secondary_button_text,
+                style: 'outline',
+                url: block.settings.secondary_button_url
+              %}
+            {% endif %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cover",
+  "tag": "section",
+  "class": "cover dark",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Heading text",
+          "default": "Lorem ipsum dolor sit amet"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Paragraph text",
+          "default": "Lorem ipsum dolor sit amet consectetur. Mauris sem dictum blandit aliquam risus amet. Vitae ipsum consectetur vulputate sed ac pellentesque suspendisse sit pulvinar. Orci facilisis sed leo commodo volutpat in. Convallis tempor condimentum tellus ultrices in diam velit pretium."
+        }
+      ]
+    },
+    {
+      "type": "buttons",
+      "name": "Buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        },
+        {
+          "type": "text",
+          "id": "secondary_button_text",
+          "label": "Secondary Button Text",
+          "default": "More Details"
+        },
+        {
+          "type": "url",
+          "id": "secondary_button_url",
+          "label": "Secondary Button URL"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

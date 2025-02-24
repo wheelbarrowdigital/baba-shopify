@@ -1,0 +1,91 @@
+{% comment %}
+  Renders an image component
+
+  Accepts:
+  - image: {Image} an image_picker image from Shopify
+  - src: {String} the src url
+  - alt: {String} the alt text
+  - aspect_ratio: {String} aspect ratio of image
+  - class: {String} additional classes (optional)
+
+  Usage:
+  {% render 'image',
+    image: picked_image
+    src: 'Click me',
+    alt: 'Alt text for the image'
+    aspect_ratio: '4:3',
+    class: 'my-custom-class',
+  %}
+{% endcomment %}
+
+{% liquid
+  assign image_classes = 'image-wrapper'
+
+  case aspect_ratio
+    when '9:21'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-9-21'
+    when '9:16'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-9-16'
+    when '5:8'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-5-8'
+    when '2:3'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-2:3'
+    when '3:4'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-3-4'
+    when '4:5'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-4-5'
+    when '5:6'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-5-6'
+    when '6:7'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-6-7'
+    when '1:1'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-1-1'
+    when '7:6'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-7-6'
+    when '6:5'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-6-5'
+    when '5:4'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-5-4'
+    when '4:3'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-4-3'
+    when '3:2'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-3-2'
+    when '8:5'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-8-5'
+    when '16:9'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-16-9'
+    when '21:9'
+      assign image_classes = image_classes | append: ' ' | append: 'aspect-ratio-21-9'
+    when 'background'
+      assign image_classes = image_classes | append: ' ' | append: 'background'
+    when 'fill'
+      assign image_classes = 'fill'
+    when 'stretch'
+      assign image_classes = image_classes | append: ' ' | append: 'stretch'
+  endcase
+
+  if class != blank
+    assign image_classes = image_classes | append: ' ' | append: class
+  endif
+%}
+
+<div class="{{ image_classes }}">
+  {% if image and image != blank %}
+    <img
+      src="{{ image | image_url: 'master' }}"
+      alt="{{ image.alt }}"
+      width="unset"
+      height="unset"
+    >
+  {% elsif src != blank %}
+    <img src="{{ src }}" alt="" width="unset" height="unset">
+  {% else %}
+    <img
+      src="https://images.unsplash.com/photo-1716951923523-0c76b14d4852?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      alt=""
+      width="unset"
+      height="unset"
+    >
+  {% endif %}
+  <div class="overlay"></div>
+</div>
