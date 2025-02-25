@@ -32,8 +32,14 @@
       }
     },
     "featured_services": {
-      "type": "featured-services"      
+      "type": "featured-services"
+    },
+    "featured_archive_farm": {
+      "type": "featured-archive-farm"
+    },
+    "featured_archive_location": {
+      "type": "featured-archive-location"
     }
   },
-  "order": ["cover", "featured_collection", "featured_services"]
+  "order": ["cover", "featured_collection", "featured_services", "featured_archive_farm", "featured_archive_location"]
 }

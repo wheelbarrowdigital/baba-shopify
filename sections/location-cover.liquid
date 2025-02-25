@@ -1,0 +1,15 @@
+{%- liquid
+  assign location = request.page.metaobject
+-%}
+
+<div class="container container-xl">
+  <h2>{{ location.name }}</h2>
+</div>
+
+{% schema %}
+{
+  "name": "Location Cover",
+  "tag": "section",
+  "class": "location-cover"
+}
+{% endschema %}
