@@ -1,9 +1,0 @@
-{
-    "name": "Location",
-    "sections": {
-      "cover": {
-        "type": "location-cover"
-      }
-    },
-    "order": ["cover"]
-  }
