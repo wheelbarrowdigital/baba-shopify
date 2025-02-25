@@ -1,15 +1,62 @@
-{%- liquid
-  assign location = page.metaobject
--%}
+{%- comment -%}
+  This section is used to display the cover image for a location.
 
-{{ page | json }}
+  Expected metaobject structure:
+  location: {
+    name: string,                    // e.g. "Hoover"
+    address: {
+      address_line_1: {
+        value: string,               // e.g. "4730 Chace Cir"
+        label: string
+      },
+      address_line_2: {
+        value: string,               // e.g. "Suite 124"
+        label: string
+      },
+      city: string,                  // e.g. "Birmingham"
+      state: string,                 // e.g. "AL"
+      zip_code: string,              // e.g. "35244"
+      country: string                // e.g. "United States"
+    },
+    coming_soon: boolean,            // e.g. false
+    featured_image: string,          // Shopify MediaImage GID
+    google_maps_iframe: string,      // HTML iframe string
+    hours: {
+      monday: { open: string, close: string },    // e.g. { "open": "06:30 AM", "close": "07:00 PM" }
+      tuesday: { open: string, close: string },
+      wednesday: { open: string, close: string },
+      thursday: { open: string, close: string },
+      friday: { open: string, close: string },
+      saturday: { open: string, close: string },
+      sunday: { open: string, close: string }
+    },
+    joe_coffee_url: string,          // URL string
+    phone: string,                   // e.g. "(205) 777-5984"
+    photo_gallery: array,            // Array of Shopify MediaImage GIDs
+    story_images: array,             // Array of Shopify MediaImage GIDs
+    story_text: {                    // Rich text field
+      type: "root",
+      children: array                // Array of paragraph/text nodes
+    }
+  }
+{%- endcomment -%}
 
-{% if location == blank %}
-  <p>No location found</p>
-{% endif %}
+{{ metaobject.hours.value }}
 
 <div class="container container-xl">
-  <h2>{{ location.name }}</h2>
+  <h2>{{ metaobject.name }}</h2>
+  <ul>
+    {% comment %}
+      Shopify’s JSON metaobject fields behave differently than expected, using Liquid’s key-value iteration, but requiring explicit property access. When you loop over a JSON object in Liquid, Shopify returns a key-value pair, where:
+      	•	day[0] → Contains the key ("monday", "tuesday", etc.).
+      	•	day[1] → Contains the actual object ({"open"=>"06:30 AM", "close"=>"07:00 PM"}).
+    {% endcomment %}
+    {% for day in metaobject.hours.value %}
+      {% assign day_name = day[0] %}
+      {% assign times = day[1] %}
+      <li>{{ day_name | capitalize }}: {{ times.open }} - {{ times.close }}</li>
+    {% endfor %}
+  </ul>
 </div>
 
 {% schema %}
