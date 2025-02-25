@@ -1,8 +1,10 @@
 {
   "sections": {
-    "main": {
-      "type": "main-page"
+    "cover": {
+      "type": "cover"
     }
   },
-  "order": ["main"]
+  "order": [
+    "cover"
+  ]
 }

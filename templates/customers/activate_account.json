@@ -1,10 +1,10 @@
 {
   "sections": {
-    "main": {
-      "type": "main-activate-account"
+    "cover": {
+      "type": "cover"
     }
   },
   "order": [
-    "main"
+    "cover"
   ]
 }

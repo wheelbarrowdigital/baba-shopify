@@ -1,10 +1,10 @@
 {
   "sections": {
-    "main": {
-      "type": "main-404"
+    "cover": {
+      "type": "cover"
     }
   },
   "order": [
-    "main"
+    "cover"
   ]
 }

@@ -1,6 +1,12 @@
 {%- liquid
-  assign location = request.page.metaobject
+  assign location = page.metaobject
 -%}
+
+{{ page | json }}
+
+{% if location == blank %}
+  <p>No location found</p>
+{% endif %}
 
 <div class="container container-xl">
   <h2>{{ location.name }}</h2>
