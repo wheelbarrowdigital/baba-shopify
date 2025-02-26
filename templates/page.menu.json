@@ -1,8 +1,8 @@
 {
   "sections": {
-    "cover": {
-      "type": "cover"
+    "cafe-menu": {
+      "type": "cafe-menu"
     }
   },
-  "order": ["cover"]
+  "order": ["cafe-menu"]
 }

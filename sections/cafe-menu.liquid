@@ -1,0 +1,105 @@
+{% comment %}
+  Fetch all menu items once
+{% endcomment %}
+
+{% assign menu_items = shop.metaobjects.menu_item.values %}
+
+{% comment %}
+  Filter items by category for each section
+  There is no need for an additional filter for Status == "Active" because the metaobject field is already filtered
+{% endcomment %}
+{% assign signature_drinks = menu_items | where: 'category', 'Signature Drinks' %}
+{% assign drinks = menu_items | where: 'category', 'Drinks' %}
+{% assign teas = menu_items | where: 'category', 'Tea' %}
+{% assign tea_lattes = menu_items | where: 'category', 'Tea Lattes' %}
+
+<h2>Signature Drinks</h2>
+{% for item in signature_drinks %}
+  <p>{{ item.name }}</p>
+{% endfor %}
+
+{% assign modifiers = shop.metaobjects.modifier.values %}
+{% assign unique_categories = '' %}
+{% for modifier in modifiers %}
+  {% unless unique_categories contains modifier.category %}
+    {% assign unique_categories = unique_categories | append: modifier.category | append: '|' %}
+  {% endunless %}
+{% endfor %}
+{% assign unique_categories = unique_categories | split: '|' | sort %}
+
+<h2>Modifiers</h2>
+<p>$0.50 | $1.00 | $1.25</p>
+{% for category in unique_categories %}
+  <h3>{{ category }}</h3>
+  {% for modifier in modifiers %}
+    {% if modifier.category == category %}
+      <p>{{ modifier.name }}</p>
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+<h2>Drinks</h2>
+{% for item in drinks %}
+  <p>{{ item.name }}</p>
+  <p>{{ item.description }}</p>
+  <p>{{ item.prices.value | json }}</p>
+{% endfor %}
+
+{% comment %}
+  Extract unique vendors from teas and sort them alphabetically
+{% endcomment %}
+{% assign vendors = '' %}
+{% for item in teas %}
+  {% unless vendors contains item.vendor %}
+    {% assign vendors = vendors | append: item.vendor | append: '|' %}
+  {% endunless %}
+{% endfor %}
+{% assign unique_vendors = vendors | split: '|' | sort %}
+
+<h2>Teas</h2>
+<strong>Hot</strong>
+<ul>
+  <li>$4.25 12oz</li>
+  <li>$5.25 16oz</li>
+</ul>
+<strong>Iced</strong>
+<ul>
+  <li>$5.25 12oz</li>
+  <li>$6.25 16oz</li>
+</ul>
+{% for vendor in unique_vendors %}
+  {% if vendor != '' %}
+    <h3>{{ vendor }}</h3>
+    {% assign teas = teas | sort: 'name' %}
+    {% for item in teas %}
+      {% if item.vendor == vendor %}
+        <p>{{ item.name }}</p>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+<h2>Tea Lattes</h2>
+{% for item in tea_lattes %}
+  <p>{{ item.name }}</p>
+{% endfor %}
+<strong>Hot</strong>
+<ul>
+  <li>5.50 12oz</li>
+  <li>$6.50 16oz</li>
+</ul>
+<strong>Iced</strong>
+<ul>
+  <li>$6.00 12oz</li>
+  <li>$7.00 16oz</li>
+</ul>
+
+<h2>Pour Overs & Food</h2>
+<p>See menu in café beside the register for options & prices.</p>
+{% schema %}
+{
+  "name": "Menu Category",
+  "tag": "section",
+  "class": "menu-category"
+}
+{% endschema %}
