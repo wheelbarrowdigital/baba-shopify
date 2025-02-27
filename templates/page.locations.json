@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "product-grid": {
-      "type": "collection-product-grid",
+    "cover": {
+      "type": "cover",
       "settings": {}
     }
   },
   "order": [
-    "product-grid"
+    "cover"
   ]
 }
