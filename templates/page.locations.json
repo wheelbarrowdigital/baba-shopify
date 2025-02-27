@@ -9,12 +9,10 @@
  */
 {
   "sections": {
-    "cover": {
-      "type": "cover",
+    "archive_metaobject": {
+      "type": "archive-metaobject",
       "settings": {}
     }
   },
-  "order": [
-    "cover"
-  ]
+  "order": ["archive_metaobject"]
 }
