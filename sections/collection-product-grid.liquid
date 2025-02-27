@@ -1,5 +1,11 @@
-<div>collection product grid</div>
-
+<div class="container container-xl">
+  <h1 class="heading-2xl">{{ collection.title }}</h1>
+  <ul class="grid">
+    {% for product in collection.products %}
+      <li>{{ product.title }}</li>
+    {% endfor %}
+  </ul>
+</div>
 {% schema %}
 {
   "name": "Collection Product Grid",

@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "archive_metaobject": {
+      "type": "archive-metaobject",
+      "settings": {}
+    }
+  },
+  "order": ["archive_metaobject"]
+}
