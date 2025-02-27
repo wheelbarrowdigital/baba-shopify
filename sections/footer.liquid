@@ -5,7 +5,10 @@
         {% render 'button', button: link.title, style: 'link', text: link.title, url: link.url %}
       {% endfor %}
     </nav>
-    {% if settings.social_facebook_link != blank %}
+    {% if settings.social_email_link != blank
+      or settings.social_facebook_link != blank
+      or settings.social_instagram_link != blank
+    %}
       <nav>
         {% render 'button', button: 'Facebook', style: 'link', text: 'Facebook', url: settings.social_facebook_link %}
       </nav>
