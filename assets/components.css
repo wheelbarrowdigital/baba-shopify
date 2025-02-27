@@ -1,0 +1,233 @@
+/* COMPONENTS */
+
+/* BUTTON */
+.buttons {
+  display: flex;
+  flex: 1 0 fit-content;
+  flex-flow: row wrap;
+  gap: var(--spacing-4);
+  justify-content: flex-start;
+
+  @media (min-width: 576px) {
+    flex-grow: 0;
+  }
+}
+
+.button {
+  align-items: center;
+  border: 2px solid transparent;
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 0 fit-content;
+  justify-content: center;
+  min-width: min-content;
+  padding: 0.75rem 1.6875rem;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+
+  @media (min-width: 576px) {
+    flex-grow: 0;
+  }
+
+  &.disabled,
+  &:disabled {
+    background-color: var(--color-gray-500);
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &.fill {
+    &.primary {
+      background-color: var(--color-button-primary);
+      color: var(--contrast-fg);
+
+      &:hover:not(:disabled) {
+        background-color: var(--color-button-primary-hover);
+      }
+    }
+  }
+
+  &.outline {
+    background-color: transparent;
+
+    &.primary {
+      border-color: var(--color-primary-light-60);
+      color: var(--color-primary-light-60);
+
+      &:hover:not(:disabled) {
+        background-color: var(--color-primary-light-50);
+        color: var(--color-primary-dark-90);
+      }
+    }
+  }
+
+  &.link {
+    padding: 0;
+    border: none;
+    background: none;
+
+    &:hover:not(:disabled) {
+      color: var(--gray-900);
+    }
+
+    &.primary {
+      color: var(--color-primary);
+
+      &:hover:not(:disabled) {
+        color: var(--color-primary-dark-90);
+        text-decoration: underline;
+      }
+    }
+  }
+}
+/* END BUTTON */
+
+/* IMAGE */
+.image-wrapper {
+  background-color: unset;
+  background-image: unset;
+  height: fit-content;
+  left: unset;
+  overflow: hidden;
+  position: relative;
+  top: unset;
+  width: 100%;
+  z-index: unset;
+
+  &::after {
+    content: '';
+    display: block;
+  }
+
+  &.aspect-ratio-9-21::after {
+    padding-bottom: 233.33%; /* 21/9 = 2.3333... */
+  }
+
+  &.aspect-ratio-9-16::after {
+    padding-bottom: 177.78%; /* 16/9 = 1.7778... */
+  }
+
+  &.aspect-ratio-5-8::after {
+    padding-bottom: 160%; /* 8/5 = 1.6 */
+  }
+
+  &.aspect-ratio-2-3::after {
+    padding-bottom: 150%; /* 3/2 = 1.5 */
+  }
+
+  &.aspect-ratio-3-4::after {
+    padding-bottom: 133.33%; /* 4/3 = 1.3333... */
+  }
+
+  &.aspect-ratio-4-5::after {
+    padding-bottom: 125%;
+  }
+
+  &.aspect-ratio-5-6::after {
+    padding-bottom: 120%;
+  }
+
+  &.aspect-ratio-6-7::after {
+    padding-bottom: 116.67%;
+  }
+
+  &.aspect-ratio-1-1::after {
+    padding-bottom: 100%;
+  }
+
+  &.aspect-ratio-7-6::after {
+    padding-bottom: 85.71%;
+  }
+
+  &.aspect-ratio-6-5::after {
+    padding-bottom: 83.33%;
+  }
+
+  &.aspect-ratio-5-4::after {
+    padding-bottom: 80%;
+  }
+
+  &.aspect-ratio-4-3::after {
+    padding-bottom: 75%;
+  }
+
+  &.aspect-ratio-3-2::after {
+    padding-bottom: 66.66%;
+  }
+
+  &.aspect-ratio-8-5::after {
+    padding-bottom: 62.5%;
+  }
+
+  &.aspect-ratio-16-9::after {
+    padding-bottom: 56.25%;
+  }
+
+  &.aspect-ratio-21-9::after {
+    padding-bottom: 42.85%;
+  }
+
+  &.background {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    /* z-index: -1; */
+  }
+
+  &.fill {
+    height: 100%;
+  }
+
+  &.stretch {
+    height: 100%;
+  }
+
+  img {
+    mix-blend-mode: unset;
+    opacity: unset;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  > .overlay {
+    background-color: rgba(0, 0, 0, 0.35);
+    display: none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  &.background > .overlay {
+    display: block;
+  }
+}
+
+/* END IMAGE */
+
+/* NAVBAR */
+.navbar {
+  .logo-wrapper {
+    display: flex;
+  }
+
+  nav,
+  .cart-account {
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--spacing-4);
+  }
+}
+
+/* END NAVBAR */
+
+/* END COMPONENTS */

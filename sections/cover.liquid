@@ -17,11 +17,11 @@
       {% for block in section.blocks %}
         {% case block.type %}
           {% when 'heading' %}
-            <h2 class="heading-3xl">
+            <h2 class="display-5xl">
               {{ block.settings.content }}
             </h2>
           {% when 'paragraph' %}
-            <p class="text-md">
+            <p class="text-lg">
               {{ block.settings.content }}
             </p>
         {% endcase %}
@@ -52,7 +52,7 @@
 {
   "name": "Cover",
   "tag": "section",
-  "class": "cover dark",
+  "class": "cover color-scheme-dark",
   "settings": [
     {
       "type": "image_picker",

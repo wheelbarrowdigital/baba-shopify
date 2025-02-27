@@ -1,11 +1,10 @@
 <div class="upper">
   <div class="container container-xl">
-    <ul>
-      <li>Partners</li>
-      <li>Baba Java International (UAE)</li>
-      <li>Privacy Policy</li>
-      <li>About</li>
-    </ul>
+    <nav>
+      {% for link in linklists.footer.links %}
+        {% render 'button', button: link.title, style: 'link', text: link.title, url: link.url %}
+      {% endfor %}
+    </nav>
     <ul>
       <li>Instagram</li>
       <li>Facebook</li>

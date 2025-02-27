@@ -1,0 +1,23 @@
+/**
+If I build this right, and I call the stylesheets in the correct order (i.e. style, then theme, then base & layout & components & sections), the I think I won't have to apply the variables more than once. 
+
+*/
+
+/* TYPOGRAPHY */
+:root {
+  --font-mono: 'ibm-plex-mono', monospace;
+  --font-sans: 'Merriweather Sans', sans-serif;
+  --font-serif: 'Lora', serif;
+
+  --font-body: var(--font-sans);
+  --font-display: var(--font-serif);
+  --font-heading: var(--font-serif);
+}
+
+/* END TYPOGRAPHY */
+
+/* COMPONENTS */
+:root {
+  --button-border-radius: 0.75rem;
+}
+/* END COMPONENTS */

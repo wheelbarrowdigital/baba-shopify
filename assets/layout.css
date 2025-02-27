@@ -1,0 +1,267 @@
+:root {
+  /* SPACING */
+  --spacing-0: 0;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-7: 32px;
+  --spacing-8: 40px;
+  --spacing-9: 48px;
+  --spacing-10: 56px;
+  --spacing-11: 64px;
+  --spacing-12: 72px;
+  --spacing-13: 80px;
+  --spacing-14: 88px;
+  --spacing-15: 96px;
+  --spacing-16: 104px;
+  --spacing-17: 112px;
+  --spacing-18: 120px;
+  --spacing-19: 128px;
+  --spacing-20: 136px;
+  --spacing-21: 144px;
+}
+
+/* LAYOUT */
+section.shopify-section {
+  overflow: auto;
+  position: relative;
+}
+
+.container {
+  &.container-xxs {
+    gap: var(--spacing-9) 6vw;
+    margin: var(--spacing-9) auto;
+    max-width: 768px;
+    width: 88%;
+
+    @media (min-width: 576px) {
+      gap: var(--spacing-11) 10vw;
+      margin: var(--spacing-11) auto;
+      width: 72%;
+    }
+
+    @media (min-width: 768px) {
+      gap: var(--spacing-12) 12vw;
+      margin: var(--spacing-12) auto;
+      width: 60%;
+    }
+
+    @media (min-width: 992px) {
+      gap: var(--spacing-13) 14vw;
+      margin: var(--spacing-13) auto;
+      width: 56%;
+    }
+
+    @media (min-width: 1200px) {
+      gap: var(--spacing-15) 16vw;
+      margin: var(--spacing-15) auto;
+      width: 52%;
+    }
+
+    @media (min-width: 1440px) {
+      gap: var(--spacing-17) 18vw;
+      margin: var(--spacing-17) auto;
+      width: 48%;
+    }
+
+    @media (min-width: 1920px) {
+      gap: var(--spacing-19) 20vw;
+      margin: var(--spacing-19) auto;
+      width: 44%;
+    }
+  }
+
+  &.container-xs {
+    gap: var(--spacing-9) 6vw;
+    margin: var(--spacing-9) auto;
+    max-width: 1152px;
+    width: 88%;
+    @media (min-width: 576px) {
+      gap: var(--spacing-11) 10vw;
+      margin: var(--spacing-11) auto;
+      width: 80%;
+    }
+
+    @media (min-width: 992px) {
+      gap: var(--spacing-13) 14vw;
+      margin: var(--spacing-13) auto;
+      width: 72%;
+    }
+
+    @media (min-width: 1200px) {
+      gap: var(--spacing-15) 16vw;
+      margin: var(--spacing-15) auto;
+      width: 68%;
+    }
+
+    @media (min-width: 1440px) {
+      gap: var(--spacing-17) 18vw;
+      margin: var(--spacing-17) auto;
+      width: 64%;
+    }
+
+    @media (min-width: 1920px) {
+      gap: var(--spacing-19) 20vw;
+      margin: var(--spacing-19) auto;
+      width: 60%;
+    }
+  }
+
+  &.container-sm {
+    gap: var(--spacing-9) 4vw;
+    margin: var(--spacing-9) auto;
+    max-width: 1408px;
+    width: 88%;
+
+    @media (min-width: 576px) {
+      row-gap: var(--spacing-11);
+      margin: var(--spacing-11) auto;
+    }
+
+    @media (min-width: 768px) {
+    }
+
+    @media (min-width: 992px) {
+      width: 80%;
+    }
+
+    @media (min-width: 1200px) {
+      width: 72%;
+    }
+
+    @media (min-width: 1440px) {
+      row-gap: var(--spacing-13);
+      margin: var(--spacing-13) auto;
+      width: 68%;
+    }
+
+    @media (min-width: 1920px) {
+      row-gap: var(--spacing-15);
+      margin: var(--spacing-15) auto;
+      width: 64%;
+    }
+  }
+
+  &.container-md {
+    gap: var(--spacing-9) 5vw;
+    margin: var(--spacing-9) auto;
+    max-width: 1536px;
+    width: 90%;
+
+    @media (min-width: 576px) {
+      row-gap: var(--spacing-11);
+      margin: var(--spacing-11) auto;
+    }
+
+    @media (min-width: 768px) {
+    }
+
+    @media (min-width: 992px) {
+      row-gap: var(--spacing-13);
+      margin: var(--spacing-13) auto;
+    }
+
+    @media (min-width: 1200px) {
+      row-gap: var(--spacing-15);
+      margin: var(--spacing-15) auto;
+    }
+
+    @media (min-width: 1440px) {
+      row-gap: var(--spacing-17);
+      margin: var(--spacing-17) auto;
+    }
+
+    @media (min-width: 1920px) {
+      gap: var(--spacing-19) 10vw;
+      margin: var(--spacing-19) auto;
+      width: 80%;
+    }
+  }
+
+  &.container-lg {
+    gap: var(--spacing-9) 4vw;
+    margin: var(--spacing-9) auto;
+    max-width: 1792px;
+    width: 92%;
+
+    @media (min-width: 576px) {
+      row-gap: var(--spacing-11);
+      margin: var(--spacing-11) auto;
+    }
+
+    @media (min-width: 768px) {
+    }
+
+    @media (min-width: 992px) {
+      row-gap: var(--spacing-13);
+      margin: var(--spacing-13) auto;
+    }
+
+    @media (min-width: 1200px) {
+      gap: var(--spacing-15) 4vw;
+      margin: var(--spacing-15) auto;
+    }
+
+    @media (min-width: 1440px) {
+      gap: var(--spacing-17) 5vw;
+      margin: var(--spacing-17) auto;
+      width: 90%;
+    }
+
+    @media (min-width: 1920px) {
+      gap: var(--spacing-19) 6vw;
+      margin: var(--spacing-19) auto;
+      width: 88%;
+    }
+  }
+
+  &.container-xl {
+    gap: var(--spacing-9) 2vw;
+    margin: var(--spacing-9) auto;
+    max-width: 1920px;
+    width: 96%;
+
+    @media (min-width: 576px) {
+      row-gap: var(--spacing-11);
+      margin: var(--spacing-11) auto;
+    }
+
+    @media (min-width: 768px) {
+    }
+
+    @media (min-width: 992px) {
+      row-gap: var(--spacing-13);
+      margin: var(--spacing-13) auto;
+    }
+
+    @media (min-width: 1200px) {
+      row-gap: var(--spacing-15);
+      margin: var(--spacing-15) auto;
+    }
+
+    @media (min-width: 1440px) {
+      row-gap: var(--spacing-17);
+      margin: var(--spacing-17) auto;
+    }
+
+    @media (min-width: 1920px) {
+      row-gap: var(--spacing-19);
+      margin: var(--spacing-19) auto;
+    }
+  }
+
+  &.navbar {
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--spacing-7);
+    justify-content: space-between;
+    margin: var(--spacing-4) auto;
+    max-width: 1920px;
+    width: 96%;
+  }
+}
+/* END LAYOUT */
