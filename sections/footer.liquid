@@ -10,12 +10,6 @@
       or settings.social_instagram_link != blank
     %}
       <nav>
-        {% if settings.social_email_link != blank %}
-          {% render 'button', button: 'Email', style: 'link', text: 'Email', url: settings.social_email_link %}
-        {% endif %}
-        {% if settings.social_facebook_link != blank %}
-          {% render 'button', button: 'Facebook', style: 'link', text: 'Facebook', url: settings.social_facebook_link %}
-        {% endif %}
         {% if settings.social_instagram_link != blank %}
           {% render 'button',
             button: 'Instagram',
@@ -23,6 +17,12 @@
             text: 'Instagram',
             url: settings.social_instagram_link
           %}
+        {% endif %}
+        {% if settings.social_facebook_link != blank %}
+          {% render 'button', button: 'Facebook', style: 'link', text: 'Facebook', url: settings.social_facebook_link %}
+        {% endif %}
+        {% if settings.social_email_link != blank %}
+          {% render 'button', button: 'Email', style: 'link', text: 'Email', url: settings.social_email_link %}
         {% endif %}
       </nav>
     {% endif %}

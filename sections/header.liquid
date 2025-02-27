@@ -1,8 +1,54 @@
-{% render 'navbar' %}
+<div class="container navbar">
+  {% if settings.logo != blank %}
+    <a class="logo-wrapper" href="/">
+      <img
+        src="{{ settings.logo | image_url: width: 100 }}"
+        alt="{{ settings.logo.alt }}"
+        width="{{ settings.logo_width }}"
+        height="100%"
+      >
+    </a>
+  {% endif %}
+  <nav>
+    {% for link in linklists['main-menu'].links %}
+      {% render 'button', button: link.title, class: 'nav-item', style: 'link', text: link.title, url: link.url %}
+      {% if link.links != blank %}
+        <div class="submenu">
+          {% for child_link in link.links %}
+            {% render 'button', button: child_link.title, style: 'link', text: child_link.title, url: child_link.url %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </nav>
+
+  <div class="cart-account">
+    {% render 'button', button: 'Cart', style: 'link', text: 'Cart', url: '/cart' %}
+    {% render 'button', button: 'Account', style: 'link', text: 'Account', url: '/account' %}
+  </div>
+</div>
 
 {% schema %}
 {
   "name": "Header",
-  "tag": "header"
+  "tag": "header",
+  "class": "header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo Width",
+      "default": 64,
+      "min": 16,
+      "max": 128,
+      "step": 4,
+      "unit": "px"
+    }
+  ]
 }
 {% endschema %}
