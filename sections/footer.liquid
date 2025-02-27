@@ -11,26 +11,29 @@
       {% endfor %}
     </nav>
     <div>
-      <h2 class="heading-lg">About Baba Java</h2>
-      <p>
+      <h2 class="heading-2xl">About Baba Java</h2>
+      <p class="text-md">
         We strive to provide not only outstanding coffee but also exceptional customer service and a wealth of knowledge
         through our commitment to education. At Baba Java, our journey from farm to cup is one of excellence.
       </p>
-      <a href="#"> Learn More </a>
+      {% render 'button', button: 'Learn More', style: 'link', text: 'Learn More', url: '/about' %}
     </div>
     <div>
-      <h2 class="heading-lg">Get In Touch</h2>
-      <p>
+      <h2 class="heading-2xl">Get In Touch</h2>
+      <p class="text-md">
         Contact us to find out more about our café, our coffee, and our educational resources and catering services.
       </p>
-      <a href="#"> Contact Us </a>
+      {% render 'button', button: 'Contact Us', style: 'link', text: 'Contact Us', url: '/contact' %}
     </div>
   </div>
 </div>
 <div class="lower">
   <div class="container container-xl">
-    <p>© 2025 Baba Java. All rights reserved.</p>
-    <p>Designed and developed by <a href="#">Wheelbarrow Digital</a></p>
+    <p class="text-sm">© 2025 Baba Java. All rights reserved.</p>
+    <p class="text-sm">
+      Designed and developed by
+      <a class="bold underline" href="https://www.wheelbarrowdigital.com" target="_blank">Wheelbarrow Digital</a>
+    </p>
   </div>
 </div>
 

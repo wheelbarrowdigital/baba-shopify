@@ -200,6 +200,10 @@ body {
   font-weight: 500;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .uppercase {
   text-transform: uppercase;
 }
