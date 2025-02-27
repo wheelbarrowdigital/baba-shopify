@@ -83,6 +83,17 @@
 }
 /* END BUTTON */
 
+/* FOOTER */
+.footer {
+  nav {
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--spacing-4);
+  }
+}
+
+/* END FOOTER */
+
 /* IMAGE */
 .image-wrapper {
   background-color: unset;

@@ -5,6 +5,11 @@
         {% render 'button', button: link.title, style: 'link', text: link.title, url: link.url %}
       {% endfor %}
     </nav>
+    {% if settings.social_facebook_link != blank %}
+      <nav>
+        {% render 'button', button: 'Facebook', style: 'link', text: 'Facebook', url: settings.social_facebook_link %}
+      </nav>
+    {% endif %}
     <ul>
       <li>Instagram</li>
       <li>Facebook</li>
