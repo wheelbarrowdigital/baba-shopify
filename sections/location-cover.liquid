@@ -41,61 +41,57 @@
     }
   }
 {%- endcomment -%}
-{% if metaobject.type == 'location' %}
-  <div class="container container-xl">
-    <h1>{{ metaobject.name }}</h1>
-    <h2>Hours</h2>
-    <ul>
-      {% comment %}
-        Shopify’s JSON metaobject fields behave differently than expected, using Liquid’s key-value iteration, but requiring explicit property access. When you loop over a JSON object in Liquid, Shopify returns a key-value pair, where:
-        	•	day[0] → Contains the key ("monday", "tuesday", etc.).
-        	•	day[1] → Contains the actual object ({"open"=>"06:30 AM", "close"=>"07:00 PM"}).
-      {% endcomment %}
-      {% for day in metaobject.hours.value %}
-        {% assign day_name = day[0] %}
-        {% assign times = day[1] %}
-        <li>{{ day_name | capitalize }}: {{ times.open }} - {{ times.close }}</li>
-      {% endfor %}
-      <p>{{ metaobject.featured_image }}</p>
-    </ul>
 
-    <h2>Address</h2>
-    {{ metaobject.address }}
-
-    <h2>Phone</h2>
-    {{ metaobject.phone }}
-
-    <h2>Google Maps</h2>
-    {{ metaobject.google_maps_iframe }}
-
-    <h2>Story</h2>
-    {{ metaobject.story_text }}
-
-    {{ metaobject.story_images }}
-
-    <a href="https://onyxcoffeelab.com/pages/rogers">Onyx Coffee Lab Rogers</a>
-
-    <h2>Neighbors</h2>
-    {% for neighbor in metaobject.neighbors.value %}
-      <p>{{ neighbor.name }}</p>
-      <p>{{ neighbor.url }}</p>
-      <p>{{ neighbor.brand_image }}</p>
+<div class="container container-xl">
+  <h1>{{ metaobject.name }}</h1>
+  <h2>Hours</h2>
+  <ul>
+    {% comment %}
+      Shopify’s JSON metaobject fields behave differently than expected, using Liquid’s key-value iteration, but requiring explicit property access. When you loop over a JSON object in Liquid, Shopify returns a key-value pair, where:
+      	•	day[0] → Contains the key ("monday", "tuesday", etc.).
+      	•	day[1] → Contains the actual object ({"open"=>"06:30 AM", "close"=>"07:00 PM"}).
+    {% endcomment %}
+    {% for day in metaobject.hours.value %}
+      {% assign day_name = day[0] %}
+      {% assign times = day[1] %}
+      <li>{{ day_name | capitalize }}: {{ times.open }} - {{ times.close }}</li>
     {% endfor %}
+    <p>{{ metaobject.featured_image }}</p>
+  </ul>
 
-    <h2>Photo Gallery</h2>
-    {% for photo in metaobject.photo_gallery.value %}
-      <p>{{ photo }}</p>
-    {% endfor %}
-  </div>
-{% endif %}
+  <h2>Address</h2>
+  {{ metaobject.address }}
+
+  <h2>Phone</h2>
+  {{ metaobject.phone }}
+
+  <h2>Google Maps</h2>
+  {{ metaobject.google_maps_iframe }}
+
+  <h2>Story</h2>
+  {{ metaobject.story_text }}
+
+  {{ metaobject.story_images }}
+
+  <a href="https://onyxcoffeelab.com/pages/rogers">Onyx Coffee Lab Rogers</a>
+
+  <h2>Neighbors</h2>
+  {% for neighbor in metaobject.neighbors.value %}
+    <p>{{ neighbor.name }}</p>
+    <p>{{ neighbor.url }}</p>
+    <p>{{ neighbor.brand_image }}</p>
+  {% endfor %}
+
+  <h2>Photo Gallery</h2>
+  {% for photo in metaobject.photo_gallery.value %}
+    <p>{{ photo }}</p>
+  {% endfor %}
+</div>
 
 {% schema %}
 {
   "name": "Location Cover",
   "tag": "section",
-  "class": "location-cover",
-  "enabled_on": {
-    "templates": ["metaobject"]
-  }
+  "class": "location-cover"
 }
 {% endschema %}

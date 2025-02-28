@@ -1,0 +1,27 @@
+{% assign locations = shop.metaobjects.location.values %}
+
+<div class="container container-xl">
+  <h1 class="heading-5xl">Archive Location</h1>
+  {% for location in locations %}
+    {% if location.featured_image != blank and location.featured_image.value != blank %}
+      {% assign image_src = location.featured_image.value | image_url %}
+    {% else %}
+      {% assign image_src = '' %}
+    {% endif %}
+    {% if image_src != '' %}
+      {% render 'image', src: image_src, alt: location.name, aspect_ratio: '16:9' %}
+    {% endif %}
+    <p>{{ location.name }}</p>
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Archive Location",
+  "tag": "section",
+  "class": "archive-location",
+  "enabled_on": {
+    "templates": ["page"]
+  }
+}
+{% endschema %}

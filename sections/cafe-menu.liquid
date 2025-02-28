@@ -15,6 +15,15 @@
 
 <h2>Signature Drinks</h2>
 {% for item in signature_drinks %}
+  {% comment %} Shopify Liquid handles empty image_url values inside of a loop by retaining the previous value, which is odd. So got to do some work to get around that. {% endcomment %}
+  {% if item.featured_image != blank and item.featured_image.value != blank %}
+    {% assign image_src = item.featured_image.value | image_url %}
+  {% else %}
+    {% assign image_src = '' %}
+  {% endif %}
+  {% if image_src != '' %}
+    {% render 'image', src: image_src, alt: item.name, aspect_ratio: '16:9' %}
+  {% endif %}
   <p>{{ item.name }}</p>
 {% endfor %}
 

@@ -9,10 +9,10 @@
  */
 {
   "sections": {
-    "archive_metaobject": {
-      "type": "archive-metaobject",
+    "archive_location": {
+      "type": "archive-location",
       "settings": {}
     }
   },
-  "order": ["archive_metaobject"]
+  "order": ["archive_location"]
 }
