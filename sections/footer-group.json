@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "Footer",
   "type": "footer",
@@ -5,29 +14,33 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "content_block_01": {
+        "content_block_AXAxmA": {
           "type": "content_block",
-          "name": "Content Block",
           "settings": {
             "heading": "About Baba Java",
             "content": "We strive to provide not only outstanding coffee but also exceptional customer service and a wealth of knowledge through our commitment to education. At Baba Java, our journey from farm to cup is one of excellence.",
-            "button_text": "Learn More"
+            "button_text": "Learn More",
+            "button_url": "shopify://pages/about"
           }
         },
-        "content_block_02": {
+        "content_block_kXLmkL": {
           "type": "content_block",
-          "name": "Content Block",
           "settings": {
-            "heading": "Get In Touch",
+            "heading": "Get in touch",
             "content": "Contact us to find out more about our café, our coffee, and our educational resources and catering services.",
-            "button_text": "Contact Us"
+            "button_text": "Contact Us",
+            "button_url": "shopify://pages/contact"
           }
         }
       },
-      "block_order": ["content_block_01", "content_block_02"]
+      "block_order": [
+        "content_block_AXAxmA",
+        "content_block_kXLmkL"
+      ],
+      "settings": {}
     }
   },
-  "order": ["footer"]
+  "order": [
+    "footer"
+  ]
 }
-
-      
