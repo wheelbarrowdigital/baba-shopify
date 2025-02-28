@@ -1,0 +1,26 @@
+{% for block in section.blocks %}
+  {% assign blog = blogs[block.settings.blog] %}
+  {{ blog.url }}
+  <p>{{ blog.title }}</p>
+{% endfor %}
+
+{% schema %}
+{
+  "name": "Archive Blog",
+  "tag": "section",
+  "class": "archive-blog",
+  "blocks": [
+    {
+      "type": "blog",
+      "name": "Blog",
+      "settings": [
+        {
+          "type": "blog",
+          "id": "blog",
+          "label": "Blog"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

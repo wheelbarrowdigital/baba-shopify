@@ -9,12 +9,9 @@
  */
 {
   "sections": {
-    "cover": {
-      "type": "cover",
-      "settings": {}
+    "archive_blog": {
+      "type": "archive-blog"
     }
   },
-  "order": [
-    "cover"
-  ]
+  "order": ["archive_blog"]
 }
