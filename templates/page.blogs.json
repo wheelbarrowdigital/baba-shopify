@@ -10,7 +10,26 @@
 {
   "sections": {
     "archive_blog": {
-      "type": "archive-blog"
+      "type": "archive-blog",
+      "blocks": {
+        "blog_KLfx9a": {
+          "type": "blog",
+          "settings": {
+            "blog": "education"
+          }
+        },
+        "blog_JBAgjE": {
+          "type": "blog",
+          "settings": {
+            "blog": "news"
+          }
+        }
+      },
+      "block_order": [
+        "blog_KLfx9a",
+        "blog_JBAgjE"
+      ],
+      "settings": {}
     }
   },
   "order": [
