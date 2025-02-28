@@ -1,8 +1,10 @@
-{% for block in section.blocks %}
-  {% assign blog = blogs[block.settings.blog] %}
-  {{ blog.url }}
-  <p>{{ blog.title }}</p>
-{% endfor %}
+<div class="container container-xl">
+  {% for block in section.blocks %}
+    {% assign blog = blogs[block.settings.blog] %}
+    <a href="{{ blog.url }}">link to {{ blog.title }}</a>
+    <p>{{ blog.title }}</p>
+  {% endfor %}
+</div>
 
 {% schema %}
 {

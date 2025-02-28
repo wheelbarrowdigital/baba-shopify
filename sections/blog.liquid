@@ -1,0 +1,16 @@
+<div class="container container-xl">
+  <h1>{{ blog.title }}</h1>
+  <div class="grid">
+    {% for article in blog.articles %}
+      <div class="grid__item">
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.content | strip_html | truncatewords: 20 }}</p>
+        <a href="{{ article.url }}">Read More</a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{ "name": "Blog", "tag": "section", "class": "blog" }
+{% endschema %}

@@ -1,0 +1,10 @@
+<div class="container container-xl">
+  <h1>{{ article.title }}</h1>
+  <div class="article-content">
+    {{ article.content }}
+  </div>
+</div>
+
+{% schema %}
+{ "name": "Article", "tag": "section", "class": "article" }
+{% endschema %}

@@ -9,12 +9,10 @@
  */
 {
   "sections": {
-    "cover": {
-      "type": "cover",
+    "partners": {
+      "type": "partners",
       "settings": {}
     }
   },
-  "order": [
-    "cover"
-  ]
+  "order": ["partners"]
 }

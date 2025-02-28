@@ -9,12 +9,10 @@
  */
 {
   "sections": {
-    "archive_blog": {
-      "type": "archive-blog",
+    "blog": {
+      "type": "blog",
       "settings": {}
     }
   },
-  "order": [
-    "archive_blog"
-  ]
+  "order": ["blog"]
 }

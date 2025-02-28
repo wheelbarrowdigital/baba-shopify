@@ -9,12 +9,10 @@
  */
 {
   "sections": {
-    "cover": {
-      "type": "cover",
+    "international": {
+      "type": "international",
       "settings": {}
     }
   },
-  "order": [
-    "cover"
-  ]
+  "order": ["international"]
 }

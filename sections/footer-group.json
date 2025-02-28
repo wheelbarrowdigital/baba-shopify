@@ -3,8 +3,31 @@
   "type": "footer",
   "sections": {
     "footer": {
-      "type": "footer"
+      "type": "footer",
+      "blocks": {
+        "content_block_01": {
+          "type": "content_block",
+          "name": "Content Block",
+          "settings": {
+            "heading": "About Baba Java",
+            "content": "We strive to provide not only outstanding coffee but also exceptional customer service and a wealth of knowledge through our commitment to education. At Baba Java, our journey from farm to cup is one of excellence.",
+            "button_text": "Learn More"
+          }
+        },
+        "content_block_02": {
+          "type": "content_block",
+          "name": "Content Block",
+          "settings": {
+            "heading": "Get In Touch",
+            "content": "Contact us to find out more about our café, our coffee, and our educational resources and catering services.",
+            "button_text": "Contact Us"
+          }
+        }
+      },
+      "block_order": ["content_block_01", "content_block_02"]
     }
   },
   "order": ["footer"]
 }
+
+      
