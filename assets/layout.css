@@ -252,16 +252,5 @@ section.shopify-section {
       margin: var(--spacing-19) auto;
     }
   }
-
-  &.navbar {
-    align-items: center;
-    display: flex;
-    flex-flow: row wrap;
-    gap: var(--spacing-7);
-    justify-content: space-between;
-    margin: var(--spacing-4) auto;
-    max-width: 1920px;
-    width: 96%;
-  }
 }
 /* END LAYOUT */
