@@ -1,7 +1,7 @@
 {
   "sections": {
     "cover": {
-      "type": "cover",
+      "type": "relume-cover-007",
       "blocks": {
         "heading": {
           "type": "heading",
@@ -25,21 +25,55 @@
       },
       "block_order": ["heading", "paragraph", "buttons"]
     },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "all"
-      }
+    "featured_shop": {
+      "type": "relume-layout-003",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "content": "Experience the Art of Freshly Roasted Coffee at Baba Java!"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "content": "Join us in Hoover to savor the rich aromas and sounds of our freshly roasted coffee."
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_text": "Take The Quiz",
+            "button_url": "/collections/all"
+          }
+        }
+      },
+      "block_order": ["heading", "paragraph", "button"]
     },
     "featured_services": {
       "type": "featured-services"
     },
-    "featured_archive_farm": {
-      "type": "featured-archive-farm"
+    "freshly_roasted_coffee": {
+      "type": "relume-layout-194",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "content": "Freshly Roasted Coffee"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "content": "Join us in Hoover to savor the rich aromas and sounds of our freshly roasted coffee."
+          }
+        }
+      },
+      "block_order": ["heading", "paragraph"]
     },
     "featured_archive_location": {
       "type": "featured-archive-location"
     }
   },
-  "order": ["cover", "featured_collection", "featured_services", "featured_archive_farm", "featured_archive_location"]
+  "order": ["cover", "featured_shop", "featured_services", "freshly_roasted_coffee", "featured_archive_location"]
 }

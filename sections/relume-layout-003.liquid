@@ -1,0 +1,115 @@
+{% style %}
+  section.relume-layout-003 {
+    > .container {
+      align-items: center;
+      display: grid;
+      gap: var(--spacing-9);
+      grid-template-columns: 1fr;
+
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      @media (min-width: 1440px) {
+        gap: var(--spacing-13);
+        grid-template-columns: 54fr 46fr;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-6);
+
+      @media (min-width: 1440px) {
+        gap: var(--spacing-7);
+      }
+
+      .text {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: var(--spacing-3);
+
+        @media (min-width: 1440px) {
+          gap: var(--spacing-4);
+        }
+      }
+    }
+  }
+{% endstyle %}
+
+<div class="container container-lg">
+  <div class="content">
+    <div class="text">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'heading' %}
+            <h2 class="heading-4xl">{{ block.settings.content }}</h2>
+          {% when 'paragraph' %}
+            <p class="text-lg">{{ block.settings.content }}</p>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    <div class="buttons">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'button' %}
+            {% render 'button', text: block.settings.button_text, url: block.settings.button_url %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+  {% render 'image', aspect_ratio: '6:7', class: 'media' %}
+</div>
+
+{% schema %}
+{
+  "name": "Layout 003",
+  "tag": "section",
+  "class": "relume-layout-003",
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
