@@ -39,11 +39,11 @@
 
   &.fill {
     &.primary {
-      background-color: var(--color-button-primary);
+      background-color: var(--button-color-primary);
       color: var(--contrast-fg);
 
       &:hover:not(:disabled) {
-        background-color: var(--color-button-primary-hover);
+        background-color: var(--button-color-primary-hover);
       }
     }
   }
@@ -209,7 +209,7 @@
   }
 
   > .overlay {
-    background-color: rgba(0, 0, 0, 0.35);
+    background-color: rgba(0, 0, 0, 0.48);
     display: none;
     height: 100%;
     left: 0;

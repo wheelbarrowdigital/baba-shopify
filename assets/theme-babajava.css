@@ -248,10 +248,6 @@
   --color-warning: var(--amber-700);
   --color-success: var(--green-700);
   --color-info: var(--blue-700);
-
-  /* Component Colors */
-  --color-button-primary: var(--green-700);
-  --color-button-primary-hover: var(--green-800);
 }
 
 .dark-theme,
@@ -454,3 +450,21 @@
   --shadow-border-inset: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 /* END COLORS */
+
+/* COMPONENT VARIABLES */
+:root {
+  --button-border-radius: 0.75rem;
+  --button-color-primary: var(--green-700);
+  --button-color-primary-hover: var(--green-800);
+  --button-color-secondary: var(--blue-700);
+  --button-color-secondary-hover: var(--blue-800);
+  --button-color-danger: var(--red-700);
+  --button-color-danger-hover: var(--red-800);
+  --button-color-warning: var(--amber-700);
+  --button-color-warning-hover: var(--amber-800);
+  --button-color-success: var(--green-700);
+  --button-color-success-hover: var(--green-800);
+  --button-color-info: var(--blue-700);
+  --button-color-info-hover: var(--blue-800);
+}
+/* END COMPONENT VARIABLES */
