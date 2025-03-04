@@ -15,15 +15,24 @@
             "content": "We deliver specialty coffee from farms around the world to your door. Are you ready to discover your new favorite coffee?"
           }
         },
-        "buttons": {
-          "type": "buttons",
+        "button_primary": {
+          "type": "button",
           "settings": {
             "button_text": "Take The Quiz",
-            "button_url": "/collections/all"
+            "button_url": "/collections/all",
+            "button_style": "fill"
+          }
+        },
+        "button_secondary": {
+          "type": "button",
+          "settings": {
+            "button_text": "More Details",
+            "button_url": "/collections/all",
+            "button_style": "outline"
           }
         }
       },
-      "block_order": ["heading", "paragraph", "buttons"]
+      "block_order": ["heading", "paragraph", "button_primary", "button_secondary"]
     },
     "featured_shop": {
       "type": "relume-layout-003",
