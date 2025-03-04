@@ -163,6 +163,7 @@
       }
     {% endstyle %}
 
+    {{ 'keyframes.css' | asset_url | stylesheet_tag }}
     {{ 'style-natural.css' | asset_url | stylesheet_tag }}
     {{ 'theme-babajava.css' | asset_url | stylesheet_tag }}
     {{ 'typography.css' | asset_url | stylesheet_tag }}
@@ -250,6 +251,25 @@
         recipientFormCollapsed: `{{ 'recipient.form.collapsed' | t }}`,
         countrySelectorSearchCount: `{{ 'localization.country_results_count' | t: count: '[count]' }}`,
       };
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const elements = document.querySelectorAll('.reveal-from-bottom');
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+
+        elements.forEach((el) => observer.observe(el));
+      });
     </script>
   </body>
 </html>

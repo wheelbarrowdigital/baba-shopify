@@ -1,4 +1,10 @@
 {% style %}
+  /* BASE HEADER */
+  header {
+    z-index: 100;
+  }
+  /* END BASE HEADER */
+
   /* BASE NOTIFICATION BAR */
   header {
     .notification-bar {
@@ -7,10 +13,13 @@
       display: flex;
       flex-flow: row wrap;
       justify-content: center;
+      position: relative;
+      z-index: 500;
 
       > .container {
-        margin: var(--spacing-2) auto;
+        margin: 0 auto;
         max-width: 1792px;
+        padding: var(--spacing-2) 0;
       }
     }
   }
@@ -29,19 +38,22 @@
       display: flex;
       overflow: unset;
       position: relative;
+      z-index: 5;
 
       > .container {
         align-items: center;
+        background-color: var(--background-100); /* this is to make sure the mobile menu appears "behind" the navbar */
         display: flex;
         flex-flow: row wrap;
         gap: var(--spacing-7);
         justify-content: space-between;
-        margin: var(--spacing-4) auto;
+        margin: 0 auto;
         max-width: 1792px;
         overflow: visible;
+        padding: var(--spacing-4) 0;
         position: relative;
         width: 90%;
-        z-index: 100;
+        z-index: 5;
       }
     }
 
@@ -85,7 +97,7 @@
       text-align: right;
       top: 100%;
       width: 100%;
-      z-index: 1000;
+      z-index: 1;
 
       nav {
         align-items: flex-end;
@@ -129,7 +141,7 @@
     }
 
     .mobile-menu {
-      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
     }
 
     .desktop-menu {
@@ -153,6 +165,7 @@
 
       .mobile-menu {
         opacity: 0;
+        transform: translateY(-480px);
         visibility: hidden;
 
         nav {
@@ -183,6 +196,7 @@
 
       .mobile-menu {
         opacity: 1;
+        transform: translateY(0);
         visibility: visible;
 
         nav {
