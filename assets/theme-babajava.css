@@ -441,8 +441,8 @@
   /* Background */
   --background-100-value: 0, 0%, 4%;
   --background-200-value: 0, 0%, 0%;
-  --background-100: hsla(var(--background-100-value), 1);
-  --background-200: hsla(var(--background-200-value), 1);
+  --background-100: hsla(var(--gray-100-value), 1);
+  --background-200: hsla(var(--gray-200-value), 1);
 
   /* Focus */
   --focus-border: 0 0 0 1px var(--gray-alpha-600), 0px 0px 0px 4px rgba(255, 255, 255, 0.24);

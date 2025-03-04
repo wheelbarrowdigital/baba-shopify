@@ -1,7 +1,32 @@
-<style>
+{% style %}
+  /* BASE NOTIFICATION BAR */
   header {
+    .notification-bar {
+      background-color: var(--background-200);
+      color: var(--gray-1000);
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+
+      > .container {
+        margin: var(--spacing-2) auto;
+        max-width: 1792px;
+      }
+    }
+  }
+  /* END BASE NOTIFICATION BAR */
+
+  /* BASE NAVBAR */
+  header {
+    .logo-wrapper {
+      display: flex;
+    }
+
     .navbar {
       /* this overflow:unset is in order to make sure mobile-menu can be seen */
+      background-color: var(--background-100);
+      color: var(--gray-1000);
+      display: flex;
       overflow: unset;
       position: relative;
 
@@ -18,107 +43,211 @@
         width: 90%;
         z-index: 100;
       }
+    }
 
-      .menu-toggle {
-        background-color: transparent;
-        border: none;
-        color: currentColor;
-        cursor: pointer;
-        position: relative;
-        height: 2rem;
-        width: 2rem;
+    .menu-toggle {
+      background-color: transparent;
+      border: none;
+      color: currentColor;
+      cursor: pointer;
+      position: relative;
+      height: 2rem;
+      width: 2rem;
 
-        @media (min-width: 992px) {
-          display: none;
-        }
-
-        svg {
-          left: 50%;
-          position: absolute;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .hamburger {
-          height: 2rem;
-          opacity: 1;
-          transform: translate(-50%, -50%) rotate(0deg);
-          width: 2rem;
-        }
-
-        .close {
-          height: 1.25rem;
-          opacity: 0;
-          transform: translate(-50%, -50%) rotate(90deg);
-          width: 1.25rem;
-        }
+      svg {
+        left: 50%;
+        position: absolute;
+        top: 50%;
       }
 
-      .desktop-menu {
-        display: flex;
-        flex-flow: row wrap;
-        gap: var(--spacing-4);
+      .hamburger {
+        height: 2rem;
+        width: 2rem;
+      }
 
-        @media (max-width: 991px) {
-          display: none;
+      .close {
+        height: 1.25rem;
+        width: 1.25rem;
+      }
+    }
+
+    .mobile-menu {
+      align-items: flex-end;
+      background-color: var(--background-100);
+      box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-7);
+      justify-content: flex-start;
+      left: 0;
+      padding: var(--spacing-9) var(--spacing-6);
+      position: absolute;
+      text-align: right;
+      top: 100%;
+      width: 100%;
+      z-index: 1000;
+
+      nav {
+        align-items: flex-end;
+        display: flex;
+        flex-flow: column nowrap;
+        gap: var(--spacing-4);
+        justify-content: flex-start;
+        text-align: right;
+      }
+    }
+
+    .desktop-menu {
+      display: flex;
+      flex-flow: row wrap;
+      gap: var(--spacing-4);
+    }
+  }
+  /* END BASE NAVBAR */
+
+  /* SHOW/HIDE NAVBAR */
+  header {
+    .menu-toggle,
+    .mobile-menu {
+      @media (min-width: 992px) {
+        display: none;
+      }
+    }
+
+    .menu-toggle {
+      svg {
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+        &.hamburger {
+          transform: translate(-50%, -50%) rotate(0deg);
         }
+
+        &.close {
+          transform: translate(-50%, -50%) rotate(90deg);
+        }
+      }
+    }
+
+    .mobile-menu {
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .desktop-menu {
+      @media (max-width: 991px) {
+        display: none;
+      }
+    }
+
+    .navbar.closed {
+      .hamburger {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(0deg);
+        visibility: visible;
+      }
+
+      .close {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(90deg);
+        visibility: hidden;
       }
 
       .mobile-menu {
-        align-items: flex-end;
-        background-color: var(--background-100);
-        box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
-        display: flex;
-        flex-flow: column nowrap;
-        gap: var(--spacing-7);
-        justify-content: flex-start;
-        left: 0;
         opacity: 0;
-        padding: var(--spacing-9) var(--spacing-6);
-        position: absolute;
-        text-align: right;
-        top: 100%;
-        transition: opacity 0.3s ease;
         visibility: hidden;
-        width: 100%;
-        z-index: 1000;
 
         nav {
-          align-items: flex-end;
-          display: flex;
-          flex-flow: column nowrap;
-          gap: var(--spacing-4);
-          justify-content: flex-start;
-          text-align: right;
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        .nav-item {
+          opacity: 0;
+          transform: translateY(0.5rem);
+          visibility: hidden;
         }
       }
+    }
 
-      @media (max-width: 991px) {
-        &.open {
-          .menu-toggle {
-            .hamburger {
-              opacity: 0;
-              transform: translate(-50%, -50%) rotate(-90deg);
-            }
+    .navbar.open {
+      .hamburger {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(-90deg);
+        visibility: hidden;
+      }
 
-            .close {
-              opacity: 1;
-              transform: translate(-50%, -50%) rotate(0deg);
-            }
+      .close {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(0deg);
+        visibility: visible;
+      }
+
+      .mobile-menu {
+        opacity: 1;
+        visibility: visible;
+
+        nav {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .nav-item {
+          opacity: 1;
+          transform: translateY(0);
+          visibility: visible;
+
+          &:nth-of-type(1) {
+            transition-delay: 0.05s;
           }
 
-          .mobile-menu {
-            opacity: 1;
-            visibility: visible;
+          &:nth-of-type(2) {
+            transition-delay: 0.1s;
+          }
+
+          &:nth-of-type(3) {
+            transition-delay: 0.15s;
+          }
+
+          &:nth-of-type(4) {
+            transition-delay: 0.2s;
+          }
+
+          &:nth-of-type(5) {
+            transition-delay: 0.25s;
+          }
+
+          &:nth-of-type(6) {
+            transition-delay: 0.3s;
+          }
+
+          &:nth-of-type(7) {
+            transition-delay: 0.35s;
+          }
+
+          &:nth-of-type(8) {
+            transition-delay: 0.4s;
+          }
+
+          &:nth-of-type(9) {
+            transition-delay: 0.45s;
+          }
+
+          &:nth-of-type(10) {
+            transition-delay: 0.5s;
           }
         }
       }
     }
   }
-</style>
+  /* END SHOW/HIDE NAVBAR */
+{% endstyle %}
 
-<div class="navbar">
+<div class="notification-bar">
+  <div class="container">
+    <p class="text-sm">Notification Bar</p>
+  </div>
+</div>
+
+<div class="navbar closed">
   <div class="container">
     {% if section.settings.logo != blank %}
       <a class="logo-wrapper" href="/">
@@ -155,11 +284,9 @@
         {% for link in linklists['main-menu'].links %}
           {% render 'button', button: link.title, class: 'nav-item', style: 'link', text: link.title, url: link.url %}
         {% endfor %}
+        {% render 'button', button: 'Cart', class: 'nav-item', style: 'link', text: 'Cart', url: '/cart' %}
+        {% render 'button', button: 'Account', class: 'nav-item', style: 'link', text: 'Account', url: '/account' %}
       </nav>
-      <div class="cart-account">
-        {% render 'button', button: 'Cart', style: 'link', text: 'Cart', url: '/cart' %}
-        {% render 'button', button: 'Account', style: 'link', text: 'Account', url: '/account' %}
-      </div>
     </div>
   </div>
 
@@ -167,25 +294,10 @@
     <nav>
       {% for link in linklists['main-menu'].links %}
         {% render 'button', button: link.title, class: 'nav-item', style: 'link', text: link.title, url: link.url %}
-        {% if link.links != blank %}
-          <div class="submenu">
-            {% for child_link in link.links %}
-              {% render 'button',
-                button: child_link.title,
-                style: 'link',
-                text: child_link.title,
-                url: child_link.url
-              %}
-            {% endfor %}
-          </div>
-        {% endif %}
       {% endfor %}
+      {% render 'button', button: 'Cart', class: 'nav-item', style: 'link', text: 'Cart', url: '/cart' %}
+      {% render 'button', button: 'Account', class: 'nav-item', style: 'link', text: 'Account', url: '/account' %}
     </nav>
-
-    <div class="cart-account">
-      {% render 'button', button: 'Cart', style: 'link', text: 'Cart', url: '/cart' %}
-      {% render 'button', button: 'Account', style: 'link', text: 'Account', url: '/account' %}
-    </div>
   </div>
 </div>
 
@@ -196,8 +308,21 @@
     const menuButton = document.querySelector('.navbar .menu-toggle');
 
     const toggleMenu = () => {
-      main.classList.toggle('mobile-menu-open');
-      navbar.classList.toggle('open');
+      if (main.classList.contains('mobile-menu-open')) {
+        main.classList.remove('mobile-menu-open');
+        main.classList.add('mobile-menu-closed');
+      } else {
+        main.classList.remove('mobile-menu-closed');
+        main.classList.add('mobile-menu-open');
+      }
+
+      if (navbar.classList.contains('open')) {
+        navbar.classList.remove('open');
+        navbar.classList.add('closed');
+      } else {
+        navbar.classList.remove('closed');
+        navbar.classList.add('open');
+      }
     };
 
     menuButton?.addEventListener('click', toggleMenu);
@@ -208,7 +333,7 @@
 {
   "name": "Header",
   "tag": "header",
-  "class": "header",
+  "class": "header color-scheme-dark",
   "settings": [
     {
       "type": "image_picker",

@@ -142,20 +142,4 @@
 
 /* END IMAGE */
 
-/* NAVBAR */
-.navbar {
-  .logo-wrapper {
-    display: flex;
-  }
-
-  nav,
-  .cart-account {
-    display: flex;
-    flex-flow: row wrap;
-    gap: var(--spacing-4);
-  }
-}
-
-/* END NAVBAR */
-
 /* END COMPONENTS */
