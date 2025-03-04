@@ -1,0 +1,125 @@
+{% style %}
+  section.relume-contact-030 {
+    > .container {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-9);
+
+      @media (min-width: 1440px) {
+        gap: var(--spacing-13);
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-3);
+
+      @media (min-width: 1440px) {
+        gap: var(--spacing-4);
+      }
+    }
+
+    .text {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-5);
+
+      @media (min-width: 1440px) {
+        gap: var(--spacing-6);
+      }
+    }
+
+    .tabs {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-8);
+    }
+
+    .tab {
+      border-left: 1px solid var(--gray-1000);
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-5);
+      padding: 0 var(--spacing-7);
+
+      @media (min-width: 1440px) {
+        gap: var(--spacing-6);
+      }
+    }
+  }
+{% endstyle %}
+
+<div class="container container-lg reveal-from-bottom">
+  <div class="content">
+    <span class="text-sm">Discover</span>
+    <div class="text">
+      <h2 class="heading-5xl">Locations</h2>
+      <p class="text-lg">Visit us at our cafés across Birmingham, AL!</p>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="tabs">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'tab' %}
+            <div class="tab">
+              <h3 class="heading-2xl">{{ block.settings.heading }}</h3>
+              <p class="text-lg">{{ block.settings.address }}</p>
+              {% render 'button', text: block.settings.button_text, url: block.settings.button_url, style: 'link' %}
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+    <div class="media">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'image' %}
+            {% render 'image', aspect_ratio: '6:7', image: block.settings.image %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact 030",
+  "tag": "section",
+  "class": "relume-contact-030",
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "address",
+          "label": "Address"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "URL"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

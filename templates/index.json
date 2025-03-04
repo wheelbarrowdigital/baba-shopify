@@ -144,9 +144,39 @@
       },
       "block_order": ["heading", "paragraph"]
     },
-    "featured_archive_location": {
-      "type": "featured-archive-location"
+    "featured_locations": {
+      "type": "relume-contact-030",
+      "blocks": {
+        "tab_01": {
+          "type": "tab",
+          "settings": {
+            "heading": "Birmingham",
+            "address": "123 Main St, Birmingham, AL 35201",
+            "button_text": "View Café",
+            "button_url": "#"
+          }
+        },
+        "tab_02": {
+          "type": "tab",
+          "settings": {
+            "heading": "Birmingham",
+            "address": "123 Main St, Birmingham, AL 35201",
+            "button_text": "View Café",
+            "button_url": "#"
+          }
+        },
+        "tab_03": {
+          "type": "tab",
+          "settings": {
+            "heading": "Birmingham",
+            "address": "123 Main St, Birmingham, AL 35201",
+            "button_text": "View Café",
+            "button_url": "#"
+          }
+        }
+      },
+      "block_order": ["tab_01", "tab_02", "tab_03"]
     }
   },
-  "order": ["cover", "featured_shop", "featured_services", "featured_values", "freshly_roasted_coffee", "featured_archive_location"]
+  "order": ["cover", "featured_shop", "featured_services", "featured_values", "freshly_roasted_coffee", "featured_locations"]
 }
