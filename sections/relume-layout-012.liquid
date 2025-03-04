@@ -1,0 +1,159 @@
+{% style %}
+  section.relume-layout-012 {
+    > .container {
+      align-items: center;
+      display: grid;
+      gap: var(--spacing-9);
+      grid-template-columns: 1fr;
+
+      @media (min-width: 1440px) {
+        gap: var(--spacing-13);
+        grid-template-columns: 54fr 46fr;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-6);
+
+      @media (min-width: 1440px) {
+        gap: var(--spacing-7);
+      }
+    }
+
+    .text {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-5);
+
+      @media (min-width: 1440px) {
+        gap: var(--spacing-6);
+      }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-9);
+
+      @media (min-width: 1440px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .grid-item {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-5);
+    }
+
+    .icon {
+      height: 3rem;
+      width: 3rem;
+    }
+  }
+{% endstyle %}
+
+<div class="container container-lg reveal-from-bottom">
+  <div class="content">
+    <div class="text">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'heading' %}
+            <h2 class="heading-4xl">
+              {{ block.settings.content }}
+            </h2>
+          {% when 'paragraph' %}
+            <p class="text-lg">
+              {{ block.settings.content }}
+            </p>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    <div class="grid">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'grid_item' %}
+            <div class="grid-item">
+              {% if block.settings.icon != blank %}
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Module--Streamline-Core">
+                    <desc>Module Streamline Icon: https://streamlinehq.com</desc><g id="module--cube-code-module-programming-plugin"><path id="Subtract" fill="#000000" fill-rule="evenodd" d="M6.64594 0.707221c0.11208 -0.047012 0.23245 -0.07125 0.35408 -0.07125 0.12104 0 0.24084 0.024007 0.35246 0.070577L12.8817 2.79845l0.0022 0.00083c0.122 0.04679 0.2322 0.11843 0.3241 0.20979L6.99988 5.39904 0.799934 3.01221c0.098065 -0.08373 0.212516 -0.14633 0.336196 -0.18371L6.64594 0.707221ZM0.499829 4.2361v6.2118H0.499786l0.000085 0.0065c0.002494 0.192 0.062445 0.3789 0.172128 0.5366 0.109683 0.1577 0.264071 0.2789 0.443261 0.348l0.00032 0.0001 5.25934 2.0249V6.49788L0.499829 4.2361ZM7.62492 6.49785V13.364l5.25958 -2.0249 0.0003 -0.0001c0.1792 -0.0691 0.3336 -0.1903 0.4432 -0.348 0.1097 -0.1577 0.1697 -0.3446 0.1722 -0.5366V4.236L7.62492 6.49785Z" clip-rule="evenodd" stroke-width="1"></path></g>
+                  </svg>
+                </div>
+              {% endif %}
+              <h3 class="heading-2xl">
+                {{ block.settings.heading }}
+              </h3>
+              <p class="text-lg">
+                {{ block.settings.paragraph }}
+              </p>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+  {% render 'image', aspect_ratio: '6:7', class: 'media' %}
+</div>
+
+{% schema %}
+{
+  "name": "Layout 012",
+  "tag": "section",
+  "class": "relume-layout-012",
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "grid_item",
+      "name": "Grid Item",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "icon-1", "label": "Icon 1" },
+            { "value": "icon-2", "label": "Icon 2" }
+          ]
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "paragraph",
+          "label": "Paragraph"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

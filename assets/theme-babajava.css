@@ -8,6 +8,7 @@
   --font-body: var(--font-sans);
   --font-body-weight: 300;
 
+  --font-semibold-weight: 500;
   --font-bold-weight: 700;
 
   --font-display: var(--font-fancy);

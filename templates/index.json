@@ -60,7 +60,71 @@
       "block_order": ["heading", "paragraph", "button"]
     },
     "featured_services": {
-      "type": "featured-services"
+      "type": "relume-layout-238",
+      "blocks": {
+        "grid_item_01": {
+          "type": "grid_item",
+          "settings": {
+            "heading": "Excellent Coffee",
+            "description": "We are committed to serving only the finest coffee with a personal touch.",
+            "button_text": "Learn More",
+            "button_url": "/collections/all"
+          }
+        },
+        "grid_item_02": {
+          "type": "grid_item",
+          "settings": {
+            "heading": "Excellent Service",
+            "description": "Our educational programs empower you to appreciate the art of coffee.",
+            "button_text": "Learn More",
+            "button_url": "/collections/all"
+          }
+        },
+        "grid_item_03": {
+          "type": "grid_item",
+          "settings": {
+            "heading": "Excellent Education",
+            "description": "Every sip supports sustainable practices and the farmers behind our coffee.",
+            "button_text": "Learn More",
+            "button_url": "/collections/all"
+          }
+        }
+      },
+      "block_order": ["grid_item_01", "grid_item_02", "grid_item_03"]
+    },
+    "featured_values": {
+      "type": "relume-layout-012",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "content": "Discover the Heart of Coffee: Quality, Ethics, and Community at Baba Java"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "content": "At Baba Java, we believe that every cup tells a story. Our commitment to ethical sourcing ensures that your coffee not only tastes good but also does good."
+          }
+        },
+        "grid_item_01": {
+          "type": "grid_item",
+          "settings": {
+            "icon": "icon-1",
+            "heading": "Excellent Coffee",
+            "paragraph": "We are committed to serving only the finest coffee with a personal touch."
+          }
+        },
+        "grid_item_02": {
+          "type": "grid_item",
+          "settings": {
+            "icon": "icon-2",
+            "heading": "Excellent Coffee",
+            "paragraph": "We are committed to serving only the finest coffee with a personal touch."
+          }
+        }
+      },
+      "block_order": ["heading", "paragraph", "grid_item_01", "grid_item_02"]
     },
     "freshly_roasted_coffee": {
       "type": "relume-layout-194",
@@ -68,13 +132,13 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "content": "Freshly Roasted Coffee"
+            "content": "Experience the Art of Freshly Roasted Coffee at Baba Java!"
           }
         },
         "paragraph": {
           "type": "paragraph",
           "settings": {
-            "content": "Join us in Hoover to savor the rich aromas and sounds of our freshly roasted coffee."
+            "content": "Join us in Hoover to savor the rich aromas and sounds of our freshly roasted coffee. Our dedicated roasting team, led by Reuben, ensures every cup delivers an exceptional flavor experience."
           }
         }
       },
@@ -84,5 +148,5 @@
       "type": "featured-archive-location"
     }
   },
-  "order": ["cover", "featured_shop", "featured_services", "freshly_roasted_coffee", "featured_archive_location"]
+  "order": ["cover", "featured_shop", "featured_services", "featured_values", "freshly_roasted_coffee", "featured_archive_location"]
 }

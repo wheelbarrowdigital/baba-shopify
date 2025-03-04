@@ -75,15 +75,23 @@ body {
 .heading-2xl,
 .link-2xl,
 .text-2xl {
-  font-size: 1.5rem; /* 24px */
+  font-size: 1.25rem; /* 20px */
   line-height: 2rem; /* 32px */
+
+  @media (min-width: 1440px) {
+    font-size: 1.5rem; /* 24px */
+  }
 }
 
 .display-3xl,
 .heading-3xl,
 .text-3xl {
-  font-size: 1.875rem; /* 30px */
+  font-size: 1.5rem; /* 24px */
   line-height: 2.25rem; /* 36px */
+
+  @media (min-width: 1440px) {
+    font-size: 1.875rem; /* 30px */
+  }
 }
 
 .display-4xl,
@@ -96,8 +104,12 @@ body {
 .display-5xl,
 .heading-5xl,
 .text-5xl {
-  font-size: 3rem; /* 48px */
+  font-size: 2.25rem; /* 40px */
   line-height: 1;
+
+  @media (min-width: 1440px) {
+    font-size: 3rem; /* 48px */
+  }
 }
 
 .display-6xl,
@@ -168,16 +180,24 @@ body {
   text-decoration: underline;
 }
 
-.italic {
-  font-style: italic;
-}
-
 .bold {
   font-weight: var(--font-bold-weight);
 }
 
+.italic {
+  font-style: italic;
+}
+
 .semibold {
-  font-weight: 500;
+  font-weight: var(--font-semibold-weight);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-danger {
+  color: var(--color-danger);
 }
 
 .underline {
@@ -188,7 +208,4 @@ body {
   text-transform: uppercase;
 }
 
-.text-danger {
-  color: var(--color-danger);
-}
 /* END TYPOGRAPHY */

@@ -38,7 +38,7 @@
   }
 {% endstyle %}
 
-<div class="container container-lg">
+<div class="container container-lg reveal-from-bottom">
   <div class="content">
     <div class="text">
       {% for block in section.blocks %}
@@ -51,14 +51,15 @@
       {% endfor %}
     </div>
 
-    <div class="buttons">
+    {% capture button_content %}
       {% for block in section.blocks %}
         {% case block.type %}
           {% when 'button' %}
-            {% render 'button', text: block.settings.button_text, url: block.settings.button_url %}
-        {% endcase %}
-      {% endfor %}
-    </div>
+              {% render 'button', text: block.settings.button_text, url: block.settings.button_url, style: block.settings.button_style %}
+          {% endcase %}
+        {% endfor %}
+      {% endcapture %}
+    {% render 'buttons', content: button_content %}
   </div>
   {% render 'image', aspect_ratio: '6:7', class: 'media' %}
 </div>
@@ -107,6 +108,25 @@
           "type": "url",
           "id": "button_url",
           "label": "Button URL"
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Button Style",
+          "options": [
+            {
+              "value": "fill",
+              "label": "Fill"
+            },
+            {
+              "value": "outline",
+              "label": "Outline"
+            },
+            {
+              "value": "link",
+              "label": "Link"
+            }
+          ]
         }
       ]
     }

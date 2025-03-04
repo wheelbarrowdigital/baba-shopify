@@ -63,6 +63,13 @@
 
     &.outline {
       background-color: transparent;
+      border-color: var(--gray-1000);
+      color: var(--gray-1000);
+
+      &:hover:not(:disabled) {
+        border-color: var(--gray-900);
+        color: var(--gray-900);
+      }
 
       &.primary {
         border-color: var(--button-color-primary);
@@ -104,12 +111,12 @@
   assign button_class = class | default: ''
 
   if button_color == ''
-    if button_style == 'fill' or button_style == 'outline'
+    if button_style == 'fill'
       assign button_color = 'primary'
     endif
   endif
 
-  assign full_class = 'button text-md bold' | append: ' ' | append: button_style | append: ' ' | append: button_color
+  assign full_class = 'button text-md semibold' | append: ' ' | append: button_style | append: ' ' | append: button_color
   if button_class != ''
     assign full_class = full_class | append: ' ' | append: button_class
   endif
