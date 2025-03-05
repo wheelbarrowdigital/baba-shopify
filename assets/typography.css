@@ -171,15 +171,18 @@ body {
   text-wrap: balance;
 }
 
-[class^='link-'] {
+[class^='link-'],
+[class^='text-'] a {
   font-weight: 500;
   text-decoration: underline;
 }
 
+strong,
 .bold {
   font-weight: var(--font-bold-weight);
 }
 
+em,
 .italic {
   font-style: italic;
 }

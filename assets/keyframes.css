@@ -3,11 +3,6 @@
   opacity: 0; /* Start invisible */
 }
 
-/* When in view, trigger animation */
-.reveal-from-bottom.in-view {
-  animation: reveal-from-bottom 0.7s ease-out forwards;
-}
-
 /* Keyframes for smooth fade-in and rise */
 @keyframes reveal-from-bottom {
   from {
@@ -18,4 +13,28 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* When in view, trigger animation */
+.reveal-from-bottom.in-view {
+  animation: reveal-from-bottom 0.7s ease-out forwards;
+}
+
+/* Initial hidden state */
+.reveal {
+  opacity: 0;
+}
+
+/* When in view, trigger animation */
+@keyframes reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.reveal.in-view {
+  animation: reveal 0.7s ease-out forwards;
 }

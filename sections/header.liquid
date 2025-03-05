@@ -83,6 +83,19 @@
       }
     }
 
+    .cart-account-wrapper {
+      display: flex;
+      flex-flow: row nowrap;
+      gap: var(--spacing-7);
+      justify-content: flex-end;
+    }
+
+    .icon.account,
+    .icon.cart {
+      height: 1.75rem;
+      width: 1.75rem;
+    }
+
     .mobile-menu {
       align-items: flex-end;
       background-color: var(--background-100);
@@ -106,6 +119,10 @@
         gap: var(--spacing-4);
         justify-content: flex-start;
         text-align: right;
+      }
+
+      .cart-account-wrapper {
+        margin-top: var(--spacing-7);
       }
     }
 
@@ -211,43 +228,43 @@
           transform: translateY(0);
           visibility: visible;
 
-          &:nth-of-type(1) {
+          &:nth-child(1 of .nav-item) {
             transition-delay: 0.05s;
           }
 
-          &:nth-of-type(2) {
+          &:nth-child(2 of .nav-item) {
             transition-delay: 0.1s;
           }
 
-          &:nth-of-type(3) {
+          &:nth-child(3 of .nav-item) {
             transition-delay: 0.15s;
           }
 
-          &:nth-of-type(4) {
+          &:nth-child(4 of .nav-item) {
             transition-delay: 0.2s;
           }
 
-          &:nth-of-type(5) {
+          &:nth-child(5 of .nav-item) {
             transition-delay: 0.25s;
           }
 
-          &:nth-of-type(6) {
+          &:nth-child(6 of .nav-item) {
             transition-delay: 0.3s;
           }
 
-          &:nth-of-type(7) {
+          &:nth-child(7 of .nav-item) {
             transition-delay: 0.35s;
           }
 
-          &:nth-of-type(8) {
+          &:nth-child(8 of .nav-item) {
             transition-delay: 0.4s;
           }
 
-          &:nth-of-type(9) {
+          &:nth-child(9 of .nav-item) {
             transition-delay: 0.45s;
           }
 
-          &:nth-of-type(10) {
+          &:nth-child(10 of .nav-item) {
             transition-delay: 0.5s;
           }
         }
@@ -258,8 +275,8 @@
 {% endstyle %}
 
 <div class="notification-bar">
-  <div class="container">
-    <p class="text-sm">Notification Bar</p>
+  <div class="container reveal">
+    <p class="text-sm">{{ section.settings.notification_bar_text }}</p>
   </div>
 </div>
 
@@ -277,42 +294,43 @@
     {% endif %}
 
     <button class="menu-toggle">
-      <svg
-        class="hamburger"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        id="Navigation-Menu--Streamline-Ultimate"
-      >
-        <desc>Navigation Menu Streamline Icon: https://streamlinehq.com</desc>
-        <path d="m2.25 18.003 19.5 0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
-        <path d="m2.25 12.003 19.5 0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
-        <path d="m2.25 6.003 19.5 0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
-      </svg>
-      <svg class="close" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="Close--Streamline-Ultimate">
-        <desc>Close Streamline Icon: https://streamlinehq.com</desc>
-        <path d="m0.75 23.249 22.5 -22.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
-        <path d="M23.25 23.249 0.75 0.749" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
-      </svg>
+      {% render 'icon', icon: 'hamburger' %}
+      {% render 'icon', icon: 'close' %}
     </button>
 
     <div class="desktop-menu">
       <nav>
-        {% for link in linklists['main-menu'].links %}
+        {% for link in linklists[section.settings.navigation_bar_links].links %}
           {% render 'button', button: link.title, class: 'nav-item', style: 'link', text: link.title, url: link.url %}
         {% endfor %}
-        {% render 'button', button: 'Cart', class: 'nav-item', style: 'link', text: 'Cart', url: '/cart' %}
-        {% render 'button', button: 'Account', class: 'nav-item', style: 'link', text: 'Account', url: '/account' %}
+        <div class="nav-item cart-account-wrapper">
+          <a href="/cart">
+            {% render 'icon', icon: 'cart' %}
+          </a>
+
+          <a href="/account">
+            {% render 'icon', icon: 'account' %}
+          </a>
+        </div>
       </nav>
     </div>
   </div>
 
   <div class="mobile-menu">
     <nav>
-      {% for link in linklists['main-menu'].links %}
+      {% for link in linklists[section.settings.navigation_bar_links].links %}
         {% render 'button', button: link.title, class: 'nav-item', style: 'link', text: link.title, url: link.url %}
       {% endfor %}
-      {% render 'button', button: 'Cart', class: 'nav-item', style: 'link', text: 'Cart', url: '/cart' %}
-      {% render 'button', button: 'Account', class: 'nav-item', style: 'link', text: 'Account', url: '/account' %}
+
+      <div class="nav-item cart-account-wrapper">
+        <a href="/cart">
+          {% render 'icon', icon: 'cart' %}
+        </a>
+
+        <a href="/account">
+          {% render 'icon', icon: 'account' %}
+        </a>
+      </div>
     </nav>
   </div>
 </div>
@@ -352,9 +370,29 @@
   "class": "header color-scheme-dark",
   "settings": [
     {
+      "type": "header",
+      "content": "Notification Bar"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "notification_bar_text",
+      "label": "Notification Bar Text",
+      "default": "Welcome to our store"
+    },
+    {
+      "type": "header",
+      "content": "Navigation Bar"
+    },
+    {
       "type": "image_picker",
       "id": "logo",
       "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "navigation_bar_links",
+      "label": "Navigation Bar Links",
+      "default": "main-menu"
     }
   ]
 }

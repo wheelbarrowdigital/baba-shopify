@@ -126,7 +126,13 @@
   {% if video and video != blank %}
     {{
       video
-      | video_tag: autoplay: true, muted: true, loop: true, controls: true, preload: 'auto', poster: video.preview_image
+      | video_tag:
+        autoplay: true,
+        muted: true,
+        loop: true,
+        controls: false,
+        preload: 'auto',
+        poster: video.preview_image
     }}
   {% else %}
     <p>No video available.</p>
