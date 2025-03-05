@@ -58,19 +58,19 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "content": "Experience the Art of Freshly Roasted Coffee at Baba Java!"
+            "content": "Shop"
           }
         },
         "paragraph": {
           "type": "paragraph",
           "settings": {
-            "content": "Join us in Hoover to savor the rich aromas and sounds of our freshly roasted coffee."
+            "content": "With our unwavering commitment to quality, we bring you the finest coffee that is ethically and sustainably sourced, roasted to perfection, and expertly crafted to deliver rich flavors and unforgettable moments. Whether you’re seeking the perfect brew for your morning ritual, a thoughtful gift for a fellow coffee lover, or an exploration of unique flavor profiles, Baba Java Store is your destination for exceptional coffee that awakens the senses and inspires connection."
           }
         },
         "button": {
           "type": "button",
           "settings": {
-            "button_text": "Take The Quiz",
+            "button_text": "Shop All Products",
             "button_url": "/collections/all",
             "button_style": "fill"
           }
