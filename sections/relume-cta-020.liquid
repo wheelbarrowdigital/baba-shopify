@@ -1,0 +1,44 @@
+{% style %}
+  section.relume-cta-020 {
+  }
+{% endstyle %}
+
+<div class="container container-lg">
+  <h2>Join the Coffee Revolution</h2>
+  <p>Discover the joy of exceptional coffee delivered right to your inbox. Join us today!</p>
+  {%- form 'customer', customer -%}
+    {% if form.posted_successfully? %}
+      <p class="form-success">Thanks for subscribing!</p>
+    {% endif %}
+
+    <input type="hidden" name="contact[tags]" value="newsletter">
+    <input
+      type="email"
+      name="contact[email]"
+      id="Email"
+      placeholder="Your Email Here"
+      required
+    >
+    <button type="submit">Sign Up</button>
+  {%- endform -%}
+</div>
+
+{% schema %}
+{
+  "name": "CTA 20",
+  "tag": "section",
+  "class": "relume-cta-020",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "paragraph",
+      "label": "Paragraph"
+    }
+  ]
+}
+{% endschema %}

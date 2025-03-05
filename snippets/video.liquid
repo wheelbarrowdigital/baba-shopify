@@ -1,0 +1,135 @@
+{% comment %}
+  Renders a video component
+
+  Accepts:
+  - video: {Video} a video uploaded to Shopify
+  - src: {String} a direct video URL
+  - poster: {Image} an optional poster image for the video
+  - aspect_ratio: {String} aspect ratio of the video
+  - background: {Boolean} if true, video plays as a background (autoplay, muted)
+  - autoplay: {Boolean} if true, non-background videos will autoplay
+  - class: {String} additional classes (optional)
+
+  Usage:
+  {% render 'video',
+    video: picked_video,
+    src: 'https://cdn.shopify.com/videos/sample.mp4',
+    poster: picked_poster_image,
+    aspect_ratio: '16:9',
+    background: true,
+    autoplay: false,
+    class: 'custom-video-class'
+  %}
+{% endcomment %}
+
+{% style %}
+  .video-wrapper {
+    background-color: unset;
+    background-image: unset;
+    height: fit-content;
+    left: unset;
+    overflow: hidden;
+    position: relative;
+    top: unset;
+    width: 100%;
+    z-index: unset;
+
+    &::after {
+      content: '';
+      display: block;
+    }
+
+    &.background {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    video {
+      mix-blend-mode: unset;
+      opacity: unset;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    > .overlay {
+      background-color: rgba(0, 0, 0, 0.48);
+      display: none;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    &.background > .overlay {
+      display: block;
+    }
+  }
+{% endstyle %}
+
+{% liquid
+  assign video_classes = 'video-wrapper'
+
+  case aspect_ratio
+    when '9:21'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-9-21'
+    when '9:16'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-9-16'
+    when '5:8'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-5-8'
+    when '2:3'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-2-3'
+    when '3:4'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-3-4'
+    when '4:5'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-4-5'
+    when '5:6'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-5-6'
+    when '6:7'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-6-7'
+    when '1:1'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-1-1'
+    when '7:6'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-7-6'
+    when '6:5'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-6-5'
+    when '5:4'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-5-4'
+    when '4:3'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-4-3'
+    when '3:2'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-3-2'
+    when '8:5'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-8-5'
+    when '16:9'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-16-9'
+    when '21:9'
+      assign video_classes = video_classes | append: ' ' | append: 'aspect-ratio-21-9'
+    when 'background'
+      assign video_classes = video_classes | append: ' ' | append: 'background'
+  endcase
+
+  if class != blank
+    assign video_classes = video_classes | append: ' ' | append: class
+  endif
+%}
+
+<div class="{{ video_classes }}">
+  {% if video and video != blank %}
+    {{
+      video
+      | video_tag: autoplay: true, muted: true, loop: true, controls: true, preload: 'auto', poster: video.preview_image
+    }}
+  {% else %}
+    <p>No video available.</p>
+  {% endif %}
+  <div class="overlay"></div>
+</div>

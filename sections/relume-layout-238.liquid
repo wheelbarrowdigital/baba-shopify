@@ -4,22 +4,36 @@
       display: flex;
       flex-flow: column nowrap;
       gap: var(--spacing-9);
-      max-width: 1792px;
-      width: 90%;
 
       @media (min-width: 1440px) {
         gap: var(--spacing-13);
       }
     }
 
+    .text-header {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-5);
+      margin: 0 auto;
+      max-width: 768px;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--spacing-9);
+      justify-content: center;
+
+      @media (min-width: 768px) {
+        grid-template-columns: repeat(auto-fit, 360px);
+      }
 
       @media (min-width: 1440px) {
         gap: var(--spacing-11);
-        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @media (min-width: 1920px) {
+        grid-template-columns: repeat(auto-fit, 400px);
       }
     }
 
@@ -49,9 +63,11 @@
   }
 {% endstyle %}
 <div class="container container-lg reveal-from-bottom">
-  <h2 class="heading-5xl text-center">
-    Discover the essence of exceptional coffee and unmatched service at Baba Java.
-  </h2>
+  <div class="text-header">
+    <h2 class="heading-5xl text-center">
+      Discover the essence of exceptional coffee and unmatched service at Baba Java.
+    </h2>
+  </div>
   <div class="grid">
     {% for block in section.blocks %}
       {% case block.type %}
@@ -78,7 +94,12 @@
             </div>
 
             {% if block.settings.button_text != blank and block.settings.button_url != blank %}
-              {% render 'button', text: block.settings.button_text, url: block.settings.button_url, style: 'link' %}
+              {% render 'button',
+                class: 'justify-center text-center',
+                text: block.settings.button_text,
+                url: block.settings.button_url,
+                style: 'link'
+              %}
             {% endif %}
           </div>
       {% endcase %}

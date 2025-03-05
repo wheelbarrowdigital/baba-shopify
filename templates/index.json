@@ -176,7 +176,22 @@
         }
       },
       "block_order": ["tab_01", "tab_02", "tab_03"]
+    },
+    "newsletter_signup": {
+      "type": "relume-cta-020",
+      "settings": {
+        "heading": "Join the Coffee Revolution",
+        "paragraph": "Discover the joy of exceptional coffee delivered right to your inbox. Join us today!"
+      }
     }
   },
-  "order": ["cover", "featured_shop", "featured_services", "featured_values", "freshly_roasted_coffee", "featured_locations"]
+  "order": [
+    "cover",
+    "featured_shop",
+    "featured_services",
+    "featured_values",
+    "freshly_roasted_coffee",
+    "featured_locations",
+    "newsletter_signup"
+  ]
 }

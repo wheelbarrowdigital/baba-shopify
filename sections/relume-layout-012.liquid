@@ -6,20 +6,19 @@
       gap: var(--spacing-9);
       grid-template-columns: 1fr;
 
+      @media (min-width: 992px) {
+        grid-template-columns: 54fr 46fr;
+      }
+
       @media (min-width: 1440px) {
         gap: var(--spacing-13);
-        grid-template-columns: 54fr 46fr;
       }
     }
 
     .content {
       display: flex;
       flex-flow: column nowrap;
-      gap: var(--spacing-6);
-
-      @media (min-width: 1440px) {
-        gap: var(--spacing-7);
-      }
+      gap: var(--spacing-7);
     }
 
     .text {
@@ -35,9 +34,9 @@
     .grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: var(--spacing-9);
+      gap: var(--spacing-6) var(--spacing-4);
 
-      @media (min-width: 1440px) {
+      @media (min-width: 576px) {
         grid-template-columns: repeat(2, 1fr);
       }
     }

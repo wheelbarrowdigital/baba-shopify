@@ -3,6 +3,7 @@
 
   Accepts:
   - text: {String} Text to display on button (required)
+  - text_size: {String} Text size: 'md' (default), 'sm', 'lg'
   - style: {String} Style of button: 'fill' (default), 'outline', 'link'
   - color: {String} Color scheme: 'primary' (default), 'secondary', 'light', 'dark', 'success', 'error'
   - url: {String} URL to link to (optional)
@@ -27,13 +28,11 @@
 
 {% style %}
   .button {
-    /* align-items: center; */
     border: 2px solid transparent;
     border-radius: var(--button-border-radius);
     cursor: pointer;
     display: inline-flex;
     flex: 1 0 fit-content;
-    /* justify-content: center; */
     min-width: min-content;
     padding: 0.75rem 1.6875rem;
     text-decoration: none;
@@ -51,6 +50,9 @@
     }
 
     &.fill {
+      align-items: center;
+      justify-content: center;
+
       &.primary {
         background-color: var(--button-color-primary);
         color: var(--contrast-fg);
@@ -62,9 +64,11 @@
     }
 
     &.outline {
+      align-items: center;
       background-color: transparent;
       border-color: var(--gray-1000);
       color: var(--gray-1000);
+      justify-content: center;
 
       &:hover:not(:disabled) {
         border-color: var(--gray-900);
@@ -109,6 +113,7 @@
   assign button_color = color | default: ''
   assign button_type = type | default: 'button'
   assign button_class = class | default: ''
+  assign button_text_size = text_size | default: 'md' | prepend: 'text-'
 
   if button_color == ''
     if button_style == 'fill'
@@ -116,7 +121,7 @@
     endif
   endif
 
-  assign full_class = 'button text-md semibold' | append: ' ' | append: button_style | append: ' ' | append: button_color
+  assign full_class = 'button semibold' | append: ' ' | append: button_text_size | append: ' ' | append: button_style | append: ' ' | append: button_color
   if button_class != ''
     assign full_class = full_class | append: ' ' | append: button_class
   endif
