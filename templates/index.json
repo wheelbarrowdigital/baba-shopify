@@ -48,7 +48,8 @@
         "button_secondary"
       ],
       "settings": {
-        "background_image": "shopify://shop_images/esteban-benites-VO0fNzSM-Z4-unsplash-2-scaled-e1695909609156.jpg"
+        "background_image": "shopify://shop_images/esteban-benites-VO0fNzSM-Z4-unsplash-2-scaled-e1695909609156.jpg",
+        "background_video": "shopify://files/videos/coffee-tree-with-green-cherry-beans-in-the-farm-2023-11-27-05-06-25-utc.mp4"
       }
     },
     "featured_shop": {
