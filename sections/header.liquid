@@ -88,6 +88,13 @@
       flex-flow: row nowrap;
       gap: var(--spacing-7);
       justify-content: flex-end;
+
+      > a {
+        align-items: center;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+      }
     }
 
     .icon.account,
@@ -128,6 +135,7 @@
 
     .desktop-menu {
       nav {
+        align-items: center;
         display: flex;
         flex-flow: row wrap;
         gap: var(--spacing-7);
@@ -275,7 +283,7 @@
 {% endstyle %}
 
 <div class="notification-bar">
-  <div class="container reveal">
+  <div class="container {% unless request.design_mode %}reveal{% endunless %}">
     <p class="text-sm">{{ section.settings.notification_bar_text }}</p>
   </div>
 </div>
@@ -294,8 +302,8 @@
     {% endif %}
 
     <button class="menu-toggle">
-      {% render 'icon', icon: 'hamburger' %}
-      {% render 'icon', icon: 'close' %}
+      {% render 'icon', icon: 'hamburger', library: 'streamline', set: 'ultimate', style: 'regular' %}
+      {% render 'icon', icon: 'close', library: 'streamline', set: 'ultimate', style: 'regular' %}
     </button>
 
     <div class="desktop-menu">
@@ -305,11 +313,11 @@
         {% endfor %}
         <div class="nav-item cart-account-wrapper">
           <a href="/cart">
-            {% render 'icon', icon: 'cart' %}
+            {% render 'icon', icon: 'cart', library: 'streamline', set: 'ultimate', style: 'bold' %}
           </a>
 
           <a href="/account">
-            {% render 'icon', icon: 'account' %}
+            {% render 'icon', icon: 'account', library: 'streamline', set: 'ultimate', style: 'bold' %}
           </a>
         </div>
       </nav>
@@ -324,11 +332,11 @@
 
       <div class="nav-item cart-account-wrapper">
         <a href="/cart">
-          {% render 'icon', icon: 'cart' %}
+          {% render 'icon', icon: 'cart', library: 'streamline', set: 'ultimate', style: 'bold' %}
         </a>
 
         <a href="/account">
-          {% render 'icon', icon: 'account' %}
+          {% render 'icon', icon: 'account', library: 'streamline', set: 'ultimate', style: 'bold' %}
         </a>
       </div>
     </nav>

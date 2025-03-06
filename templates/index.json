@@ -11,6 +11,10 @@
   "sections": {
     "cover": {
       "type": "relume-cover-007",
+      "settings": {
+        "background_image": "shopify://shop_images/esteban-benites-VO0fNzSM-Z4-unsplash-2-scaled-e1695909609156.jpg",
+        "background_video": "shopify://files/videos/coffee-tree-with-green-cherry-beans-in-the-farm-2023-11-27-05-06-25-utc.mp4"
+      },
       "blocks": {
         "heading": {
           "type": "heading",
@@ -41,19 +45,11 @@
           }
         }
       },
-      "block_order": [
-        "heading",
-        "paragraph",
-        "button_primary",
-        "button_secondary"
-      ],
-      "settings": {
-        "background_image": "shopify://shop_images/esteban-benites-VO0fNzSM-Z4-unsplash-2-scaled-e1695909609156.jpg",
-        "background_video": "shopify://files/videos/coffee-tree-with-green-cherry-beans-in-the-farm-2023-11-27-05-06-25-utc.mp4"
-      }
+      "block_order": ["heading", "paragraph", "button_primary", "button_secondary"]
     },
     "featured_shop": {
       "type": "relume-layout-003",
+      "settings": {},
       "blocks": {
         "heading": {
           "type": "heading",
@@ -76,96 +72,79 @@
           }
         }
       },
-      "block_order": [
-        "heading",
-        "paragraph",
-        "button"
-      ],
-      "settings": {}
+      "block_order": ["heading", "paragraph", "button"]
     },
     "featured_services": {
       "type": "relume-layout-238",
+      "settings": {
+        "heading": "What We Do"
+      },
       "blocks": {
         "grid_item_01": {
           "type": "grid_item",
           "settings": {
-            "icon": "icon-1",
+            "icon": "streamline|ultimate|bold|coffee-turkish",
             "heading": "Excellent Coffee",
-            "description": "We are committed to serving only the finest coffee with a personal touch.",
-            "button_text": "Learn More",
-            "button_url": "/collections/all"
+            "description": "Our ethically sourced, specialty grade coffee tastes great and supports farms that give fair wages to their farmers."
           }
         },
         "grid_item_02": {
           "type": "grid_item",
           "settings": {
-            "icon": "icon-1",
+            "icon": "streamline|ultimate|bold|shop-barista",
             "heading": "Excellent Service",
-            "description": "Our educational programs empower you to appreciate the art of coffee.",
-            "button_text": "Learn More",
-            "button_url": "/collections/all"
+            "description": "Our highly trained baristas make your regular or a new favorite. Environment and service elicits happiness, joy, and belonging."
           }
         },
         "grid_item_03": {
           "type": "grid_item",
           "settings": {
-            "icon": "icon-1",
+            "icon": "streamline|ultimate|bold|coffee-read",
             "heading": "Excellent Education",
-            "description": "Every sip supports sustainable practices and the farmers behind our coffee.",
-            "button_text": "Learn More",
-            "button_url": "/collections/all"
+            "description": "Whether you’re a home brewer with your first CHEMEX or a coffee shop owner looking to improve your craft, let us help! We like teaching good coffee as much as we like drinking it."
           }
         }
       },
-      "block_order": [
-        "grid_item_01",
-        "grid_item_02",
-        "grid_item_03"
-      ],
-      "settings": {}
+      "block_order": ["grid_item_01", "grid_item_02", "grid_item_03"]
     },
     "featured_values": {
       "type": "relume-layout-012",
+      "settings": {},
       "blocks": {
         "heading": {
           "type": "heading",
           "settings": {
-            "content": "Discover the Heart of Coffee: Quality, Ethics, and Community at Baba Java"
+            "content": "Sustainable Relationships with Farmers"
           }
         },
         "paragraph": {
           "type": "paragraph",
           "settings": {
-            "content": "At Baba Java, we believe that every cup tells a story. Our commitment to ethical sourcing ensures that your coffee not only tastes good but also does good."
+            "content": "At Baba Java, coffee is more than a drink — it’s an experience built on genuine relationships and ethical sourcing. From farm to cup, we ensure every bean is specialty-grade, responsibly sourced, and expertly roasted to highlight its unique flavors."
           }
         },
         "grid_item_01": {
           "type": "grid_item",
           "settings": {
-            "icon": "icon-1",
-            "heading": "Excellent Coffee",
-            "paragraph": "We are committed to serving only the finest coffee with a personal touch."
+            "icon": "streamline|ultimate|bold|earth-1",
+            "heading": "Ethical Sourcing",
+            "paragraph": "We partner directly with farmers across the globe, from China to Colombia, ensuring fair wages, sustainable practices, and thriving communities."
           }
         },
         "grid_item_02": {
           "type": "grid_item",
           "settings": {
-            "icon": "icon-2",
-            "heading": "Excellent Coffee",
-            "paragraph": "We are committed to serving only the finest coffee with a personal touch."
+            "icon": "streamline|core|solid|coffee-bean",
+            "heading": "Expert Roasting",
+            "paragraph": "Each bean is carefully selected and roasted to perfection, bringing out distinct tasting notes that reflect its origin and craftsmanship."
           }
         }
       },
-      "block_order": [
-        "heading",
-        "paragraph",
-        "grid_item_01",
-        "grid_item_02"
-      ],
-      "settings": {}
+      "block_order": ["heading", "paragraph", "grid_item_01", "grid_item_02"]
     },
     "freshly_roasted_coffee": {
       "type": "relume-layout-194",
+      "settings": {},
       "blocks": {
         "heading": {
           "type": "heading",
@@ -180,14 +159,15 @@
           }
         }
       },
-      "block_order": [
-        "heading",
-        "paragraph"
-      ],
-      "settings": {}
+      "block_order": ["heading", "paragraph"]
     },
     "featured_locations": {
       "type": "relume-contact-030",
+      "settings": {
+        "tagline": "Discover",
+        "heading": "Our Locations",
+        "paragraph": "Join us in Hoover to savor the rich aromas and sounds of our freshly roasted coffee. Our dedicated roasting team, led by Reuben, ensures every cup delivers an exceptional flavor experience."
+      },
       "blocks": {
         "tab_01": {
           "type": "tab",
@@ -217,16 +197,7 @@
           }
         }
       },
-      "block_order": [
-        "tab_01",
-        "tab_02",
-        "tab_03"
-      ],
-      "settings": {
-        "tagline": "",
-        "heading": "",
-        "paragraph": ""
-      }
+      "block_order": ["tab_01", "tab_02", "tab_03"]
     },
     "newsletter_signup": {
       "type": "relume-cta-020",

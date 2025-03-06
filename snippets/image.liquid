@@ -6,6 +6,7 @@
   - src: {String} the src url
   - alt: {String} the alt text
   - aspect_ratio: {String} aspect ratio of image
+  - id: {String} the id of the image (optional)
   - class: {String} additional classes (optional)
 
   Usage:
@@ -198,7 +199,12 @@
   endif
 %}
 
-<div class="{{ image_classes }}">
+<div
+  class="{{ image_classes }}"
+  {% if id != blank %}
+    id="{{ id }}"
+  {% endif %}
+>
   {% if image and image != blank %}
     <img
       src="{{ image | image_url }}"

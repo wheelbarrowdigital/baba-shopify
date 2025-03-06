@@ -62,12 +62,21 @@
     }
   }
 {% endstyle %}
-<div class="container container-lg reveal-from-bottom">
-  <div class="text-header">
-    <h2 class="heading-5xl text-center">
-      Discover the essence of exceptional coffee and unmatched service at Baba Java.
-    </h2>
-  </div>
+<div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+  {% if section.settings.heading != blank or section.settings.paragraph != blank %}
+    <div class="text-header">
+      {% if section.settings.heading != blank %}
+        <h2 class="heading-5xl text-center">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+      {% if section.settings.paragraph != blank %}
+        <p class="text-center">
+          {{ section.settings.paragraph }}
+        </p>
+      {% endif %}
+    </div>
+  {% endif %}
   <div class="grid">
     {% for block in section.blocks %}
       {% case block.type %}
@@ -75,11 +84,13 @@
           <div class="grid-item">
             <div class="icon-text">
               {% if block.settings.icon != blank %}
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Module--Streamline-Core">
-                    <desc>Module Streamline Icon: https://streamlinehq.com</desc><g id="module--cube-code-module-programming-plugin"><path id="Subtract" fill="#000000" fill-rule="evenodd" d="M6.64594 0.707221c0.11208 -0.047012 0.23245 -0.07125 0.35408 -0.07125 0.12104 0 0.24084 0.024007 0.35246 0.070577L12.8817 2.79845l0.0022 0.00083c0.122 0.04679 0.2322 0.11843 0.3241 0.20979L6.99988 5.39904 0.799934 3.01221c0.098065 -0.08373 0.212516 -0.14633 0.336196 -0.18371L6.64594 0.707221ZM0.499829 4.2361v6.2118H0.499786l0.000085 0.0065c0.002494 0.192 0.062445 0.3789 0.172128 0.5366 0.109683 0.1577 0.264071 0.2789 0.443261 0.348l0.00032 0.0001 5.25934 2.0249V6.49788L0.499829 4.2361ZM7.62492 6.49785V13.364l5.25958 -2.0249 0.0003 -0.0001c0.1792 -0.0691 0.3336 -0.1903 0.4432 -0.348 0.1097 -0.1577 0.1697 -0.3446 0.1722 -0.5366V4.236L7.62492 6.49785Z" clip-rule="evenodd" stroke-width="1"></path></g>
-                  </svg>
-                </div>
+                {% assign icon_parts = block.settings.icon | split: '|' %}
+                {% render 'icon',
+                  icon: icon_parts[3],
+                  library: icon_parts[0],
+                  set: icon_parts[1],
+                  style: icon_parts[2]
+                %}
               {% endif %}
               {% if block.settings.heading != blank and block.settings.description != blank %}
                 <div class="text">
@@ -87,7 +98,7 @@
                     <h3 class="heading-3xl text-center">{{ block.settings.heading }}</h3>
                   {% endif %}
                   {% if block.settings.description != blank %}
-                    <p class="text-md text-center">{{ block.settings.description }}</p>
+                    <p class="text-sm text-center">{{ block.settings.description }}</p>
                   {% endif %}
                 </div>
               {% endif %}
@@ -112,6 +123,23 @@
   "name": "Layout 238",
   "tag": "section",
   "class": "relume-layout-238",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What We Do"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "paragraph",
+      "label": "Paragraph"
+    }
+  ],
   "blocks": [
     {
       "type": "grid_item",
@@ -123,8 +151,11 @@
           "id": "icon",
           "label": "Icon",
           "options": [
-            { "value": "icon-1", "label": "Icon 1" },
-            { "value": "icon-2", "label": "Icon 2" }
+            { "value": "streamline|ultimate|bold|coffee-cup", "label": "Coffee Cup" },
+            { "value": "streamline|ultimate|bold|coffee-mug", "label": "Coffee Mug" },
+            { "value": "streamline|ultimate|bold|coffee-read", "label": "Coffee Read" },
+            { "value": "streamline|ultimate|bold|coffee-turkish", "label": "Coffee Turkish" },
+            { "value": "streamline|ultimate|bold|shop-barista", "label": "Shop Barista" }
           ]
         },
         {

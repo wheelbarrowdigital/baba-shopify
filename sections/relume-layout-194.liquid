@@ -72,7 +72,9 @@
 
     {% render 'buttons', content: button_content %}
   </div>
-  {% render 'image', aspect_ratio: '6:7', class: 'media' %}
+  {% if section.settings.image != blank %}
+    {% render 'image', aspect_ratio: '6:7', class: 'media', image: section.settings.image %}
+  {% endif %}
 </div>
 
 {% schema %}
@@ -80,6 +82,13 @@
   "name": "Layout 194",
   "tag": "section",
   "class": "relume-layout-194",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
   "blocks": [
     {
       "type": "heading",

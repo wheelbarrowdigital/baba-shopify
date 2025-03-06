@@ -39,8 +39,8 @@
   }
 {% endstyle %}
 
-<div class="container container-lg {% if request.design_mode %} design-mode{% endif %}">
-  <div class="content reveal-from-bottom">
+<div class="container container-lg">
+  <div class="content {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
     <div class="text">
       {% for block in section.blocks %}
         {% case block.type %}
