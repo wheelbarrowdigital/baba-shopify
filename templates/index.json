@@ -201,10 +201,10 @@
         "tab_01": {
           "type": "tab",
           "settings": {
-            "heading": "Birmingham",
-            "address": "123 Main St, Birmingham, AL 35201",
+            "heading": "Hoover",
+            "address": "4730 Chace Cir Suite 124, Birmingham, AL 35244",
             "button_text": "View Café",
-            "button_url": "#"
+            "button_url": "shopify://metaobjects/location/hoover"
           }
         },
         "tab_02": {
