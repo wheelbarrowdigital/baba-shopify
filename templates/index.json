@@ -211,10 +211,10 @@
         "tab_02": {
           "type": "tab",
           "settings": {
-            "heading": "Birmingham",
-            "address": "123 Main St, Birmingham, AL 35201",
+            "heading": "The Village at Meadowbrook",
+            "address": "1801 Doug Baker Blvd, Suite 121A Birmingham, AL 35242",
             "button_text": "View Café",
-            "button_url": "#"
+            "button_url": ""
           }
         },
         "tab_03": {
