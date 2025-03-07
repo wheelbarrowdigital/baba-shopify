@@ -123,7 +123,12 @@
           {% case block.type %}
             {% when 'tab' %}
               {% if block.settings.image != blank %}
-                {% render 'image', aspect_ratio: '8:5', image: block.settings.image, id: 'tab-{{ index }}-image' %}
+                {% render 'image',
+                  aspect_ratio: '8:5',
+                  focal_point: block.settings.image.presentation.focal_point,
+                  id: 'tab-{{ index }}-image',
+                  image: block.settings.image
+                %}
               {% endif %}
               {% assign index = index | plus: 1 %}
           {% endcase %}

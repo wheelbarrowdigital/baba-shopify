@@ -71,7 +71,11 @@
   {% if section.settings.background_video != blank %}
     {% render 'video', video: section.settings.background_video, class: 'background' %}
   {% elsif section.settings.background_image != blank %}
-    {% render 'image', image: section.settings.background_image, aspect_ratio: 'background' %}
+    {% render 'image',
+      aspect_ratio: 'background',
+      focal_point: section.settings.background_image.presentation.focal_point,
+      image: section.settings.background_image
+    %}
   {% else %}
     {% render 'image', aspect_ratio: 'background' %}
   {% endif %}
