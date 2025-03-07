@@ -167,7 +167,9 @@
         "grid_item_01",
         "grid_item_02"
       ],
-      "settings": {}
+      "settings": {
+        "image": "shopify://shop_images/117377244_630199697900811_1601391166847642389_n-1.jpg"
+      }
     },
     "freshly_roasted_coffee": {
       "type": "relume-layout-194",
@@ -189,7 +191,9 @@
         "heading",
         "paragraph"
       ],
-      "settings": {}
+      "settings": {
+        "image": "shopify://shop_images/baba_probat.jpg"
+      }
     },
     "featured_locations": {
       "type": "relume-contact-030",
