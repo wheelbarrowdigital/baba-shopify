@@ -211,6 +211,7 @@
         "tab_02": {
           "type": "tab",
           "settings": {
+            "image": "shopify://shop_images/baba_meadowbrook.jpg",
             "heading": "The Village at Meadowbrook",
             "address": "1801 Doug Baker Blvd, Suite 121A Birmingham, AL 35242",
             "button_text": "View Café",
