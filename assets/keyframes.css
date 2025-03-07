@@ -19,7 +19,6 @@
 .reveal-from-bottom.in-view {
   animation: reveal-from-bottom 0.7s ease-out forwards;
 }
-
 /* Initial hidden state */
 .reveal {
   opacity: 0;
@@ -33,6 +32,23 @@
   to {
     opacity: 1;
   }
+}
+
+@keyframes reveal-reverse {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.reveal.active {
+  animation: reveal 0.7s ease-in-out forwards;
+}
+
+.reveal.inactive {
+  animation: reveal-reverse 0.7s ease-in-out forwards;
 }
 
 .reveal.in-view {
