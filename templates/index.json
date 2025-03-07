@@ -221,6 +221,7 @@
         "tab_03": {
           "type": "tab",
           "settings": {
+            "image": "shopify://shop_images/baba_homewood.jpg",
             "heading": "Birmingham",
             "address": "123 Main St, Birmingham, AL 35201",
             "button_text": "View Café",
