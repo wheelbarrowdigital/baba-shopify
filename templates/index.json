@@ -11,10 +11,6 @@
   "sections": {
     "cover": {
       "type": "relume-cover-007",
-      "settings": {
-        "background_image": "shopify://shop_images/esteban-benites-VO0fNzSM-Z4-unsplash-2-scaled-e1695909609156.jpg",
-        "background_video": "shopify://files/videos/coffee-tree-with-green-cherry-beans-in-the-farm-2023-11-27-05-06-25-utc.mp4"
-      },
       "blocks": {
         "heading": {
           "type": "heading",
@@ -32,24 +28,32 @@
           "type": "button",
           "settings": {
             "button_text": "Take The Quiz",
-            "button_url": "/collections/all",
+            "button_url": "shopify://pages/coffee-quiz",
             "button_style": "fill"
           }
         },
         "button_secondary": {
           "type": "button",
           "settings": {
-            "button_text": "More Details",
+            "button_text": "Shop",
             "button_url": "/collections/all",
             "button_style": "outline"
           }
         }
       },
-      "block_order": ["heading", "paragraph", "button_primary", "button_secondary"]
+      "block_order": [
+        "heading",
+        "paragraph",
+        "button_primary",
+        "button_secondary"
+      ],
+      "settings": {
+        "background_image": "shopify://shop_images/esteban-benites-VO0fNzSM-Z4-unsplash-2-scaled-e1695909609156.jpg",
+        "background_video": "shopify://files/videos/coffee-tree-with-green-cherry-beans-in-the-farm-2023-11-27-05-06-25-utc.mp4"
+      }
     },
     "featured_shop": {
       "type": "relume-layout-003",
-      "settings": {},
       "blocks": {
         "heading": {
           "type": "heading",
@@ -72,20 +76,24 @@
           }
         }
       },
-      "block_order": ["heading", "paragraph", "button"]
+      "block_order": [
+        "heading",
+        "paragraph",
+        "button"
+      ],
+      "settings": {}
     },
     "featured_services": {
       "type": "relume-layout-238",
-      "settings": {
-        "heading": "What We Do"
-      },
       "blocks": {
         "grid_item_01": {
           "type": "grid_item",
           "settings": {
             "icon": "streamline|ultimate|bold|coffee-turkish",
             "heading": "Excellent Coffee",
-            "description": "Our ethically sourced, specialty grade coffee tastes great and supports farms that give fair wages to their farmers."
+            "description": "Our ethically sourced, specialty grade coffee tastes great and supports farms that give fair wages to their farmers.",
+            "button_text": "Learn More",
+            "button_url": ""
           }
         },
         "grid_item_02": {
@@ -93,7 +101,9 @@
           "settings": {
             "icon": "streamline|ultimate|bold|shop-barista",
             "heading": "Excellent Service",
-            "description": "Our highly trained baristas make your regular or a new favorite. Environment and service elicits happiness, joy, and belonging."
+            "description": "Our highly trained baristas make your regular or a new favorite. Environment and service elicits happiness, joy, and belonging.",
+            "button_text": "Learn More",
+            "button_url": ""
           }
         },
         "grid_item_03": {
@@ -101,15 +111,24 @@
           "settings": {
             "icon": "streamline|ultimate|bold|coffee-read",
             "heading": "Excellent Education",
-            "description": "Whether you’re a home brewer with your first CHEMEX or a coffee shop owner looking to improve your craft, let us help! We like teaching good coffee as much as we like drinking it."
+            "description": "Whether you’re a home brewer with your first CHEMEX or a coffee shop owner looking to improve your craft, let us help! We like teaching good coffee as much as we like drinking it.",
+            "button_text": "Learn More",
+            "button_url": ""
           }
         }
       },
-      "block_order": ["grid_item_01", "grid_item_02", "grid_item_03"]
+      "block_order": [
+        "grid_item_01",
+        "grid_item_02",
+        "grid_item_03"
+      ],
+      "settings": {
+        "heading": "What We Do",
+        "paragraph": ""
+      }
     },
     "featured_values": {
       "type": "relume-layout-012",
-      "settings": {},
       "blocks": {
         "heading": {
           "type": "heading",
@@ -140,11 +159,16 @@
           }
         }
       },
-      "block_order": ["heading", "paragraph", "grid_item_01", "grid_item_02"]
+      "block_order": [
+        "heading",
+        "paragraph",
+        "grid_item_01",
+        "grid_item_02"
+      ],
+      "settings": {}
     },
     "freshly_roasted_coffee": {
       "type": "relume-layout-194",
-      "settings": {},
       "blocks": {
         "heading": {
           "type": "heading",
@@ -159,15 +183,14 @@
           }
         }
       },
-      "block_order": ["heading", "paragraph"]
+      "block_order": [
+        "heading",
+        "paragraph"
+      ],
+      "settings": {}
     },
     "featured_locations": {
       "type": "relume-contact-030",
-      "settings": {
-        "tagline": "Discover",
-        "heading": "Our Locations",
-        "paragraph": "Join us in Hoover to savor the rich aromas and sounds of our freshly roasted coffee. Our dedicated roasting team, led by Reuben, ensures every cup delivers an exceptional flavor experience."
-      },
       "blocks": {
         "tab_01": {
           "type": "tab",
@@ -197,14 +220,20 @@
           }
         }
       },
-      "block_order": ["tab_01", "tab_02", "tab_03"]
+      "block_order": [
+        "tab_01",
+        "tab_02",
+        "tab_03"
+      ],
+      "settings": {
+        "tagline": "Discover",
+        "heading": "Our Locations",
+        "paragraph": "Join us in Hoover to savor the rich aromas and sounds of our freshly roasted coffee. Our dedicated roasting team, led by Reuben, ensures every cup delivers an exceptional flavor experience."
+      }
     },
     "newsletter_signup": {
       "type": "relume-cta-020",
-      "settings": {
-        "heading": "Join the Coffee Revolution",
-        "paragraph": "Discover the joy of exceptional coffee delivered right to your inbox. Join us today!"
-      }
+      "settings": {}
     }
   },
   "order": [
