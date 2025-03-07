@@ -81,7 +81,9 @@
         "paragraph",
         "button"
       ],
-      "settings": {}
+      "settings": {
+        "image": "shopify://shop_images/baba_box.jpg"
+      }
     },
     "featured_services": {
       "type": "relume-layout-238",
