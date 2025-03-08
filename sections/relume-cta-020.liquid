@@ -1,25 +1,94 @@
 {% style %}
   section.relume-cta-020 {
+    > .container {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-6);
+    }
+
+    .text-header {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-5);
+      max-width: 768px;
+    }
+
+    form.newsletter-form {
+      align-items: flex-end;
+      display: flex;
+      flex-flow: row wrap;
+      gap: var(--spacing-4);
+      max-width: 560px;
+
+      .form_field-wrapper {
+        @media (min-width: 576px) {
+          flex-basis: 320px;
+        }
+      }
+
+      .button[type='submit'] {
+        @media (min-width: 576px) {
+          flex: 0 1 max-content;
+          height: max-content;
+        }
+      }
+    }
+
+    input[type='email'] {
+      flex-basis: 100%;
+    }
+
+    button[type='submit'] {
+      flex-basis: 100%;
+    }
+
+    .terms-conditions {
+      flex-basis: 100%;
+    }
   }
 {% endstyle %}
 
-<div class="container container-lg">
-  <h2>Join the Coffee Revolution</h2>
-  <p>Discover the joy of exceptional coffee delivered right to your inbox. Join us today!</p>
-  {%- form 'customer', customer -%}
+<div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+  <div class="text-header">
+    <h2 class="heading-5xl">Join the Coffee Revolution</h2>
+    <p class="text-lg">Discover the joy of exceptional coffee delivered right to your inbox. Join us today!</p>
+  </div>
+  {%- form 'customer', class: 'newsletter-form' -%}
     {% if form.posted_successfully? %}
       <p class="form-success">Thanks for subscribing!</p>
     {% endif %}
 
     <input type="hidden" name="contact[tags]" value="newsletter">
-    <input
-      type="email"
-      name="contact[email]"
-      id="Email"
-      placeholder="Your Email Here"
-      required
-    >
-    <button type="submit">Sign Up</button>
+
+    <div class="form_field-wrapper">
+      <div class="form_field email">
+        <label class="field_label heading-md" for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          name="contact[email]"
+          class="field_input text-md"
+          value="{{ form.email }}"
+          aria-required="true"
+          autocorrect="off"
+          autocapitalize="off"
+          autocomplete="email"
+          {% if form.errors %}
+            autofocus
+            aria-invalid="true"
+            aria-describedby="email-error"
+          {% elsif form.posted_successfully? %}
+            aria-describedby="email-success"
+          {% endif %}
+          placeholder="john.smith@email.com"
+          required
+        >
+      </div>
+    </div>
+
+    {% render 'button', color: 'primary', style: 'fill', text: 'Sign Up', type: 'submit' %}
+
+    <p class="text-xs terms-conditions">By signing up, you agree to our <a href="#">Terms and Conditions</a></p>
   {%- endform -%}
 </div>
 

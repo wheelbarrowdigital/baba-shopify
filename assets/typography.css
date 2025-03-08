@@ -164,7 +164,8 @@ body {
   text-wrap: balance;
 }
 
-[class^='heading-'] {
+[class^='heading-'],
+[class*=' heading-'] {
   font-family: var(--font-heading);
   font-weight: var(--font-heading-weight);
   line-height: 1;

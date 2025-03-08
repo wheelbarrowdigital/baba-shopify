@@ -7,7 +7,7 @@
   - style: {String} Style of button: 'fill' (default), 'outline', 'link'
   - color: {String} Color scheme: 'primary' (default), 'secondary', 'light', 'dark', 'success', 'error'
   - url: {String} URL to link to (optional)
-  - type: {String} Button type attribute (default: 'button')
+  - type: {String} Button type attribute (default: 'submit')
   - class: {String} Additional classes (optional)
   - disabled: {Boolean} Disable the button (optional)
   - name: {String} name attribute (optional)
@@ -111,7 +111,7 @@
 {%- liquid
   assign button_style = style | default: 'fill'
   assign button_color = color | default: ''
-  assign button_type = type | default: 'button'
+  assign button_type = type | default: 'submit'
   assign button_class = class | default: ''
   assign button_text_size = text_size | default: 'md' | prepend: 'text-'
 

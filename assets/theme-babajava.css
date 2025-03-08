@@ -467,5 +467,7 @@
   --button-color-success-hover: var(--green-800);
   --button-color-info: var(--blue-700);
   --button-color-info-hover: var(--blue-800);
+
+  --form-field-border-radius: 0.25rem;
 }
 /* END COMPONENT VARIABLES */
