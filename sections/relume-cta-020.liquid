@@ -58,8 +58,15 @@
 
 <div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
   <div class="text-header">
-    <h2 class="heading-5xl">Join the Coffee Revolution</h2>
-    <p class="text-lg">Discover the joy of exceptional coffee delivered right to your inbox. Join us today!</p>
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'heading' %}
+          <h2 class="heading-5xl">{{ block.settings.content }}</h2>
+        {% when 'paragraph' %}
+          {% assign formatted_content = block.settings.content | replace: '<p', '<p class="text-lg"' %}
+          {{ formatted_content }}
+      {% endcase %}
+    {% endfor %}
   </div>
   {%- form 'customer', class: 'newsletter-form' -%}
     {% if form.posted_successfully? %}
@@ -109,27 +116,24 @@
     {
       "type": "heading",
       "name": "Heading",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
     },
     {
       "type": "paragraph",
       "name": "Paragraph",
-      "limit": 1
-    },
-    {
-      "type": "button",
-      "name": "Button",
-      "limit": 2,
+      "limit": 1,
       "settings": [
         {
-          "type": "text",
-          "id": "text",
-          "label": "Text"
-        },
-        {
-          "type": "url",
-          "id": "url",
-          "label": "URL"
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
         }
       ]
     },

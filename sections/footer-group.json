@@ -13,7 +13,22 @@
   "sections": {
     "newsletter": {
       "type": "relume-cta-020",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "content": "Join our newsletter"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "content": "<p>Discover the joy of exceptional coffee delivered right to your inbox. Join us today!</p>"
+          }
+        }
+      },
+      "block_order": ["heading", "paragraph"],
     },
     "footer": {
       "type": "footer",
@@ -37,15 +52,9 @@
           }
         }
       },
-      "block_order": [
-        "content_block_01",
-        "content_block_02"
-      ],
+      "block_order": ["content_block_01", "content_block_02"],
       "settings": {}
     }
   },
-  "order": [
-    "newsletter",
-    "footer"
-  ]
+  "order": ["newsletter", "footer"]
 }
