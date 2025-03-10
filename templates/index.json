@@ -223,7 +223,7 @@
           "settings": {
             "image": "shopify://shop_images/baba_homewood.jpg",
             "heading": "Homewood",
-            "address": "<p>817 Green Springs Hwy Suite 109 Homewood, AL 35209</p>",
+            "address": "<p>817 Green Springs Hwy Suite 109 </p><p>Homewood, AL 35209</p>",
             "button_text": "View Café",
             "button_url": ""
           }
