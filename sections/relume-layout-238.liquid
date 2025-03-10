@@ -19,28 +19,28 @@
     }
 
     .grid {
-      display: grid;
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-flow: row wrap;
       gap: var(--spacing-9);
       justify-content: center;
-
-      @media (min-width: 768px) {
-        grid-template-columns: repeat(auto-fit, 360px);
-      }
 
       @media (min-width: 1440px) {
         gap: var(--spacing-11);
       }
 
       @media (min-width: 1920px) {
-        grid-template-columns: repeat(auto-fit, 400px);
       }
     }
 
     .grid-item {
       display: flex;
+      flex: 0 1 360px;
       flex-flow: column nowrap;
       gap: var(--spacing-5);
+    }
+
+    .grid-item:last-child {
+      justify-self: center;
     }
 
     .icon-text {

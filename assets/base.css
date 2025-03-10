@@ -1,7 +1,3 @@
-footer {
-  margin-bottom: 240px; /* just to make sure the bottom of the page is always visible about the preview bar */
-}
-
 .visually-hidden {
   position: absolute !important;
   overflow: hidden;

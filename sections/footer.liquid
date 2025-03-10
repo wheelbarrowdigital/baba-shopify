@@ -1,41 +1,135 @@
 {% style %}
   .footer {
-    nav {
+    .upper > .container {
       display: flex;
       flex-flow: row wrap;
-      gap: var(--spacing-4);
+      gap: var(--spacing-9);
+    }
+
+    .lower > .container {
+      display: flex;
+      flex-flow: row wrap;
+      gap: var(--spacing-4) var(--spacing-7);
+    }
+
+    .footer-links {
+      display: flex;
+      flex: 1 1 100%;
+      flex-flow: column nowrap;
+      gap: var(--spacing-6) var(--spacing-7);
+
+      .nav-item {
+        max-width: max-content;
+      }
+    }
+
+    .social-links {
+      align-items: center;
+      display: flex;
+      flex: 1 1 100%;
+      flex-flow: row wrap;
+      gap: var(--spacing-3);
+      justify-content: flex-start;
+
+      .icon-link {
+        align-items: center;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+      }
+
+      .icon {
+        width: 1.5rem;
+        height: 1.5rem;
+
+        &.facebook {
+          color: #1877f2;
+        }
+
+        &.instagram {
+          color: #e1306c;
+        }
+      }
+    }
+
+    .content {
+      display: grid;
+      gap: var(--spacing-7);
+      grid-template-columns: 1fr;
+
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .content-block {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-3);
     }
   }
 {% endstyle %}
 
-<div class="upper">
-  <div class="container container-xl">
-    <nav>
+<div class="upper {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+  <div class="container container-lg">
+    <nav class="footer-links">
       {% for link in linklists.footer.links %}
-        {% render 'button', button: link.title, style: 'link', text: link.title, url: link.url %}
-      {% endfor %}
-    </nav>
-    <nav>
-      {% for link in linklists['social-media'].links %}
-        {% render 'button', button: link.title, style: 'link', text: link.title, url: link.url %}
-      {% endfor %}
-    </nav>
-    {% for block in section.blocks %}
-      <div>
-        <h2 class="heading-2xl">{{ block.settings.heading }}</h2>
-        <p class="text-md">{{ block.settings.content }}</p>
         {% render 'button',
-          button: block.settings.button_text,
+          button: link.title,
+          class: 'nav-item',
           style: 'link',
-          text: block.settings.button_text,
-          url: block.settings.button_url
+          text: link.title,
+          text_size: 'sm',
+          url: link.url
         %}
-      </div>
-    {% endfor %}
+      {% endfor %}
+    </nav>
+    <nav class="social-links">
+      {% for link in linklists['social-media'].links %}
+        {% assign lowercase_title = link.title | downcase %}
+        {% case lowercase_title %}
+          {% when 'email' %}
+            <a href="mailto:{{ link.url }}" class="icon-link" target="_blank">
+              {% render 'icon', icon: 'envelope', library: 'streamline', set: 'fontawesome', style: 'solid' %}
+            </a>
+          {% when 'instagram' %}
+            <a href="{{ link.url }}" class="icon-link" target="_blank">
+              {% render 'icon', icon: 'instagram', library: 'streamline', set: 'fontawesome', style: 'solid' %}
+            </a>
+          {% when 'facebook' %}
+            <a href="{{ link.url }}" class="icon-link" target="_blank">
+              {% render 'icon', icon: 'facebook', library: 'streamline', set: 'fontawesome', style: 'solid' %}
+            </a>
+          {% when 'twitter', 'x' %}
+            <a href="{{ link.url }}" class="icon-link" target="_blank">
+              {% render 'icon', icon: 'twitter', library: 'streamline', set: 'fontawesome', style: 'solid' %}
+            </a>
+          {% when 'youtube' %}
+            <a href="{{ link.url }}" class="icon-link" target="_blank">
+              {% render 'icon', icon: 'youtube', library: 'streamline', set: 'fontawesome', style: 'solid' %}
+            </a>
+        {% endcase %}
+      {% endfor %}
+    </nav>
+    <div class="content">
+      {% for block in section.blocks %}
+        <div class="content-block">
+          <h2 class="heading-2xl">{{ block.settings.heading }}</h2>
+          <p class="text-sm">{{ block.settings.content }}</p>
+          {% render 'button',
+            button: block.settings.button_text,
+            style: 'link',
+            text: block.settings.button_text,
+            text_size: 'sm',
+            url: block.settings.button_url
+          %}
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </div>
-<div class="lower">
-  <div class="container container-xl">
+<div class="lower {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+  <div class="container container-lg">
     <p class="text-sm">© 2025 Baba Java. All rights reserved.</p>
     <p class="text-sm">
       Designed and developed by
