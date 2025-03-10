@@ -1,12 +1,18 @@
 {% style %}
   section.relume-layout-238 {
+    background-color: var(--background-100);
+    color: var(--gray-1000);
+
     > .container {
       display: flex;
       flex-flow: column nowrap;
-      gap: var(--spacing-9);
+      gap: var(--spacing-11);
 
-      @media (min-width: 1440px) {
-        gap: var(--spacing-13);
+      @media (min-width: 768px) {
+      }
+
+      @media (min-width: 992px) {
+        gap: var(--spacing-15);
       }
     }
 
@@ -21,14 +27,20 @@
     .grid {
       display: flex;
       flex-flow: row wrap;
-      gap: var(--spacing-9);
+      gap: var(--spacing-10);
       justify-content: center;
 
-      @media (min-width: 1440px) {
+      @media (min-width: 992px) {
         gap: var(--spacing-11);
       }
 
-      @media (min-width: 1920px) {
+      @media (min-width: 1200px) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      }
+
+      @media (min-width: 1440px) {
+        gap: var(--spacing-11);
       }
     }
 
@@ -37,6 +49,10 @@
       flex: 0 1 360px;
       flex-flow: column nowrap;
       gap: var(--spacing-5);
+
+      @media (min-width: 768px) {
+        flex: 0 1 320px;
+      }
     }
 
     .grid-item:last-child {
@@ -122,7 +138,7 @@
 {
   "name": "Layout 238",
   "tag": "section",
-  "class": "relume-layout-238",
+  "class": "relume-layout-238 color-scheme-dark",
   "settings": [
     {
       "type": "header",
