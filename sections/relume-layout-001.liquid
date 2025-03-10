@@ -1,0 +1,205 @@
+{% style %}
+  section.relume-layout-001 {
+    > .container {
+      align-items: center;
+      display: grid;
+      gap: var(--spacing-9);
+      grid-template-columns: 1fr;
+
+      @media (min-width: 1024px) {
+        grid-template-columns: 54fr 46fr;
+      }
+
+      @media (min-width: 1440px) {
+        gap: var(--spacing-13);
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-7);
+
+      @media (min-width: 1200px) {
+        gap: var(--spacing-9);
+      }
+    }
+
+    .text {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-5);
+
+      @media (min-width: 1440px) {
+        gap: var(--spacing-6);
+      }
+
+      .upper {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: var(--spacing-5);
+      }
+
+      .lower {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: var(--spacing-5);
+      }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-6);
+
+      @media (min-width: 576px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (min-width: 1200px) {
+        gap: var(--spacing-7);
+      }
+    }
+
+    .grid-item {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-5);
+    }
+
+    .icon {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+  }
+{% endstyle %}
+
+<div class="container container-lg reveal-from-bottom">
+  <div class="content">
+    <div class="text">
+      <div class="upper">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'tagline' %}
+              <p class="text-sm uppercase semibold">
+                {{ block.settings.content }}
+              </p>
+            {% when 'heading' %}
+              <h2 class="heading-5xl">
+                {{ block.settings.content }}
+              </h2>
+          {% endcase %}
+        {% endfor %}
+      </div>
+      <div class="lower">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'paragraph' %}
+              <p class="text-lg">
+                {{ block.settings.content }}
+              </p>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% capture button_content %}
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'button' %}
+            {% render 'button', text: block.settings.text, url: block.settings.url, style: block.settings.style %}
+        {% endcase %}
+      {% endfor %}
+    {% endcapture %}
+    {% render 'buttons', content: button_content %}
+  </div>
+
+  {% if section.settings.image != blank %}
+    {% render 'image',
+      aspect_ratio: '6:7',
+      class: 'media',
+      focal_point: section.settings.image.presentation.focal_point,
+      image: section.settings.image
+    %}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Layout 001",
+  "tag": "section",
+  "class": "relume-layout-001 color-scheme-light amber",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tagline",
+      "name": "Tagline",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            { "value": "fill", "label": "Fill" },
+            { "value": "outline", "label": "Outline" },
+            { "value": "link", "label": "Link" }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
