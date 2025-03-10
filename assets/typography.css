@@ -63,8 +63,12 @@ body {
 .heading-xl,
 .link-xl,
 .text-xl {
-  font-size: 1.25rem; /* 20px */
+  font-size: 1.125rem; /* 18px */
   line-height: 1.75rem; /* 28px */
+
+  @media (min-width: 1024px) {
+    font-size: 1.25rem; /* 20px */
+  }
 }
 
 .display-2xl,

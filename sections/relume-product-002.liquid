@@ -1,0 +1,121 @@
+{% style %}
+  section.relume-product-002 {
+    .container {
+      display: flex;
+      flex-flow: row wrap;
+      gap: var(--spacing-9);
+
+      @media (min-width: 1024px) {
+        gap: var(--spacing-13);
+      }
+    }
+
+    .upper {
+      align-items: flex-start;
+      display: flex;
+      flex: 0 1 560px;
+      flex-flow: column nowrap;
+      gap: var(--spacing-4);
+      justify-content: flex-end;
+
+      @media (min-width: 1024px) {
+        flex-basis: 768px;
+      }
+    }
+
+    .heading {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-2);
+    }
+
+    .lower {
+      flex: 1 1 100%;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: var(--spacing-9) var(--spacing-5);
+
+      @media (min-width: 1024px) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .product-card {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-4);
+    }
+
+    .product-card-content {
+      display: flex;
+      flex-flow: column nowrap;
+      flex-grow: 1;
+      gap: var(--spacing-4);
+      justify-content: space-between;
+    }
+
+    .button {
+    }
+  }
+{% endstyle %}
+
+{% assign the_collection = collection %}
+{% if collection == blank and section.settings.collection != blank %}
+  {% assign the_collection = section.settings.collection %}
+{% endif %}
+<div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+  {% if the_collection != blank %}
+    <div class="upper">
+      <div class="heading">
+        <p class="text-sm uppercase semibold">Collection</p>
+        <h2 class="heading-5xl">
+          {{ the_collection.title }}
+        </h2>
+      </div>
+      {% if the_collection.description != blank %}
+        {% assign formatted_description = the_collection.description | replace: '<p', '<p class="text-lg"' %}
+        {{ formatted_description }}
+      {% endif %}
+    </div>
+
+    <div class="lower">
+      <div class="grid">
+        {% for product in the_collection.products %}
+          <div class="grid-item product-card">
+            <a href="{{ product.url }}">
+              {% render 'image', aspect_ratio: '6:7', image: product.featured_image %}
+            </a>
+            <div class="product-card-content">
+              <a href="{{ product.url }}" class="heading-2xl">{{ product.title }}</a>
+              <form method="post" action="/cart/add">
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                {% capture button_content %}
+                {% render 'button', text: 'Add to Cart', style: 'outline', class: 'text-sm', type: 'submit' %}
+                {% endcapture %}
+                {% render 'buttons', content: button_content %}
+              </form>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Product 002",
+  "tag": "section",
+  "class": "relume-product-002 color-scheme-light amber",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ]
+}
+{% endschema %}

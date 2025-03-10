@@ -9,12 +9,50 @@
  */
 {
   "sections": {
-    "product-grid": {
-      "type": "collection-product-grid",
-      "settings": {}
+    
+    "collection": {
+      "type": "relume-product-002"
+    },
+    "subscribe": {
+      "type": "relume-cover-047",
+      "blocks": {
+        "tagline": {
+          "type": "tagline",
+          "settings": {
+            "content": "Subscribe"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "content": "Coffee At Your Doorstep"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "content": "Lorem ipsum dolor sit amet consectetur. Mauris sem dictum blandit aliquam risus amet. Vitae ipsum consectetur vulputate sed ac pellentesque suspendisse sit pulvinar. Orci facilisis sed leo commodo volutpat in. Convallis tempor condimentum tellus ultrices in diam velit pretium."
+          }
+        },
+        "button_01": {
+          "type": "button",
+          "settings": {
+            "text": "Subscribe",
+            "url": "/collections/all",
+            "style": "fill"
+          }
+        },
+        "button_02": {
+          "type": "button",
+          "settings": {
+            "text": "Learn More",
+            "url": "/collections/all",
+            "style": "outline"
+          }
+        }
+      },
+      "block_order": ["tagline", "heading", "paragraph", "button_01", "button_02"]
     }
   },
-  "order": [
-    "product-grid"
-  ]
+  "order": ["collection", "subscribe"]
 }

@@ -51,16 +51,17 @@
           </p>
       {% endcase %}
     {% endfor %}
+
     {% capture button_content %}
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'button' %}
-              {% if block.settings.button_text and block.settings.button_url %}
-                {% render 'button', text: block.settings.button_text, url: block.settings.button_url, style: block.settings.button_style %}
-              {% endif %}         
+              {% if block.settings.text and block.settings.url %}
+                {% render 'button', text: block.settings.text, url: block.settings.url, style: block.settings.style %}
+              {% endif %}
           {% endcase %}
-          {% endfor %}
-        {% endcapture %}
+        {% endfor %}
+    {% endcapture %}
     {% render 'buttons', content: button_content %}
   </div>
 </div>
@@ -116,19 +117,19 @@
       "settings": [
         {
           "type": "text",
-          "id": "button_text",
-          "label": "Button Text",
+          "id": "text",
+          "label": "Text",
           "default": "Learn More"
         },
         {
           "type": "url",
-          "id": "button_url",
-          "label": "Button URL"
+          "id": "url",
+          "label": "URL"
         },
         {
           "type": "select",
-          "id": "button_style",
-          "label": "Button Style",
+          "id": "style",
+          "label": "Style",
           "options": [
             {
               "value": "fill",

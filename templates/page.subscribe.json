@@ -33,17 +33,17 @@
         "button_01": {
           "type": "button",
           "settings": {
-            "button_text": "Subscribe",
-            "button_url": "/collections/all",
-            "button_style": "fill"
+            "text": "Subscribe",
+            "url": "/collections/all",
+            "style": "fill"
           }
         },
         "button_02": {
           "type": "button",
           "settings": {
-            "button_text": "Learn More",
-            "button_url": "/collections/all",
-            "button_style": "outline"
+            "text": "Learn More",
+            "url": "/collections/all",
+            "style": "outline"
           }
         }
       },
