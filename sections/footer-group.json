@@ -13,7 +13,6 @@
   "sections": {
     "newsletter": {
       "type": "relume-cta-020",
-      "settings": {},
       "blocks": {
         "heading": {
           "type": "heading",
@@ -28,7 +27,11 @@
           }
         }
       },
-      "block_order": ["heading", "paragraph"],
+      "block_order": [
+        "heading",
+        "paragraph"
+      ],
+      "settings": {}
     },
     "footer": {
       "type": "footer",
@@ -52,9 +55,15 @@
           }
         }
       },
-      "block_order": ["content_block_01", "content_block_02"],
+      "block_order": [
+        "content_block_01",
+        "content_block_02"
+      ],
       "settings": {}
     }
   },
-  "order": ["newsletter", "footer"]
+  "order": [
+    "newsletter",
+    "footer"
+  ]
 }
