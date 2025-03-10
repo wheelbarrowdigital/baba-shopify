@@ -1,0 +1,151 @@
+{% style %}
+  section.relume-cover-047 {
+    > .container {
+      align-items: flex-start;
+      display: grid;
+      gap: var(--spacing-5);
+      grid-template-columns: 1fr;
+
+      @media (min-width: 1024px) {
+        gap: var(--spacing-13);
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .alpha {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-3);
+    }
+
+    .bravo {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-6);
+    }
+  }
+{% endstyle %}
+
+<div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+  <div class="alpha">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'tagline' %}
+          <p class="text-sm uppercase semibold">
+            {{ block.settings.content }}
+          </p>
+        {% when 'heading' %}
+          <h2 class="display-5xl">
+            {{ block.settings.content }}
+          </h2>
+      {% endcase %}
+    {% endfor %}
+  </div>
+
+  <div class="bravo">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'paragraph' %}
+          <p class="text-lg">
+            {{ block.settings.content }}
+          </p>
+      {% endcase %}
+    {% endfor %}
+    {% capture button_content %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'button' %}
+              {% if block.settings.button_text and block.settings.button_url %}
+                {% render 'button', text: block.settings.button_text, url: block.settings.button_url, style: block.settings.button_style %}
+              {% endif %}         
+          {% endcase %}
+          {% endfor %}
+        {% endcapture %}
+    {% render 'buttons', content: button_content %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cover 047",
+  "tag": "section",
+  "class": "relume-cover-047 color-scheme-light amber",
+  "blocks": [
+    {
+      "type": "tagline",
+      "name": "Tagline",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Tagline text"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Heading text",
+          "default": "Lorem ipsum dolor sit amet"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "Lorem ipsum dolor sit amet consectetur. Mauris sem dictum blandit aliquam risus amet. Vitae ipsum consectetur vulputate sed ac pellentesque suspendisse sit pulvinar. Orci facilisis sed leo commodo volutpat in. Convallis tempor condimentum tellus ultrices in diam velit pretium."
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Button Style",
+          "options": [
+            {
+              "value": "fill",
+              "label": "Fill"
+            },
+            {
+              "value": "outline",
+              "label": "Outline"
+            },
+            {
+              "value": "link",
+              "label": "Link"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

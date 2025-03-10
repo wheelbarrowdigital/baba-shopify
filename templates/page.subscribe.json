@@ -9,12 +9,54 @@
  */
 {
   "sections": {
-    "content": {
-      "type": "content",
-      "settings": {}
+    "cover":{
+      "type": "relume-cover-047",
+      "blocks":{
+        "tagline":{
+          "type": "tagline",
+          "settings":{
+            "content": "Subscribe"
+          }
+        },
+        "heading":{
+          "type": "heading",
+          "settings":{
+            "content": "Coffee At Your Doorstep"
+          }
+        },
+        "paragraph":{
+          "type": "paragraph",
+          "settings":{
+            "content": "Lorem ipsum dolor sit amet consectetur. Mauris sem dictum blandit aliquam risus amet. Vitae ipsum consectetur vulputate sed ac pellentesque suspendisse sit pulvinar. Orci facilisis sed leo commodo volutpat in. Convallis tempor condimentum tellus ultrices in diam velit pretium."
+          }
+        },
+        "button_01":{
+          "type": "button",
+          "settings":{
+            "button_text": "Subscribe",
+            "button_url": "/collections/all",
+            "button_style": "fill"
+          }
+        },
+        "button_02":{
+          "type": "button",
+          "settings":{
+            "button_text": "Learn More",
+            "button_url": "/collections/all",
+            "button_style": "outline"
+          }
+        }
+      },
+      "block_order": [
+        "tagline",
+        "heading",
+        "paragraph",
+        "button_01",
+        "button_02"
+      ]
     }
   },
   "order": [
-    "content"
+    "cover"
   ]
 }
