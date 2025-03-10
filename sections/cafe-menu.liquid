@@ -42,7 +42,7 @@
   <h3>{{ category }}</h3>
   {% for modifier in modifiers %}
     {% if modifier.category == category %}
-      <p>{{ modifier.name }}</p>
+      <p>{{ modifier.label }}</p>
     {% endif %}
   {% endfor %}
 {% endfor %}
