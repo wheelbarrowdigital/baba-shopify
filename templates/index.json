@@ -156,8 +156,8 @@
           "type": "grid_item",
           "settings": {
             "icon": "streamline|core|solid|coffee-bean",
-            "heading": "Expert Roasting",
-            "paragraph": "Each bean is carefully selected and roasted to perfection, bringing out distinct tasting notes that reflect its origin and craftsmanship."
+            "heading": "Expertly Roasted",
+            "paragraph": "Handpicked for their unique characteristics, these beans are then expertly roasted to highlight their distinct tasting notes."
           }
         }
       },
