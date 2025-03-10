@@ -18,6 +18,10 @@
       flex-flow: column nowrap;
       gap: var(--spacing-6) var(--spacing-7);
 
+      @media (min-width: 576px) {
+        flex-flow: row wrap;
+      }
+
       .nav-item {
         max-width: max-content;
       }
