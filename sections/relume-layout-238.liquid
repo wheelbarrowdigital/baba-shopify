@@ -108,7 +108,7 @@
                   style: icon_parts[2]
                 %}
               {% endif %}
-              {% if block.settings.heading != blank and block.settings.paragraph != blank %}
+              {% if block.settings.heading != blank or block.settings.paragraph != blank %}
                 <div class="text">
                   {% if block.settings.heading != blank %}
                     <h3 class="heading-3xl text-center">{{ block.settings.heading }}</h3>
