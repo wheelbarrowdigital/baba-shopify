@@ -203,7 +203,7 @@
           "settings": {
             "image": "shopify://shop_images/baba_hoover.jpg",
             "heading": "Hoover",
-            "address": "<p>4730 Chace Cir Suite 124, Birmingham, AL 35244</p>",
+            "address": "<p>4730 Chace Cir Suite 124 </p><p>Birmingham, AL 35244</p>",
             "button_text": "View Café",
             "button_url": "shopify://metaobjects/location/hoover"
           }
@@ -213,7 +213,7 @@
           "settings": {
             "image": "shopify://shop_images/baba_meadowbrook.jpg",
             "heading": "The Village at Meadowbrook",
-            "address": "<p>1801 Doug Baker Blvd, Suite 121A Birmingham, AL 35242</p>",
+            "address": "<p>1801 Doug Baker Blvd, Suite 121A </p><p>Birmingham, AL 35242</p>",
             "button_text": "View Café",
             "button_url": ""
           }
