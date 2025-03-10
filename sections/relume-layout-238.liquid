@@ -108,13 +108,13 @@
                   style: icon_parts[2]
                 %}
               {% endif %}
-              {% if block.settings.heading != blank and block.settings.description != blank %}
+              {% if block.settings.heading != blank and block.settings.paragraph != blank %}
                 <div class="text">
                   {% if block.settings.heading != blank %}
                     <h3 class="heading-3xl text-center">{{ block.settings.heading }}</h3>
                   {% endif %}
-                  {% if block.settings.description != blank %}
-                    <p class="text-sm text-center">{{ block.settings.description }}</p>
+                  {% if block.settings.paragraph != blank %}
+                    <p class="text-sm text-center">{{ block.settings.paragraph }}</p>
                   {% endif %}
                 </div>
               {% endif %}
@@ -181,10 +181,9 @@
           "default": "Service"
         },
         {
-          "type": "text",
-          "id": "description",
-          "label": "Description",
-          "default": "Description of service"
+          "type": "inline_richtext",
+          "id": "paragraph",
+          "label": "Paragraph"
         },
         {
           "type": "text",

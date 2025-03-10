@@ -84,7 +84,7 @@
           "settings": {
             "icon": "streamline|ultimate|bold|coffee-turkish",
             "heading": "Excellent Coffee",
-            "description": "Our ethically sourced, specialty grade coffee tastes great and supports farms that give fair wages to their farmers.",
+            "paragraph": "Our ethically sourced, specialty grade coffee tastes great and supports farms that give fair wages to their farmers.",
             "button_text": "Learn More",
             "button_url": ""
           }
@@ -94,7 +94,7 @@
           "settings": {
             "icon": "streamline|ultimate|bold|shop-barista",
             "heading": "Excellent Service",
-            "description": "Our highly trained baristas make your regular or a new favorite. Environment and service elicits happiness, joy, and belonging.",
+            "paragraph": "Our highly trained baristas make your regular or a new favorite. Environment and service elicits happiness, joy, and belonging.",
             "button_text": "Learn More",
             "button_url": ""
           }
@@ -104,7 +104,7 @@
           "settings": {
             "icon": "streamline|ultimate|bold|coffee-read",
             "heading": "Excellent Education",
-            "description": "Whether you’re a home brewer with your first CHEMEX or a coffee shop owner looking to improve your craft, let us help! We like teaching good coffee as much as we like drinking it.",
+            "paragraph": "Whether you’re a home brewer with your first CHEMEX or a coffee shop owner looking to improve your craft, let us help! We like teaching good coffee as much as we like drinking it.",
             "button_text": "Learn More",
             "button_url": ""
           }
