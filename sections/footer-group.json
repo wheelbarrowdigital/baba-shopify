@@ -12,7 +12,8 @@
   "type": "footer",
   "sections": {
     "newsletter": {
-      "type": "relume-cta-020"
+      "type": "relume-cta-020",
+      "settings": {}
     },
     "footer": {
       "type": "footer",
@@ -36,9 +37,15 @@
           }
         }
       },
-      "block_order": ["content_block_01", "content_block_02"],
+      "block_order": [
+        "content_block_01",
+        "content_block_02"
+      ],
       "settings": {}
     }
   },
-  "order": ["newsletter", "footer"]
+  "order": [
+    "newsletter",
+    "footer"
+  ]
 }
