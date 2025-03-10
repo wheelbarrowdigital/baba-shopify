@@ -68,6 +68,14 @@
       gap: var(--spacing-3);
     }
   }
+
+  /* COLORS */
+  .footer {
+    &.color-scheme-dark {
+      background-color: var(--background-100);
+    }
+  }
+  /* END COLORS */
 {% endstyle %}
 
 <div class="upper {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
@@ -142,7 +150,7 @@
 {
   "name": "Footer",
   "tag": "footer",
-  "class": "footer",
+  "class": "footer color-scheme-dark",
   "blocks": [
     {
       "type": "content_block",

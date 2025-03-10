@@ -226,9 +226,8 @@
   /* Background */
   --background-100-value: 0, 0%, 100%;
   --background-200-value: 0, 0%, 98%;
-  /* --background-100: hsla(var(--background-100-value), 1); */
-  --background-100: hsla(var(--amber-100-value), 1);
-  --background-200: hsla(var(--amber-200-value), 1);
+  --background-100: hsla(var(--background-100-value), 1);
+  --background-200: hsla(var(--background-200-value), 1);
 
   /* Contrast */
   --contrast-fg: #ffffff;
@@ -249,6 +248,17 @@
   --color-warning: var(--amber-700);
   --color-success: var(--green-700);
   --color-info: var(--blue-700);
+
+  background-color: var(--background-100);
+  color: var(--gray-1000);
+
+  &.amber {
+    background-color: var(--amber-100);
+  }
+
+  &.green {
+    background-color: var(--green-100);
+  }
 }
 
 .dark-theme,
@@ -440,16 +450,28 @@
   --pink-1000: hsla(var(--pink-1000-value), 1);
 
   /* Background */
-  --background-100-value: 0, 0%, 4%;
-  --background-200-value: 0, 0%, 0%;
-  --background-100: hsla(var(--green-100-value), 1);
-  --background-200: hsla(var(--green-200-value), 1);
+  --background-100-value: 0, 0%, 0%;
+  --background-200-value: 0, 0%, 4%;
+  --background-100: hsla(var(--background-100-value), 1);
+  --background-200: hsla(var(--background-200-value), 1);
 
   /* Focus */
   --focus-border: 0 0 0 1px var(--gray-alpha-600), 0px 0px 0px 4px rgba(255, 255, 255, 0.24);
   --focus-color: var(--blue-900);
   --shadow-border-inset: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+
+  background-color: var(--background-200);
+  color: var(--gray-1000);
+
+  &.amber {
+    background-color: var(--amber-100);
+  }
+
+  &.green {
+    background-color: var(--green-100);
+  }
 }
+
 /* END COLORS */
 
 /* COMPONENT VARIABLES */

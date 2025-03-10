@@ -19,6 +19,10 @@
       display: flex;
       flex-flow: column nowrap;
       gap: var(--spacing-7);
+
+      @media (min-width: 1200px) {
+        gap: var(--spacing-9);
+      }
     }
 
     .text {
@@ -34,10 +38,14 @@
     .grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: var(--spacing-6) var(--spacing-4);
+      gap: var(--spacing-6);
 
       @media (min-width: 576px) {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (min-width: 1200px) {
+        gap: var(--spacing-7);
       }
     }
 
@@ -48,8 +56,8 @@
     }
 
     .icon {
-      height: 3rem;
-      width: 3rem;
+      height: 2.5rem;
+      width: 2.5rem;
     }
   }
 {% endstyle %}
@@ -60,7 +68,7 @@
       {% for block in section.blocks %}
         {% case block.type %}
           {% when 'heading' %}
-            <h2 class="heading-4xl">
+            <h2 class="heading-5xl">
               {{ block.settings.content }}
             </h2>
           {% when 'paragraph' %}
@@ -85,10 +93,10 @@
                   style: icon_parts[2]
                 %}
               {% endif %}
-              <h3 class="heading-2xl">
+              <h3 class="heading-3xl">
                 {{ block.settings.heading }}
               </h3>
-              <p class="text-lg">
+              <p class="text-md">
                 {{ block.settings.paragraph }}
               </p>
             </div>
@@ -110,7 +118,7 @@
 {
   "name": "Layout 012",
   "tag": "section",
-  "class": "relume-layout-012",
+  "class": "relume-layout-012 color-scheme-light amber",
   "settings": [
     {
       "type": "image_picker",

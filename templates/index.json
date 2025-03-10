@@ -41,12 +41,7 @@
           }
         }
       },
-      "block_order": [
-        "heading",
-        "paragraph",
-        "button_primary",
-        "button_secondary"
-      ],
+      "block_order": ["heading", "paragraph", "button_primary", "button_secondary"],
       "settings": {
         "background_image": "shopify://shop_images/esteban-benites-VO0fNzSM-Z4-unsplash-2-scaled-e1695909609156.jpg",
         "background_video": "shopify://files/videos/coffee-tree-with-green-cherry-beans-in-the-farm-2023-11-27-05-06-25-utc.mp4"
@@ -76,11 +71,7 @@
           }
         }
       },
-      "block_order": [
-        "heading",
-        "paragraph",
-        "button"
-      ],
+      "block_order": ["heading", "paragraph", "button"],
       "settings": {
         "image": "shopify://shop_images/baba_box.jpg"
       }
@@ -119,11 +110,7 @@
           }
         }
       },
-      "block_order": [
-        "grid_item_01",
-        "grid_item_02",
-        "grid_item_03"
-      ],
+      "block_order": ["grid_item_01", "grid_item_02", "grid_item_03"],
       "settings": {
         "heading": "What We Do",
         "paragraph": ""
@@ -161,12 +148,7 @@
           }
         }
       },
-      "block_order": [
-        "heading",
-        "paragraph",
-        "grid_item_01",
-        "grid_item_02"
-      ],
+      "block_order": ["heading", "paragraph", "grid_item_01", "grid_item_02"],
       "settings": {
         "image": "shopify://shop_images/117377244_630199697900811_1601391166847642389_n-1.jpg"
       }
@@ -187,10 +169,7 @@
           }
         }
       },
-      "block_order": [
-        "heading",
-        "paragraph"
-      ],
+      "block_order": ["heading", "paragraph"],
       "settings": {
         "image": "shopify://shop_images/baba_probat.jpg"
       }
@@ -229,20 +208,12 @@
           }
         }
       },
-      "block_order": [
-        "tab_01",
-        "tab_02",
-        "tab_03"
-      ],
+      "block_order": ["tab_01", "tab_02", "tab_03"],
       "settings": {
         "tagline": "Discover",
         "heading": "Our Locations",
         "paragraph": "Join us in Hoover to savor the rich aromas and sounds of our freshly roasted coffee. Our dedicated roasting team, led by Reuben, ensures every cup delivers an exceptional flavor experience."
       }
-    },
-    "newsletter_signup": {
-      "type": "relume-cta-020",
-      "settings": {}
     }
   },
   "order": [
@@ -251,7 +222,6 @@
     "featured_services",
     "featured_values",
     "freshly_roasted_coffee",
-    "featured_locations",
-    "newsletter_signup"
+    "featured_locations"
   ]
 }
