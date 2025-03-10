@@ -6,12 +6,9 @@
     > .container {
       display: flex;
       flex-flow: column nowrap;
-      gap: var(--spacing-11);
+      gap: var(--spacing-12);
 
-      @media (min-width: 768px) {
-      }
-
-      @media (min-width: 992px) {
+      @media (min-width: 1024px) {
         gap: var(--spacing-15);
       }
     }
@@ -27,28 +24,21 @@
     .grid {
       display: flex;
       flex-flow: row wrap;
-      gap: var(--spacing-10);
+      gap: var(--spacing-11);
       justify-content: center;
 
-      @media (min-width: 992px) {
-        gap: var(--spacing-11);
-      }
-
-      @media (min-width: 1200px) {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      @media (min-width: 1024px) {
+        gap: var(--spacing-13);
       }
 
       @media (min-width: 1440px) {
-        gap: var(--spacing-11);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 360px);
       }
     }
 
     .grid-item {
-      display: flex;
       flex: 0 1 360px;
-      flex-flow: column nowrap;
-      gap: var(--spacing-5);
 
       @media (min-width: 768px) {
         flex: 0 1 320px;
@@ -63,7 +53,7 @@
       align-items: center;
       display: flex;
       flex-flow: column nowrap;
-      gap: var(--spacing-5);
+      gap: var(--spacing-7);
     }
 
     .icon {
@@ -74,7 +64,7 @@
     .text {
       display: flex;
       flex-flow: column nowrap;
-      gap: var(--spacing-5);
+      gap: var(--spacing-4);
     }
   }
 {% endstyle %}
@@ -111,7 +101,7 @@
               {% if block.settings.heading != blank or block.settings.paragraph != blank %}
                 <div class="text">
                   {% if block.settings.heading != blank %}
-                    <h3 class="heading-3xl text-center">{{ block.settings.heading }}</h3>
+                    <h3 class="heading-4xl text-center">{{ block.settings.heading }}</h3>
                   {% endif %}
                   {% if block.settings.paragraph != blank %}
                     <p class="text-sm text-center">{{ block.settings.paragraph }}</p>
