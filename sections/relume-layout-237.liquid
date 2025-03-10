@@ -1,5 +1,5 @@
 {% style %}
-  section.relume-layout-238 {
+  section.relume-layout-237 {
     background-color: var(--background-100);
     color: var(--gray-1000);
 
@@ -66,11 +66,20 @@
       flex-flow: column nowrap;
       gap: var(--spacing-4);
     }
+
+    .buttons {
+      justify-content: center;
+    }
   }
 {% endstyle %}
 <div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
-  {% if section.settings.heading != blank or section.settings.paragraph != blank %}
+  {% if section.settings.tagline != blank or section.settings.heading != blank or section.settings.paragraph != blank %}
     <div class="text-header">
+      {% if section.settings.tagline != blank %}
+        <p class="text-sm text-center uppercase semibold">
+          {{ section.settings.tagline }}
+        </p>
+      {% endif %}
       {% if section.settings.heading != blank %}
         <h2 class="heading-5xl text-center">
           {{ section.settings.heading }}
@@ -122,17 +131,31 @@
       {% endcase %}
     {% endfor %}
   </div>
+  {% capture button_content %}
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'button' %}
+          {% render 'button', text: block.settings.text, url: block.settings.url, style: block.settings.style %}
+      {% endcase %}
+    {% endfor %}
+  {% endcapture %}
+  {% render 'buttons', content: button_content %}
 </div>
 
 {% schema %}
 {
-  "name": "Layout 238",
+  "name": "Layout 237",
   "tag": "section",
-  "class": "relume-layout-238 color-scheme-light amber",
+  "class": "relume-layout-237 color-scheme-light amber",
   "settings": [
     {
       "type": "header",
       "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline"
     },
     {
       "type": "text",
@@ -174,17 +197,33 @@
           "type": "inline_richtext",
           "id": "paragraph",
           "label": "Paragraph"
-        },
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 2,
+      "settings": [
         {
           "type": "text",
-          "id": "button_text",
-          "label": "Button Text",
-          "default": "Learn More"
+          "id": "text",
+          "label": "Button Text"
         },
         {
           "type": "url",
-          "id": "button_url",
+          "id": "url",
           "label": "Button URL"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Button Style",
+          "options": [
+            { "value": "fill", "label": "Fill" },
+            { "value": "outline", "label": "Outline" },
+            { "value": "link", "label": "Link" }
+          ]
         }
       ]
     }
