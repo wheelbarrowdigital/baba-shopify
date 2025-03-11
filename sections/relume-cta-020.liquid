@@ -32,7 +32,7 @@
         flex: 1 0 100%;
       }
 
-      .form_field-wrapper {
+      .form-field-wrapper {
         @media (min-width: 576px) {
           flex-basis: 320px;
         }
@@ -79,14 +79,14 @@
 
     <input type="hidden" name="contact[tags]" value="newsletter">
 
-    <div class="form_field-wrapper">
-      <div class="form_field email">
-        <label class="field_label heading-md" for="email">Email</label>
+    <div class="form-field-wrapper">
+      <div class="form-field email">
+        <label class="field-label heading-md" for="email">Email</label>
         <input
           id="email"
           type="email"
           name="contact[email]"
-          class="field_input text-md"
+          class="field-input text-md"
           value="{{ form.email }}"
           aria-required="true"
           autocorrect="off"

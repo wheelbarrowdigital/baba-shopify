@@ -1,0 +1,506 @@
+{% style %}
+  section.relume-product-cover-007 {
+    > .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-7);
+
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+        max-height: 100vh;
+        overflow: auto; /* Enables vertical scrolling */
+      }
+
+      @media (min-width: 1440px) {
+        gap: var(--spacing-13);
+      }
+    }
+
+    .title {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-2);
+    }
+
+    .alpha {
+      @media (min-width: 768px) {
+        align-self: start;
+        position: sticky;
+        top: 0;
+      }
+    }
+
+    .bravo {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-5);
+    }
+
+    .description {
+      p + p {
+        margin-top: var(--spacing-3);
+      }
+    }
+
+    form.product-order-form {
+      display: flex;
+      flex-flow: row wrap;
+      gap: var(--spacing-6);
+
+      fieldset {
+        flex: 1 1 100%;
+      }
+    }
+
+    fieldset.form-field-wrapper {
+      border: none;
+      display: flex;
+      flex-flow: row wrap;
+      gap: var(--spacing-4);
+      padding: var(--spacing-4) 0;
+    }
+
+    .form-field.radio label {
+      cursor: pointer;
+    }
+
+    .form-field.radio.pill {
+      input[type='radio'] {
+        display: none;
+      }
+
+      label {
+        padding: 0.5rem 1rem;
+        border-radius: 999px;
+        background-color: #eeeeee;
+      }
+
+      input[type='radio']:checked + label {
+        background-color: #000000;
+        color: #fff;
+      }
+    }
+
+    .form-field.swatch {
+      input[type='radio'] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: currentColor;
+        border: 3px solid transparent;
+        border-radius: 50%;
+        cursor: pointer;
+        height: 3rem;
+        position: relative;
+        vertical-align: middle;
+        width: 3rem;
+
+        &.white {
+          border-color: #ccc;
+
+          &:checked {
+            border-color: transparent;
+            box-shadow: 0 0 0 3px black;
+          }
+        }
+
+        &:checked {
+          border-color: white;
+          box-shadow: 0 0 0 3px currentColor;
+        }
+      }
+
+      label {
+        display: none;
+      }
+    }
+
+    #decrement-quantity,
+    #increment-quantity {
+      background-color: #eeeeee;
+      color: #000000;
+      border: none;
+    }
+  }
+{% endstyle %}
+
+{% assign the_product = product %}
+{% if the_product == blank %}
+  {% assign the_product = section.settings.product %}
+{% endif %}
+
+{% assign product_form_id = 'product-form-' | append: section.id %}
+{% assign available = the_product.selected_or_first_available_variant.available %}
+
+<div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+  <div class="alpha">
+    <div class="gallery">
+      {% render 'image', aspect_ratio: '6:7', image: the_product.featured_image %}
+    </div>
+  </div>
+  <div class="bravo">
+    <a class="category heading-lg">{{ the_product.category }}</a>
+
+    <div class="title">
+      <!-- prettier-ignore -->
+      {% if the_product.metafields.custom['region'] %}
+        <span class="regions">
+            {% assign regions = the_product.metafields.custom['region'].value | map: 'label' | join:', ' %}
+            { {{ regions }} }
+        </span>
+      {% endif %}
+      <h2 class="display-5xl">{{ the_product.title }}</h2>
+    </div>
+    <div class="price heading-3xl">{{ the_product.price | money }}</div>
+    {% assign formatted_description = the_product.description | replace: '<p', '<p class="text-md"' %}
+    <div class="description text-md">{{ formatted_description }}</div>
+    {% form 'product', the_product, class: 'form product-order-form' %}
+      <input
+        id="product-variant-id"
+        name="id"
+        type="hidden"
+        value="{{ the_product.selected_or_first_available_variant.id }}"
+      >
+      {% unless the_product.has_only_default_variant %}
+        {% for option in the_product.options_with_values %}
+          <!-- prettier-ignore -->
+          {% if option.name == 'Color' and the_product.metafields.shopify['color-pattern'] %}
+              <fieldset class="form-field-wrapper swatch-group">
+                {% assign selected_option_id = 'selected-' | append: option.name | downcase %}
+                <legend class="heading-md">{{ option.name }}: <span id="{{ selected_option_id }}"></span></legend>
+                {% for value in option.values %}
+                  <!-- prettier-ignore -->
+                  {% assign matching_patterns = the_product.metafields.shopify['color-pattern'].value
+                    | where: 'label', value.name
+                  %}
+                  {% assign matching_pattern = matching_patterns | first %}
+                  <div class="form-field swatch" style="color: {{ matching_pattern.color }};">
+                    <input
+                      type="radio"
+                      id="{{ value.id }}"
+                      name="{{ option.name }}"
+                      value="{{ value.name }}"
+                      class="{{ matching_pattern.label | downcase }}"
+                      {% if forloop.first %}
+                        checked
+                      {% endif %}
+                    >
+                    <label for="{{ value.id }}">{{ value.name }}</label>
+                  </div>
+                {% endfor %}
+              </fieldset>
+            {% elsif option.values.size <= 2 %}
+              <fieldset class="form-field-wrapper radio-group">
+                {% assign selected_option_id = 'selected-' | append: option.name | downcase %}
+                <legend class="heading-md">{{ option.name }}: <span id="{{ selected_option_id }}"></span></legend>
+                {% for value in option.values %}
+                  <div class="form-field radio pill">
+                    <input
+                      type="radio"
+                      id="{{ value.id }}"
+                      name="{{ option.name }}"
+                      value="{{ value.name }}"
+                      {% if forloop.first %}
+                        checked
+                      {% endif %}
+                    >
+                    <label
+                      for="{{ value.id }}"
+                      class="text-md"
+                    >
+                      {{ value.name }}
+                    </label>
+                  </div>
+                {% endfor %}
+              </fieldset>
+            {% else %}
+              <fieldset class="form-field-wrapper select">
+                {% assign selected_option_id = 'selected-' | append: option.name | downcase %}
+                <legend class="heading-md">{{ option.name }}: <span id="{{ selected_option_id }}"></span></legend>
+                <div class="form-field select">
+                  <label
+                    for="{{ option.id }}"
+                    style="display:none;"
+                  >
+                    {{- option.name -}}
+                  </label>
+                  <select
+                    id="{{ option.id }}"
+                    name="{{ option.name }}"
+                    form="{{ product_form_id }}"
+                  >
+                    {% for value in option.values %}
+                      {%- liquid
+                        assign option_disabled = true
+                        if value.available
+                          assign option_disabled = false
+                        endif
+                      -%}
+
+                      {% capture input_id %}
+                                {{ section.id }}-{{ option.position }}-{{ forloop.index0 }}
+                            {% endcapture %}
+
+                      <option
+                        id="{{- input_id -}}"
+                        class="{% if option_disabled %}disabled{% endif %}"
+                        value="{{ value.name | escape }}"
+                        {% if value.selected %}
+                          selected="selected"
+                        {% endif %}
+                      >
+                        {{ value.name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </fieldset>
+            {% endif %}
+        {% endfor %}
+      {% endunless %}
+      {% liquid
+        assign is_disabled = false
+        assign button_text = 'Add to Cart'
+        unless available
+          assign is_disabled = true
+          assign button_text = 'Out of Stock'
+        endunless
+      %}
+      <fieldset class="form-field-wrapper quantity">
+        <legend class="heading-md">Quantity</legend>
+        <div class="form-field">
+          <label for="quantity" style="display:none">Quantity</label>
+          <button
+            class="button"
+            type="button"
+            id="decrement-quantity"
+            {% if is_disabled %}
+              disabled
+            {% endif %}
+          >
+            -
+          </button>
+          {% assign quantity_min = 1 %}
+          {% unless the_product.selected_or_first_available_variant.inventory_quantity > 0 %}
+            {% assign quantity_min = 0 %}
+          {% endunless %}
+          <input
+            id="quantity"
+            name="quantity"
+            type="number"
+            value="{{ quantity_min }}"
+            min="{{ quantity_min }}"
+            max="{{ the_product.selected_or_first_available_variant.inventory_quantity }}"
+            step="1"
+            {% unless available %}
+              disabled
+            {% endunless %}
+          >
+          <button
+            class="button"
+            type="button"
+            id="increment-quantity"
+            {% if is_disabled %}
+              disabled
+            {% endif %}
+          >
+            +
+          </button>
+        </div>
+      </fieldset>
+      {% capture button_content %}
+        {% render 'button', text: button_text, type: 'submit', id: 'add-to-cart-button', disabled: is_disabled %}
+      {% endcapture %}
+      {% render 'buttons', content: button_content %}
+    {% endform %}
+  </div>
+</div>
+
+<script>
+    
+  let product = {{ product | json }};
+  let variants = [];
+
+  // Get all variants
+  {% for variant in product.variants %}
+  variants.push({
+    id: `{{ variant.id }}`,
+    available: `{{ variant.available }}` === 'true',
+    inventory_quantity: Number(`{{ variant.inventory_quantity }}`),
+    price: `{{ variant.price | money_without_trailing_zeros }}`
+  });
+  {% endfor %}
+
+  // Get all form fields
+  let selectedColorSpan = document.querySelector('#selected-color');
+  let quantityInput = document.querySelector('fieldset.quantity input[type="number"]');
+  let decrementQuantityButton = document.querySelector('#decrement-quantity');
+  let incrementQuantityButton = document.querySelector('#increment-quantity');
+  let addToCartButton = document.querySelector('#add-to-cart-button');
+
+  // Listen for changes on both select and radio inputs
+  document.querySelectorAll('.product-order-form .form-field-wrapper select, .product-order-form .form-field-wrapper input[type="radio"]').forEach(input => {
+    input.addEventListener('change', updateVariant);
+  });
+
+  decrementQuantityButton.addEventListener('click', () => adjustQuantity(-1));
+  incrementQuantityButton.addEventListener('click', () => adjustQuantity(1));
+  quantityInput.addEventListener('input', validateQuantity);
+
+  updateSelectedColor();
+  updateQuantityButtons();
+
+  // Update the selected color
+  function updateSelectedColor() {
+    let checkedColorRadio = document.querySelector('.product-order-form .form-field-wrapper input[type="radio"][name="Color"]:checked');
+    if (checkedColorRadio) {
+      selectedColorSpan.innerHTML = checkedColorRadio.value;
+    } else {
+      selectedColorSpan.innerHTML = 'Select Color';
+    }
+  }
+
+  // Adjust the quantity input
+  function adjustQuantity(delta) {
+    let currentQuantity = parseInt(quantityInput.value) || 0;
+    let newQuantity = currentQuantity + delta;
+    let maxQuantity = parseInt(quantityInput.max) || 0;
+
+    if (newQuantity >= 0 && newQuantity <= maxQuantity) {
+      quantityInput.value = newQuantity;
+      updateQuantityButtons();
+    }
+  }
+
+  // Validate the quantity input
+  function validateQuantity() {
+    let value = parseInt(quantityInput.value) || 0;
+    let maxValue = parseInt(quantityInput.max) || 0;
+
+    if (value < 0) {
+      quantityInput.value = 0;
+    } else if (value > maxValue) {
+      quantityInput.value = maxValue;
+    }
+
+    updateQuantityButtons();
+  }
+
+  // Update the quantity buttons based on the current quantity
+  function updateQuantityButtons() {
+    let value = parseInt(quantityInput.value) || 0;
+    let maxValue = parseInt(quantityInput.max) || 0;
+
+    if (value <= 0) {
+      decrementQuantityButton.disabled = true;
+    } else {
+      decrementQuantityButton.disabled = false;
+    }
+
+    if (value >= maxValue) {
+      incrementQuantityButton.disabled = true;
+    } else {
+      incrementQuantityButton.disabled = false;
+    }
+  }
+
+  function updateVariant() {
+    console.debug('Updating variant...');
+    let selectedOptions = [];
+
+    // Handle select elements
+    document.querySelectorAll('.product-order-form .form-field-wrapper select').forEach(select => {
+      let selectedOption = select.options[select.selectedIndex];
+      selectedOptions.push(selectedOption.value);
+    });
+
+    // Handle radio buttons
+    document.querySelectorAll('.product-order-form .form-field-wrapper input[type="radio"]:checked').forEach(radio => {
+      selectedOptions.push(radio.value);
+    });
+
+    updateSelectedColor();
+
+    // Make sure options are in correct order based on product.options
+    let orderedOptions = [];
+    product.options.forEach(optionName => {
+      let optionValue = selectedOptions.find(value => {
+        let select = document.querySelector(`.product-order-form .form-field-wrapper select[name="${optionName}"]`);
+        let radio = document.querySelector(`.product-order-form .form-field-wrapper input[type="radio"][name="${optionName}"]:checked`);
+        return (select?.options[select.selectedIndex]?.value === value) || (radio?.value === value);
+      });
+      if (optionValue) {
+        orderedOptions.push(optionValue);
+      }
+    });
+
+    /** @typedef {Object} VariantData
+     * @property {boolean} available - whether the variant is available or not
+     */
+
+    /** @type {VariantData} */
+    let matchedVariant = product.variants.find(variant => {
+      let pass = true;
+      for (let i = 0; i < orderedOptions.length; i++) {
+
+        if (orderedOptions.indexOf(variant.options[i]) === -1) {
+          pass = false;
+          break;
+        }
+      }
+      return pass;
+    });
+
+
+    if (matchedVariant) {
+      // console.debug(matchedVariant);
+      document.querySelector('#product-variant-id').value = matchedVariant.id;
+
+
+      if (matchedVariant.available) {
+        console.debug('Variant is available');
+        
+
+        quantityInput.min = 1;
+        quantityInput.max = variants.find(variant => variant.id === matchedVariant.id.toString()).inventory_quantity;
+        quantityInput.value = 1;
+        quantityInput.disabled = false;
+
+        addToCartButton.disabled = false;
+        addToCartButton.innerHTML = 'Add to Cart - ' + variants.find(variant => variant.id === matchedVariant.id.toString()).price;
+      } else {
+        console.debug('Variant is unavailable');
+        
+
+        quantityInput.min = 0;
+        quantityInput.max = 0;
+        quantityInput.value = 0;
+        quantityInput.disabled = true;
+
+        addToCartButton.disabled = true;
+        addToCartButton.innerHTML = 'Out of Stock';
+
+
+      }
+
+    } else {
+      console.warn('No variant found for options:', orderedOptions);
+    }
+
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Product Cover 007",
+  "tag": "section",
+  "class": "relume-product-cover-007 color-scheme-light",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    }
+  ]
+}
+{% endschema %}

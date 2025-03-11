@@ -152,7 +152,8 @@ body {
   line-height: 1;
 }
 
-[class^='display-'] {
+[class^='display-'],
+[class*=' display-'] {
   font-family: var(--font-display);
   font-weight: var(--font-display-weight);
   line-height: 1.2em;
@@ -169,7 +170,9 @@ body {
 }
 
 [class^='link-'],
-[class^='text-'] a {
+[class*=' link-'],
+[class^='text-'] a,
+[class*=' text-'] a {
   font-weight: 500;
   text-decoration: underline;
 }
