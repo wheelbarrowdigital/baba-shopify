@@ -41,12 +41,7 @@
           }
         }
       },
-      "block_order": [
-        "heading",
-        "paragraph",
-        "button_primary",
-        "button_secondary"
-      ],
+      "block_order": ["heading", "paragraph", "button_primary", "button_secondary"],
       "settings": {
         "background_image": "shopify://shop_images/esteban-benites-VO0fNzSM-Z4-unsplash-2-scaled-e1695909609156.jpg",
         "background_video": "shopify://files/videos/coffee-tree-with-green-cherry-beans-in-the-farm-2023-11-27-05-06-25-utc.mp4"
@@ -76,26 +71,54 @@
           }
         }
       },
-      "block_order": [
-        "heading",
-        "paragraph",
-        "button"
-      ],
+      "block_order": ["heading", "paragraph", "button"],
       "settings": {
         "image": "shopify://shop_images/baba_box.jpg"
       }
     },
     "featured_services": {
-      "type": "relume-layout-238",
+      "type": "relume-layout-253",
       "blocks": {
+        "tagline": {
+          "type": "tagline",
+          "settings": {
+            "content": "Services"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "content": "What We Do"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "content": "Lorem ipsum dolor sit amet consectetur. Mauris sem dictum blandit aliquam risus amet. Vitae ipsum consectetur vulputate sed ac pellentesque suspendisse sit pulvinar. Orci facilisis sed leo commodo volutpat in. Convallis tempor condimentum tellus ultrices in diam velit pretium."
+          }
+        },
+        "button_01": {
+          "type": "button",
+          "settings": {
+            "text": "Learn More",
+            "url": "",
+            "style": "fill"
+          }
+        },
+        "button_02": {
+          "type": "button",
+          "settings": {
+            "text": "Learn More",
+            "url": "",
+            "style": "outline"
+          }
+        },
         "grid_item_01": {
           "type": "grid_item",
           "settings": {
             "icon": "streamline|ultimate|bold|coffee-turkish",
             "heading": "Excellent Coffee",
-            "paragraph": "Our ethically sourced, specialty grade coffee tastes great and supports farms that give fair wages to their farmers.",
-            "button_text": "Learn More",
-            "button_url": ""
+            "paragraph": "Our ethically sourced, specialty grade coffee tastes great and supports farms that give fair wages to their farmers."
           }
         },
         "grid_item_02": {
@@ -103,9 +126,7 @@
           "settings": {
             "icon": "streamline|ultimate|bold|shop-barista",
             "heading": "Excellent Service",
-            "paragraph": "Our highly trained baristas make your regular or a new favorite. Environment and service elicits happiness, joy, and belonging.",
-            "button_text": "Learn More",
-            "button_url": ""
+            "paragraph": "Our highly trained baristas make your regular or a new favorite. Environment and service elicits happiness, joy, and belonging."
           }
         },
         "grid_item_03": {
@@ -113,21 +134,29 @@
           "settings": {
             "icon": "streamline|ultimate|bold|coffee-read",
             "heading": "Excellent Education",
-            "paragraph": "Whether you’re a home brewer with your first CHEMEX or a coffee shop owner looking to improve your craft, let us help! We like teaching good coffee as much as we like drinking it.",
-            "button_text": "Learn More",
-            "button_url": ""
+            "paragraph": "Whether you’re a home brewer with your first CHEMEX or a coffee shop owner looking to improve your craft, let us help! We like teaching good coffee as much as we like drinking it."
+          }
+        },
+        "grid_item_04": {
+          "type": "grid_item",
+          "settings": {
+            "icon": "streamline|ultimate|bold|coffee-read",
+            "heading": "Excellent Culture",
+            "paragraph": "We are a community of coffee lovers who are passionate about the craft of coffee."
           }
         }
       },
       "block_order": [
+        "tagline",
+        "heading",
+        "paragraph",
+        "button_01",
+        "button_02",
         "grid_item_01",
         "grid_item_02",
-        "grid_item_03"
-      ],
-      "settings": {
-        "heading": "What We Do",
-        "paragraph": ""
-      }
+        "grid_item_03",
+        "grid_item_04"
+      ]
     },
     "featured_values": {
       "type": "relume-layout-012",
@@ -161,12 +190,7 @@
           }
         }
       },
-      "block_order": [
-        "heading",
-        "paragraph",
-        "grid_item_01",
-        "grid_item_02"
-      ],
+      "block_order": ["heading", "paragraph", "grid_item_01", "grid_item_02"],
       "settings": {
         "image": "shopify://shop_images/117377244_630199697900811_1601391166847642389_n-1.jpg"
       }
@@ -187,10 +211,7 @@
           }
         }
       },
-      "block_order": [
-        "heading",
-        "paragraph"
-      ],
+      "block_order": ["heading", "paragraph"],
       "settings": {
         "image": "shopify://shop_images/baba_probat.jpg"
       }
@@ -229,11 +250,7 @@
           }
         }
       },
-      "block_order": [
-        "tab_01",
-        "tab_02",
-        "tab_03"
-      ],
+      "block_order": ["tab_01", "tab_02", "tab_03"],
       "settings": {
         "tagline": "Discover",
         "heading": "Our Locations",

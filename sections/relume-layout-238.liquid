@@ -24,15 +24,15 @@
     .grid {
       display: flex;
       flex-flow: row wrap;
-      gap: var(--spacing-11);
+      gap: var(--spacing-11) var(--spacing-9);
       justify-content: center;
 
       @media (min-width: 1024px) {
-        gap: var(--spacing-13);
       }
 
       @media (min-width: 1440px) {
         display: grid;
+        gap: var(--spacing-13);
         grid-template-columns: repeat(auto-fit, 360px);
       }
     }
@@ -41,7 +41,7 @@
       flex: 0 1 360px;
 
       @media (min-width: 768px) {
-        flex: 0 1 320px;
+        flex: 0 1 280px;
       }
     }
 
