@@ -86,57 +86,7 @@
       },
       "block_order": ["heading", "paragraph", "grid_item_01", "grid_item_02"]
     },
-    "layout_237": {
-      "type": "relume-layout-237",
-      "settings": {
-        "tagline": "Subscribe",
-        "heading": "Coffee At Your Doorstep",
-        "paragraph": "Lorem ipsum dolor sit amet consectetur. Mauris sem dictum blandit aliquam risus amet. Vitae ipsum consectetur vulputate sed ac pellentesque suspendisse sit pulvinar. Orci facilisis sed leo commodo volutpat in. Convallis tempor condimentum tellus ultrices in diam velit pretium."
-      },
-      "blocks": {
-        "grid_item_01": {
-          "type": "grid_item",
-          "settings": {
-            "icon": "streamline|core|solid|coffee-bean",
-            "heading": "Choose Your Favorite Coffee",
-            "paragraph": "Select from our wide range of coffee blends, from classic favorites to unique specialty options."
-          }
-        },
-        "grid_item_02": {
-          "type": "grid_item",
-          "settings": {
-            "icon": "streamline|ultimate|bold|earth-1",
-            "heading": "Sourced Directly from Farms",
-            "paragraph": "Our beans are sourced directly from farms worldwide, places as diverse as China and Colombia, where we ensure fair wages and healthy communities."
-          }
-        },
-        "grid_item_03": {
-          "type": "grid_item",
-          "settings": {
-            "icon": "streamline|ultimate|bold|coffee-cup",
-            "heading": "Freshly Roasted",
-            "paragraph": "Our coffee is freshly roasted to ensure the highest quality and freshness."
-          }
-        },
-        "button_01": {
-          "type": "button",
-          "settings": {
-            "text": "Subscribe",
-            "url": "/collections/all",
-            "style": "fill"
-          }
-        },
-        "button_02": {
-          "type": "button",
-          "settings": {
-            "text": "Learn More",
-            "url": "/collections/all",
-            "style": "outline"
-          }
-        }
-      },
-      "block_order": ["grid_item_01", "grid_item_02", "grid_item_03", "button_01", "button_02"]
-    },
+    
     "layout_001": {
       "type": "relume-layout-001",
       "settings": {
@@ -181,5 +131,5 @@
       "block_order": ["tagline", "heading", "paragraph", "button_01", "button_02"]
     }
   },
-  "order": ["cover", "layout_012", "layout_237", "layout_001"]
+  "order": ["cover", "layout_012", "layout_001"]
 }
