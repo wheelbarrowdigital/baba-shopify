@@ -10,6 +10,7 @@
   - type: {String} Button type attribute (default: 'submit')
   - class: {String} Additional classes (optional)
   - disabled: {Boolean} Disable the button (optional)
+  - new_tab: {Boolean} Open the link in a new tab (optional)
   - name: {String} name attribute (optional)
   - id: {String} id attribute (optional)
   - aria_label: {String} aria-label attribute (optional)
@@ -145,6 +146,10 @@
       {% for attr in data_attributes %}
         data-{{ attr[0] }}="{{ attr[1] }}"
       {% endfor %}
+    {% endif %}
+    {% if new_tab %}
+      target="_blank"
+      rel="noopener noreferrer"
     {% endif %}
   >
     {{ text }}

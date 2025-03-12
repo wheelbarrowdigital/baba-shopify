@@ -1,0 +1,115 @@
+{% style %}
+  section.cover-joe-coffee {
+    .alpha {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-6);
+      max-width: 768px;
+    }
+
+    .text-container {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-4);
+    }
+
+    .joe-coffee-container {
+      align-items: center;
+      display: flex;
+      flex-flow: row wrap;
+      gap: var(--spacing-4);
+      max-width: 560px;
+
+      .form-field-wrapper {
+        flex: 1 1 max-content;
+      }
+
+      .form-field.select {
+        flex: 1 1 max-content;
+      }
+
+      select {
+        width: 100%;
+      }
+    }
+  }
+{% endstyle %}
+
+<div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+  <div class="alpha">
+    <div class="text-container">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'heading' %}
+            <h2 class="heading-5xl">{{ block.settings.content }}</h2>
+          {% when 'paragraph' %}
+            {% assign formatted_content = block.settings.content | replace: '<p', '<p class="paragraph-lg"' %}
+            {{ formatted_content }}
+        {% endcase %}
+      {% endfor %}
+    </div>
+    <div class="joe-coffee-container">
+      <div class="form-field-wrapper">
+        <div class="form-field select">
+          <select>
+            {% assign locations = shop.metaobjects.location.values | where: 'joe_coffee_url' %}
+            {% for location in locations %}
+              <option value="{{ location.joe_coffee_url }}">{{ location.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      {% assign first_location = shop.metaobjects.location.values | where: 'joe_coffee_url' | first %}
+      {% render 'button',
+        id: 'joe-coffee-order-now',
+        url: first_location.joe_coffee_url,
+        new_tab: true,
+        style: 'fill',
+        text: 'Order Now'
+      %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const joeCoffeeOrderNowButton = document.getElementById('joe-coffee-order-now');
+    joeCoffeeOrderNowButton.addEventListener('click', function () {
+      window.location.href = document.querySelector('select').value;
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Cover Joe Coffee",
+  "tag": "section",
+  "class": "cover-joe-coffee",
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

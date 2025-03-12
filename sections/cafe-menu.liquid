@@ -2,6 +2,40 @@
   Fetch all menu items once
 {% endcomment %}
 
+{% style %}
+  section.cafe-menu {
+    display: flex;
+    flex-flow: column nowrap;
+
+    > .container {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-7);
+    }
+
+    .menu-items {
+      display: grid;
+      gap: var(--spacing-6);
+
+      &.signature-drinks {
+        grid-template-columns: 1fr 1fr;
+
+        @media (min-width: 425px) {
+          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        }
+      }
+
+      &.drinks {
+        grid-template-columns: 1fr;
+
+        @media (min-width: 425px) {
+          grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        }
+      }
+    }
+  }
+{% endstyle %}
+
 {% assign menu_items = shop.metaobjects.menu_item.values %}
 
 {% comment %}
@@ -13,102 +47,117 @@
 {% assign teas = menu_items | where: 'category', 'Tea' %}
 {% assign tea_lattes = menu_items | where: 'category', 'Tea Lattes' %}
 
-<h2>Signature Drinks</h2>
-{% for item in signature_drinks %}
-  {% comment %} Shopify Liquid handles empty image_url values inside of a loop by retaining the previous value, which is odd. So got to do some work to get around that. {% endcomment %}
-  {% if item.featured_image != blank and item.featured_image.value != blank %}
-    {% assign image_src = item.featured_image.value | image_url %}
-  {% else %}
-    {% assign image_src = '' %}
-  {% endif %}
-  {% if image_src != '' %}
-    {% render 'image', src: image_src, alt: item.name, aspect_ratio: '16:9' %}
-  {% endif %}
-  <p>{{ item.name }}</p>
-{% endfor %}
+<div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+  <div class="text-container">
+    <h2 class="heading-4xl text-center">Signature Drinks</h2>
+  </div>
+  <div class="menu-items signature-drinks">
+    {% for item in signature_drinks %}
+      {% comment %} Shopify Liquid handles empty image_url values inside of a loop by retaining the previous value, which is odd. So got to do some work to get around that. {% endcomment %}
+      {% render 'menu-item', item: item, show_media: true %}
+    {% endfor %}
+  </div>
+</div>
 
-{% assign modifiers = shop.metaobjects.modifier.values %}
-{% assign unique_categories = '' %}
-{% for modifier in modifiers %}
-  {% unless unique_categories contains modifier.category %}
-    {% assign unique_categories = unique_categories | append: modifier.category | append: '|' %}
-  {% endunless %}
-{% endfor %}
-{% assign unique_categories = unique_categories | split: '|' | sort %}
+<div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+  <div class="text-container">
+    <h2 class="heading-4xl text-center">Drinks</h2>
+  </div>
+  <div class="menu-items drinks">
+    {% for item in drinks %}
+      {% render 'menu-item', item: item, show_media: false %}
+    {% endfor %}
+  </div>
+</div>
 
-<h2>Modifiers</h2>
-<p>$0.50 | $1.00 | $1.25</p>
-{% for category in unique_categories %}
-  <h3>{{ category }}</h3>
-  {% for modifier in modifiers %}
-    {% if modifier.category == category %}
-      <p>{{ modifier.label }}</p>
-    {% endif %}
-  {% endfor %}
-{% endfor %}
+{% if false %}
+  <div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+    {% assign modifiers = shop.metaobjects.modifier.values %}
+    {% assign unique_categories = '' %}
+    {% for modifier in modifiers %}
+      {% unless unique_categories contains modifier.category %}
+        {% assign unique_categories = unique_categories | append: modifier.category | append: '|' %}
+      {% endunless %}
+    {% endfor %}
+    {% assign unique_categories = unique_categories | split: '|' | sort %}
+  </div>
 
-<h2>Drinks</h2>
-{% for item in drinks %}
-  <p>{{ item.name }}</p>
-  <p>{{ item.description }}</p>
-  <p>{{ item.prices.value | json }}</p>
-{% endfor %}
+  <div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+    <h2 class="heading-4xl">Modifiers</h2>
+    <p>$0.50 | $1.00 | $1.25</p>
+    {% for category in unique_categories %}
+      <h3>{{ category }}</h3>
+      {% for modifier in modifiers %}
+        {% if modifier.category == category %}
+          <p>{{ modifier.label }}</p>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
 
-{% comment %}
-  Extract unique vendors from teas and sort them alphabetically
-{% endcomment %}
-{% assign vendors = '' %}
-{% for item in teas %}
-  {% unless vendors contains item.vendor %}
-    {% assign vendors = vendors | append: item.vendor | append: '|' %}
-  {% endunless %}
-{% endfor %}
-{% assign unique_vendors = vendors | split: '|' | sort %}
-
-<h2>Teas</h2>
-<strong>Hot</strong>
-<ul>
-  <li>$4.25 12oz</li>
-  <li>$5.25 16oz</li>
-</ul>
-<strong>Iced</strong>
-<ul>
-  <li>$5.25 12oz</li>
-  <li>$6.25 16oz</li>
-</ul>
-{% for vendor in unique_vendors %}
-  {% if vendor != '' %}
-    <h3>{{ vendor }}</h3>
-    {% assign teas = teas | sort: 'name' %}
+  <div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+    {% comment %}
+      Extract unique vendors from teas and sort them alphabetically
+    {% endcomment %}
+    {% assign vendors = '' %}
     {% for item in teas %}
-      {% if item.vendor == vendor %}
-        <p>{{ item.name }}</p>
+      {% unless vendors contains item.vendor %}
+        {% assign vendors = vendors | append: item.vendor | append: '|' %}
+      {% endunless %}
+    {% endfor %}
+    {% assign unique_vendors = vendors | split: '|' | sort %}
+
+    <h2 class="heading-4xl">Teas</h2>
+    <strong>Hot</strong>
+    <ul>
+      <li>$4.25 12oz</li>
+      <li>$5.25 16oz</li>
+    </ul>
+    <strong>Iced</strong>
+    <ul>
+      <li>$5.25 12oz</li>
+      <li>$6.25 16oz</li>
+    </ul>
+    {% for vendor in unique_vendors %}
+      {% if vendor != '' %}
+        <h3>{{ vendor }}</h3>
+        {% assign teas = teas | sort: 'name' %}
+        {% for item in teas %}
+          {% if item.vendor == vendor %}
+            <p>{{ item.name }}</p>
+          {% endif %}
+        {% endfor %}
       {% endif %}
     {% endfor %}
-  {% endif %}
-{% endfor %}
+  </div>
 
-<h2>Tea Lattes</h2>
-{% for item in tea_lattes %}
-  <p>{{ item.name }}</p>
-{% endfor %}
-<strong>Hot</strong>
-<ul>
-  <li>5.50 12oz</li>
-  <li>$6.50 16oz</li>
-</ul>
-<strong>Iced</strong>
-<ul>
-  <li>$6.00 12oz</li>
-  <li>$7.00 16oz</li>
-</ul>
+  <div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+    <h2 class="heading-4xl">Tea Lattes</h2>
+    {% for item in tea_lattes %}
+      <p>{{ item.name }}</p>
+    {% endfor %}
+    <strong>Hot</strong>
+    <ul>
+      <li>5.50 12oz</li>
+      <li>$6.50 16oz</li>
+    </ul>
+    <strong>Iced</strong>
+    <ul>
+      <li>$6.00 12oz</li>
+      <li>$7.00 16oz</li>
+    </ul>
+  </div>
 
-<h2>Pour Overs & Food</h2>
-<p>See menu in café beside the register for options & prices.</p>
+  <div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+    <h2 class="heading-4xl">Pour Overs & Food</h2>
+    <p>See menu in café beside the register for options & prices.</p>
+  </div>
+{% endif %}
+
 {% schema %}
 {
-  "name": "Menu Category",
+  "name": "Café Menu",
   "tag": "section",
-  "class": "menu-category"
+  "class": "cafe-menu"
 }
 {% endschema %}

@@ -1,0 +1,74 @@
+{% comment %}
+  Accepts a menu item object and renders it
+
+  Accepts:
+  - item: Menu Item metaobject
+    - category (string): The category name, e.g., "Signature Drinks"
+    - description (object):
+      - type: "root"
+      - children (array): Array of content nodes
+        - type: "paragraph"
+        - children (array): Array of text nodes
+          - type: "text"
+          - value (string): Description text, e.g., "Cinnamon, cardamom, and ginger syrup + espresso + milk"
+    - media (array): Array of Shopify media GIDs, e.g.,
+      - "gid://shopify/MediaImage/38062097727747" (image)
+      - "gid://shopify/Video/38092141625603" (video)
+    - name (string): Product name, e.g., "Camel Latte"
+    - prices (array): Array of price objects, each with:
+      - temperature (string): e.g., "Hot"
+      - size (string): e.g., "12oz" or "16oz"
+      - price (number): Price value, e.g., 5.5 or 6.5
+  - show_media (boolean): Whether to show the media, e.g., true
+{% endcomment %}
+
+{% style %}
+  .menu-item {
+    .metafield-rich_text_field {
+      display: contents;
+    }
+
+    &.has-media {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-6);
+    }
+
+    .bravo {
+      display: flex;
+      flex-grow: 1;
+      flex-flow: column nowrap;
+      gap: var(--spacing-2);
+      justify-content: space-between;
+    }
+  }
+{% endstyle %}
+
+{% assign show_media = show_media | default: false %}
+
+<div class="menu-item {% if show_media %}has-media{% endif %}">
+  {% if show_media and item.media and item.media.type == 'list.file_reference' %}
+    <div class="alpha">
+      {% assign first_media = item.media.value | first %}
+      {% if first_media.media_type == 'image' %}
+        {% render 'image', aspect_ratio: '6:7', image: first_media %}
+      {% elsif first_media.media_type == 'video' %}
+        {% render 'video', aspect_ratio: '6:7', video: first_media %}
+      {% endif %}
+    </div>
+  {% endif %}
+  <div class="bravo">
+    <h3 class="heading-3xl">{{ item.name }}</h3>
+    {% if item.description != blank %}
+      {{ item.description | metafield_tag }}
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.metafield-rich_text_field p').forEach(function (p) {
+      p.classList.add('text-sm');
+    });
+  });
+</script>

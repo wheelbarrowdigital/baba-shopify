@@ -1,0 +1,21 @@
+{% style %}
+  section.relume-blog-062 {
+    .container {
+      display: flex;
+      flex-flow: row wrap;
+    }
+  }
+{% endstyle %}
+
+<div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+  <p>blog 062</p>
+</div>
+
+{% schema %}
+{
+  "name": "Relume Blog 062",
+  "tag": "section",
+  "class": "relume-blog-062",
+  "settings": []
+}
+{% endschema %}

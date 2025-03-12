@@ -1,0 +1,66 @@
+{% style %}
+  section.relume-cover-046 {
+    .alpha {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-6);
+      max-width: 768px;
+    }
+
+    .text-container {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-4);
+    }
+  }
+{% endstyle %}
+
+<div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+  <div class="alpha">
+    <div class="text-container">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'heading' %}
+            <h2 class="heading-5xl">{{ block.settings.content }}</h2>
+          {% when 'paragraph' %}
+            {% assign formatted_content = block.settings.content | replace: '<p', '<p class="paragraph-lg"' %}
+            {{ formatted_content }}
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Relume Cover 046",
+  "tag": "section",
+  "class": "relume-cover-046",
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
