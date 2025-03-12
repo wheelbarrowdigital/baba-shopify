@@ -69,7 +69,7 @@
   </div>
 
   {% if section.settings.background_video != blank %}
-    {% render 'video', video: section.settings.background_video, class: 'background' %}
+    {% render 'video', video: section.settings.background_video, aspect_ratio: 'background' %}
   {% elsif section.settings.background_image != blank %}
     {% render 'image',
       aspect_ratio: 'background',

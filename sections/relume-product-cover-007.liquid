@@ -7,8 +7,6 @@
 
       @media (min-width: 768px) {
         grid-template-columns: 1fr 1fr;
-        max-height: 100vh;
-        overflow: auto; /* Enables vertical scrolling */
       }
 
       @media (min-width: 1440px) {
@@ -20,14 +18,6 @@
       display: flex;
       flex-flow: column nowrap;
       gap: var(--spacing-2);
-    }
-
-    .alpha {
-      @media (min-width: 768px) {
-        align-self: start;
-        position: sticky;
-        top: 0;
-      }
     }
 
     .bravo {
@@ -134,9 +124,7 @@
 
 <div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
   <div class="alpha">
-    <div class="gallery">
-      {% render 'image', aspect_ratio: '6:7', image: the_product.featured_image %}
-    </div>
+    {% render 'carousel', items: the_product.media %}
   </div>
   <div class="bravo">
     <a class="category heading-lg">{{ the_product.category }}</a>
