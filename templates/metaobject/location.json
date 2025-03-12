@@ -10,8 +10,52 @@
 {
   "sections": {
     "cover": {
-      "type": "location-cover",
-      "settings": {}
+      "type": "relume-contact-015",
+      "blocks": {
+        "tagline": {
+          "type": "tagline",
+          "settings": {
+            "content": "Location"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "content": "Hoover"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "content": "<p>Hoover is a city in Alabama.</p>"
+          }
+        },
+        "grid_item_01": {
+          "type": "grid_item",
+          "settings": {
+            "icon": "streamline|ultimate|bold|earth-1",
+            "heading": "Hours",
+            "paragraph": "<p>Monday - Friday: 9:00 AM - 5:00 PM</p>"
+          }
+        },
+        "grid_item_02": {
+          "type": "grid_item",
+          "settings": {
+            "icon": "streamline|ultimate|bold|earth-1",
+            "heading": "Address",
+            "paragraph": "<p>123 Main St, Hoover, AL 35216</p>"
+          }
+        },
+        "grid_item_03": {
+          "type": "grid_item",
+          "settings": {
+            "icon": "streamline|ultimate|bold|earth-1",
+            "heading": "Order Online",
+            "paragraph": "<p>Joe.coffee</p>"
+          }
+        }
+      },
+      "block_order": ["tagline", "heading", "paragraph", "grid_item_01", "grid_item_02", "grid_item_03"]
     }
   },
   "order": ["cover"]

@@ -9,10 +9,65 @@
  */
 {
   "sections": {
-    "archive_location": {
-      "type": "archive-location",
-      "settings": {}
+    "cover":{
+      "type": "relume-cover-049",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "content": "Our Locations"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "content": "Join us in one of our cafés where our highly trained baristas make your regular or a new favorite. The environment and service elicits happiness, joy, and belonging."
+          }
+        }
+      },
+      "block_order": ["heading", "paragraph"]
+    },
+    "featured_locations": {
+      "type": "relume-contact-030",
+      "blocks": {
+        "tab_01": {
+          "type": "tab",
+          "settings": {
+            "image": "shopify://shop_images/baba_hoover.jpg",
+            "heading": "Hoover",
+            "address": "<p>4730 Chace Cir Suite 124 </p><p>Birmingham, AL 35244</p>",
+            "button_text": "View Café",
+            "button_url": "shopify://metaobjects/location/hoover"
+          }
+        },
+        "tab_02": {
+          "type": "tab",
+          "settings": {
+            "image": "shopify://shop_images/baba_meadowbrook.jpg",
+            "heading": "The Village at Meadowbrook",
+            "address": "<p>1801 Doug Baker Blvd, Suite 121A </p><p>Birmingham, AL 35242</p>",
+            "button_text": "View Café",
+            "button_url": ""
+          }
+        },
+        "tab_03": {
+          "type": "tab",
+          "settings": {
+            "image": "shopify://shop_images/baba_homewood.jpg",
+            "heading": "Homewood",
+            "address": "<p>817 Green Springs Hwy Suite 109 </p><p>Homewood, AL 35209</p>",
+            "button_text": "View Café",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": ["tab_01", "tab_02", "tab_03"],
+      "settings": {
+        "tagline": "Discover",
+        "heading": "Our Locations",
+        "paragraph": "Join us in one of our cafés where our highly trained baristas make your regular or a new favorite. The environment and service elicits happiness, joy, and belonging."
+      }
     }
   },
-  "order": ["archive_location"]
+  "order": ["cover", "featured_locations"]
 }

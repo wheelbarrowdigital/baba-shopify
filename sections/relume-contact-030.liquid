@@ -190,24 +190,17 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // Get the tabs container
     const tabsContainer = document.querySelector('.tabs');
-    // If the tabs container is not found, return
     if (!tabsContainer) return;
 
-    // Get all the tabs
     const tabs = tabsContainer.querySelectorAll('.tab');
-    // Get all the images
     const images = document.querySelectorAll('.media .image-wrapper');
 
     // Helper to show image for active tab
     const showImageForTab = (tabIndex) => {
-      // Get the parent .image-wrapper divs and hide all
       images.forEach((wrapper) => {
         wrapper.style.display = 'none';
       });
-
-      // Find and show the active image wrapper
       const activeImage = document.getElementById(`tab-${tabIndex}-image`);
       if (activeImage) {
         const activeWrapper = activeImage.closest('.image-wrapper');
@@ -227,12 +220,11 @@
       });
       clickedTab.classList.remove('inactive');
       clickedTab.classList.add('active');
-
       const tabIndex = clickedTab.dataset.index;
       showImageForTab(tabIndex);
     };
 
-    // Set up initial state
+    // Set initial state
     if (tabs.length > 0) {
       tabs.forEach((tab, index) => {
         if (index === 0) {
@@ -249,16 +241,16 @@
       if (!clickedTab) return;
 
       const isActive = clickedTab.classList.contains('active');
-      const buttonUrl = clickedTab.getAttribute('href');
+      const link = clickedTab.querySelector('a');
 
-      if (isActive && buttonUrl) {
-        // Let the natural link click happen
-        return;
+      // If clicking the active tab and it has a link, let the link work naturally
+      if (isActive && link && e.target.tagName === 'A') {
+        return; // Do nothing, let the <a> tag handle the click
       }
 
-      e.preventDefault();
-
+      // If clicking an inactive tab, prevent default and switch tabs
       if (!isActive) {
+        e.preventDefault();
         activateTab(clickedTab);
       }
     });
