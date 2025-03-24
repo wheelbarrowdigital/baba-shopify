@@ -160,6 +160,9 @@
     },
     "featured_values": {
       "type": "relume-layout-012",
+      "settings": {
+        "image": "shopify://shop_images/117377244_630199697900811_1601391166847642389_n-1.jpg"
+      },
       "blocks": {
         "heading": {
           "type": "heading",
@@ -190,28 +193,10 @@
           }
         }
       },
-      "block_order": ["heading", "paragraph", "grid_item_01", "grid_item_02"],
-      "settings": {
-        "image": "shopify://shop_images/117377244_630199697900811_1601391166847642389_n-1.jpg"
-      }
+      "block_order": ["heading", "paragraph", "grid_item_01", "grid_item_02"]
     },
     "freshly_roasted_coffee": {
-      "type": "relume-layout-194",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "content": "Experience the Art of Freshly Roasted Coffee at Baba Java!"
-          }
-        },
-        "paragraph": {
-          "type": "paragraph",
-          "settings": {
-            "content": "Join us in Hoover to savor the rich aromas and sounds of our freshly roasted coffee. Our dedicated roasting team, led by Reuben, ensures every cup delivers an exceptional flavor experience."
-          }
-        }
-      },
-      "block_order": ["heading", "paragraph"],
+      "type": "relume-layout-090",     
       "settings": {
         "image": "shopify://shop_images/baba_probat.jpg"
       }

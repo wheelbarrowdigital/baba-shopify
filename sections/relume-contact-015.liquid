@@ -42,16 +42,16 @@
       <div class="text">
         <h3 class="heading-2xl">Address</h3>
         <address>
-          <p>
-            <span>{{ metaobject.address.value.address_line_1.value }}</span>
-            {% if metaobject.address.value.address_line_2.value -%}
-              <span>, {{ metaobject.address.value.address_line_2.value }}</span>
-            {% endif %}
-          </p>
-          <p>
+          <span>
+            {{- metaobject.address.value.address_line_1.value -}}
+            {%- if metaobject.address.value.address_line_2.value -%}
+              , {{ metaobject.address.value.address_line_2.value }}
+            {%- endif -%}
+          </span>
+          <div>
             <span>{{ metaobject.address.value.city }}, {{ metaobject.address.value.state }}</span>
             <span>{{ metaobject.address.value.zip_code }}</span>
-          </p>
+          </div>
         </address>
       </div>
     </div>

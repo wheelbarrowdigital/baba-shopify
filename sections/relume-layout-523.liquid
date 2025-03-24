@@ -1,0 +1,54 @@
+{% style %}
+  section.relume-layout-523 {
+    > .container {
+      align-items: center;
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-13);
+    }
+  }
+{% endstyle %}
+
+<div class="container container-lg">
+  <div class="alpha">
+    <div class="heading">
+      <div class="tagline">Shop</div>
+      <h2 class="heading-5xl">Shop Baba Java Products</h2>
+    </div>
+    <p class="text-lg">
+      Baba Java is a family-owned and operated business that has been serving the community for over 30 years. We are
+      committed to providing the highest quality products and services to our customers.
+    </p>
+  </div>
+  <div class="bravo">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'collection' %}
+          {% assign collection = block.settings.collection %}
+          {% render 'collection-card', collection: collection %}
+      {% endcase %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Relume Layout 523",
+  "tag": "section",
+  "class": "relume-layout-523",
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

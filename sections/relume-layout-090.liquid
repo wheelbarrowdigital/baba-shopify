@@ -1,0 +1,91 @@
+{% style %}
+  .relume-layout-090 {
+    > .container {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-9);
+
+      @media (min-width: 768px) {
+        gap: var(--spacing-13);
+      }
+    }
+
+    .alpha {
+      display: grid;
+      gap: var(--spacing-6);
+      grid-template-columns: 1fr;
+
+      @media (min-width: 768px) {
+        gap: var(--spacing-9);
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .bravo {
+      .mobile-only {
+        @media (min-width: 768px) {
+          display: none;
+        }
+      }
+
+      .desktop-only {
+        @media (max-width: 767px) {
+          display: none;
+        }
+      }
+    }
+  }
+{% endstyle %}
+
+<div class="container container-lg">
+  <div class="alpha">
+    <h2 class="heading-5xl">Experience the Art of Freshly Roasted Coffee at Baba Java!</h2>
+    <p class="text-lg">
+      Join us in Hoover to savor the rich aromas and sounds of our freshly roasted coffee. Our dedicated roasting team,
+      led by Reuben, ensures every cup delivers an exceptional flavor experience.
+    </p>
+  </div>
+  <div class="bravo">
+    {% if section.settings.video != blank %}
+      {% render 'video', aspect_ratio: '3:2', class: 'mobile-only', video: section.settings.video %}
+      {% render 'video', aspect_ratio: '16:9', class: 'desktop-only', video: section.settings.video %}
+    {% elsif section.settings.image != blank %}
+      {% render 'image',
+        aspect_ratio: '3:2',
+        class: 'mobile-only',
+        focal_point: section.settings.image.presentation.focal_point,
+        image: section.settings.image
+      %}
+      {% render 'image',
+        aspect_ratio: '16:9',
+        class: 'desktop-only',
+        focal_point: section.settings.image.presentation.focal_point,
+        image: section.settings.image
+      %}
+    {% else %}
+      {% render 'image', aspect_ratio: '3:2', class: 'mobile-only' %}
+      {% render 'image', aspect_ratio: '16:9', class: 'desktop-only' %}
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Layout 090",
+  "tag": "section",
+  "class": "relume-layout-090 color-scheme-light amber",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video",
+      "info": "If a video is selected, it will be used instead of the background image."
+    }
+  ]
+}
+{% endschema %}

@@ -1,15 +1,10 @@
 {
   "sections": {
-    "main": {
-      "type": "main-list-collections",
-      "settings": {
-        "title": "Collections",
-        "sort": "alphabetical",
-        "image_ratio": "square"
-      }
+    "cover": {
+      "type": "relume-contact-015"
     }
   },
   "order": [
-    "main"
+    "cover"
   ]
 }
