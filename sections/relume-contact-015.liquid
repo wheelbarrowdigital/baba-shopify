@@ -16,12 +16,20 @@
 
     .address {
       align-items: flex-start;
-      display: flex;
-      flex-flow: row nowrap;
-      gap: var(--spacing-4);
+      display: grid;
+      gap: var(--spacing-6);
+      grid-template-columns: 1.5rem max-content;
 
-      .icon {
-        flex: 0 0 1.5rem;
+      .text {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: var(--spacing-3);
+      }
+
+      address {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: var(--spacing-1);
       }
     }
   }
@@ -42,16 +50,16 @@
       <div class="text">
         <h3 class="heading-2xl">Address</h3>
         <address>
-          <span>
+          <span class="text-md">
             {{- metaobject.address.value.address_line_1.value -}}
             {%- if metaobject.address.value.address_line_2.value -%}
               , {{ metaobject.address.value.address_line_2.value }}
             {%- endif -%}
           </span>
-          <div>
-            <span>{{ metaobject.address.value.city }}, {{ metaobject.address.value.state }}</span>
-            <span>{{ metaobject.address.value.zip_code }}</span>
-          </div>
+          <span class="text-md">
+            {{ metaobject.address.value.city }}, {{ metaobject.address.value.state }}
+            {{ metaobject.address.value.zip_code }}
+          </span>
         </address>
       </div>
     </div>
