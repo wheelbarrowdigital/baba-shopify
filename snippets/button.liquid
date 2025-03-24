@@ -5,7 +5,7 @@
   - text: {String} Text to display on button (required)
   - text_size: {String} Text size: 'md' (default), 'sm', 'lg'
   - style: {String} Style of button: 'fill' (default), 'outline', 'link'
-  - color: {String} Color scheme: 'primary' (default), 'secondary', 'light', 'dark', 'success', 'error'
+  - color: {String} Color scheme: 'primary' (default), 'secondary', 'gray', 'success', 'error'
   - url: {String} URL to link to (optional)
   - type: {String} Button type attribute (default: 'submit')
   - class: {String} Additional classes (optional)
@@ -53,6 +53,16 @@
     &.fill {
       align-items: center;
       justify-content: center;
+      text-decoration: none;
+
+      &.gray {
+        background-color: var(--gray-1000);
+        color: var(--contrast-fg);
+
+        &:hover:not(:disabled) {
+          background-color: var(--gray-900);
+        }
+      }
 
       &.primary {
         background-color: var(--button-color-primary);

@@ -1,0 +1,68 @@
+{% style %}
+  section.metaobject-location-story {
+    > .container {
+      display: grid;
+      gap: var(--spacing-9) var(--spacing-13);
+      grid-template-columns: 1fr;
+    }
+
+    .text-container {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-5);
+
+      @media (min-width: 768px) {
+        gap: var(--spacing-7);
+      }
+    }
+
+    .bravo {
+      .mobile-only {
+        @media (min-width: 768px) {
+          display: none;
+        }
+      }
+
+      .desktop-only {
+        @media (max-width: 767px) {
+          display: none;
+        }
+      }
+    }
+  }
+{% endstyle %}
+
+{% if metaobject.story_text != blank %}
+  <div class="container container-md {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+    <div class="alpha">
+      <div class="text-container">
+        <h2 class="heading-5xl">Story</h2>
+        {{ metaobject.story_text | metafield_tag | replace: '<p', '<p class="text-md"' }}
+      </div>
+    </div>
+    {% if metaobject.story_media.type == 'list.file_reference' %}
+      <div class="bravo">
+        {% render 'carousel',
+          aspect_ratio: '80:77',
+          carousel_id: 'mobile-location-story-bravo-001',
+          class: 'mobile-only',
+          items: metaobject.story_media.value
+        %}
+        {% render 'carousel',
+          aspect_ratio: '16:9',
+          carousel_id: 'desktop-location-story-bravo-001',
+          class: 'desktop-only',
+          items: metaobject.story_media.value
+        %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Metaobject Location Story",
+  "tag": "section",
+  "class": "metaobject-location-story color-scheme-light amber"
+}
+{% endschema %}

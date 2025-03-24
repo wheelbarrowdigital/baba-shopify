@@ -124,7 +124,7 @@
 
 <div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
   <div class="alpha">
-    {% render 'carousel', items: the_product.media %}
+    {% render 'carousel', aspect_ratio: '6:7', carousel_id: 'product-cover-007-alpha-001', items: the_product.media %}
   </div>
   <div class="bravo">
     <a class="category heading-lg">{{ the_product.category }}</a>

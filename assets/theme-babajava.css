@@ -455,6 +455,9 @@
   --background-100: hsla(var(--background-100-value), 1);
   --background-200: hsla(var(--background-200-value), 1);
 
+  /* Contrast */
+  --contrast-fg: #ffffff;
+
   /* Focus */
   --focus-border: 0 0 0 1px var(--gray-alpha-600), 0px 0px 0px 4px rgba(255, 255, 255, 0.24);
   --focus-color: var(--blue-900);

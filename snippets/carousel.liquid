@@ -6,7 +6,9 @@
 
   Usage:
   {% render 'carousel',
-    items: [
+    aspect_ratio: string (optional) (default: '1:1'),
+    carousel_id: string (optional) (default: 'carousel-{{ 'now' | date: '%s' | modulo: 1000000000000000000 }}'),
+  items: [
       {
         alt: 'Dandelion milk',
         id: 21772527435841,
@@ -14,7 +16,8 @@
         position: 1,
         preview_image: {}
       }
-    ]
+    ],
+    class: string (optional)
   %}
 {% endcomment %}
 
@@ -85,14 +88,32 @@
   }
 {% endstyle %}
 
-<div class="carousel-container">
+{% assign aspect_ratio = aspect_ratio | default: '1:1' %}
+
+{% liquid
+  if carousel_id == blank
+    assign timestamp = 'now' | date: '%s'
+    assign random_number = timestamp | modulo: 1000000000000000000
+    assign carousel_id = 'carousel-' | append: random_number
+  endif
+
+  assign carousel_classes = 'carousel-container'
+
+  if class != blank
+    assign carousel_classes = carousel_classes | append: ' ' | append: class
+  endif
+%}
+
+<div class="{{ carousel_classes }}" data-carousel-id="{{ carousel_id }}">
   <div class="carousel-track">
     {% for media in items %}
       <div class="carousel-item">
-        {% if media.media_type == 'image' %}
-          {% render 'image', aspect_ratio: '6:7', image: media %}
-        {% elsif media.media_type == 'video' %}
-          {% render 'video', video: media, aspect_ratio: '6:7' %}
+        {% if media.media_type == 'image' or media.media_type == 'video' %}
+          {% if media.media_type == 'image' %}
+            {% render 'image', aspect_ratio: aspect_ratio, image: media %}
+          {% elsif media.media_type == 'video' %}
+            {% render 'video', aspect_ratio: aspect_ratio, video: media %}
+          {% endif %}
         {% endif %}
       </div>
     {% endfor %}
@@ -108,11 +129,13 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const track = document.querySelector('.carousel-track');
-    const items = document.querySelectorAll('.carousel-item');
-    const prevButton = document.querySelector('.carousel-arrow.prev');
-    const nextButton = document.querySelector('.carousel-arrow.next');
-    const dots = document.querySelectorAll('.carousel-dot');
+    const container = document.querySelector('[data-carousel-id="{{ carousel_id }}"]');
+    if (!container) return;
+    const track = container.querySelector('.carousel-track');
+    const items = container.querySelectorAll('.carousel-item');
+    const prevButton = container.querySelector('.carousel-arrow.prev');
+    const nextButton = container.querySelector('.carousel-arrow.next');
+    const dots = container.querySelectorAll('.carousel-dot');
     let currentIndex = 0;
     const totalItems = items.length;
 

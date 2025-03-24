@@ -1,0 +1,223 @@
+{%- comment -%}
+  This section is used to display the cover for a location.
+
+  Expected metaobject structure:
+  location: {
+    name: string,                    // e.g. "Hoover"
+    address: {
+      address_line_1: {
+        value: string,               // e.g. "4730 Chace Cir"
+        label: string
+      },
+      address_line_2: {
+        value: string,               // e.g. "Suite 124"
+        label: string
+      },
+      city: string,                  // e.g. "Birmingham"
+      state: string,                 // e.g. "AL"
+      zip_code: string,              // e.g. "35244"
+      country: string                // e.g. "United States"
+    },
+    coming_soon: boolean,            // e.g. false
+    featured_image: string,          // Shopify MediaImage GID
+    google_maps_iframe: string,      // HTML iframe string
+    hours: {
+      monday: { open: string, close: string },    // e.g. { "open": "06:30 AM", "close": "07:00 PM" }
+      tuesday: { open: string, close: string },
+      wednesday: { open: string, close: string },
+      thursday: { open: string, close: string },
+      friday: { open: string, close: string },
+      saturday: { open: string, close: string },
+      sunday: { open: string, close: string }
+    },
+    joe_coffee_url: string,          // URL string
+    neighbors: array,                // Array of Shopify Neighbor GIDs
+    phone: string,                   // e.g. "(205) 777-5984"
+    photo_gallery: array,            // Array of Shopify MediaImage GIDs
+    story_images: array,             // Array of Shopify MediaImage GIDs
+    story_text: {                    // Rich text field
+      type: "root",
+      children: array                // Array of paragraph/text nodes
+    }
+  }
+{%- endcomment -%}
+
+{% style %}
+  section.metaobject-location-cover {
+    > .container {
+      display: grid;
+      gap: var(--spacing-9);
+      grid-template-columns: 1fr;
+    }
+
+    .alpha {
+      display: grid;
+      gap: var(--spacing-10);
+      grid-template-columns: 1fr;
+
+      @media (min-width: 768px) {
+        grid-template-columns: minmax(240px, 1fr) max-content;
+      }
+    }
+
+    .text-container {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-6);
+
+      .heading {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: var(--spacing-2);
+      }
+    }
+
+    .address-hours {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--spacing-7) var(--spacing-10);
+
+      @media (min-width: 1024px) {
+        flex-flow: row nowrap;
+      }
+
+      @media (min-width: 1440px) {
+        column-gap: var(--spacing-13);
+      }
+
+      .address-container,
+      .hours-container {
+        align-items: flex-start;
+        display: grid;
+        gap: var(--spacing-6);
+        grid-template-columns: 1.25rem max-content;
+
+        .text {
+          display: flex;
+          flex-flow: column nowrap;
+          gap: var(--spacing-3);
+        }
+      }
+    }
+
+    .address-container {
+      address {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: var(--spacing-1);
+      }
+    }
+
+    .hours-container {
+      .hours-list {
+        display: grid;
+        grid-template-columns: max-content max-content;
+        gap: var(--spacing-2) var(--spacing-4);
+      }
+    }
+
+    .bravo {
+      .mobile-only {
+        @media (min-width: 768px) {
+          display: none;
+        }
+      }
+
+      .desktop-only {
+        @media (max-width: 767px) {
+          display: none;
+        }
+      }
+    }
+  }
+{% endstyle %}
+
+<div class="container container-md {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
+  <div class="alpha">
+    <div class="text-container">
+      <div class="heading">
+        <span class="tagline heading-lg"> Location </span>
+        <h2 class="heading-5xl">
+          {{ metaobject.name }}
+        </h2>
+      </div>
+      {% if metaobject.joe_coffee_url != blank %}
+        {% capture button_content %}
+          {% render 'button', color: 'primary', new_tab: true, text: 'Order Online', text_size: 'sm', url: metaobject.joe_coffee_url, style: 'fill' %}
+        {% endcapture %}
+        {% render 'buttons', content: button_content %}
+      {% endif %}
+    </div>
+    <div class="address-hours">
+      <div class="address-container">
+        {% render 'icon', icon: 'pin-location', library: 'streamline', set: 'ultimate', style: 'bold' %}
+        <div class="text">
+          <h3 class="heading-2xl">Address</h3>
+          <address>
+            <span class="text-sm">
+              {{- metaobject.address.value.address_line_1.value -}}
+              {%- if metaobject.address.value.address_line_2.value -%}
+                , {{ metaobject.address.value.address_line_2.value }}
+              {%- endif -%}
+            </span>
+            <span class="text-sm">
+              {{ metaobject.address.value.city }}, {{ metaobject.address.value.state }}
+              {{ metaobject.address.value.zip_code }}
+            </span>
+          </address>
+        </div>
+      </div>
+      <div class="hours-container text-sm">
+        {% assign day_keys = 'monday,tuesday,wednesday,thursday,friday,saturday,sunday' | split: ',' %}
+        {% assign day_abbreviations = 'Mon,Tue,Wed,Thu,Fri,Sat,Sun' | split: ',' %}
+        {% render 'icon', icon: 'time-clock-circle-1', library: 'streamline', set: 'ultimate', style: 'bold' %}
+        <div class="text">
+          <h3 class="heading-2xl">Hours</h3>
+          <div class="hours-list">
+            {% for day in metaobject.hours.value %}
+              {% assign day_index = null %}
+              {% for day_key in day_keys %}
+                {% if day_key == day[0] %}
+                  {% assign day_index = forloop.index0 %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+              {% if day_index != null %}
+                {% assign day_abbreviation = day_abbreviations[day_index] %}
+                <span class="day bold">{{ day_abbreviation | upcase }}</span>
+                <span class="hours">
+                  {{ day[1].open -}}
+                  {%- unless day[1].open == 'Closed' %} - {{ day[1].close }}{% endunless %}
+                </span>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% if metaobject.media and metaobject.media.type == 'list.file_reference' %}
+    <div class="bravo">
+      {% render 'carousel',
+        aspect_ratio: '80:77',
+        carousel_id: 'mobile-location-cover-bravo-001',
+        class: 'mobile-only',
+        items: metaobject.media.value
+      %}
+      {% render 'carousel',
+        aspect_ratio: '16:9',
+        carousel_id: 'desktop-location-cover-bravo-001',
+        class: 'desktop-only',
+        items: metaobject.media.value
+      %}
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Metaobject Location Cover",
+  "tag": "section",
+  "class": "metaobject-location-cover color-scheme-light amber"
+}
+{% endschema %}

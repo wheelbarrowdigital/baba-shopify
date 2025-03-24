@@ -10,8 +10,11 @@
 {
   "sections": {
     "cover": {
-      "type": "relume-contact-015"
+      "type": "metaobject-location-cover"
+    },
+    "story": {
+      "type": "metaobject-location-story"
     }
   },
-  "order": ["cover"]
+  "order": ["cover", "story"]
 }
