@@ -41,7 +41,12 @@
           }
         }
       },
-      "block_order": ["heading", "paragraph", "button_primary", "button_secondary"],
+      "block_order": [
+        "heading",
+        "paragraph",
+        "button_primary",
+        "button_secondary"
+      ],
       "settings": {
         "background_image": "shopify://shop_images/esteban-benites-VO0fNzSM-Z4-unsplash-2-scaled-e1695909609156.jpg",
         "background_video": "shopify://files/videos/coffee-tree-with-green-cherry-beans-in-the-farm-2023-11-27-05-06-25-utc.mp4"
@@ -71,7 +76,11 @@
           }
         }
       },
-      "block_order": ["heading", "paragraph", "button"],
+      "block_order": [
+        "heading",
+        "paragraph",
+        "button"
+      ],
       "settings": {
         "image": "shopify://shop_images/baba_box.jpg"
       }
@@ -156,13 +165,11 @@
         "grid_item_02",
         "grid_item_03",
         "grid_item_04"
-      ]
+      ],
+      "settings": {}
     },
     "featured_values": {
       "type": "relume-layout-012",
-      "settings": {
-        "image": "shopify://shop_images/117377244_630199697900811_1601391166847642389_n-1.jpg"
-      },
       "blocks": {
         "heading": {
           "type": "heading",
@@ -193,12 +200,21 @@
           }
         }
       },
-      "block_order": ["heading", "paragraph", "grid_item_01", "grid_item_02"]
+      "block_order": [
+        "heading",
+        "paragraph",
+        "grid_item_01",
+        "grid_item_02"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/117377244_630199697900811_1601391166847642389_n-1.jpg"
+      }
     },
     "freshly_roasted_coffee": {
-      "type": "relume-layout-090",     
+      "type": "relume-layout-090",
       "settings": {
-        "image": "shopify://shop_images/baba_probat.jpg"
+        "image": "shopify://shop_images/baba_probat.jpg",
+        "video": "shopify://files/videos/1_TVZJXzQyMTBfMTI.mov"
       }
     },
     "featured_locations": {
@@ -235,7 +251,11 @@
           }
         }
       },
-      "block_order": ["tab_01", "tab_02", "tab_03"],
+      "block_order": [
+        "tab_01",
+        "tab_02",
+        "tab_03"
+      ],
       "settings": {
         "tagline": "Discover",
         "heading": "Our Locations",
