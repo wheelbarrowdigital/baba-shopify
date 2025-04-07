@@ -105,6 +105,12 @@
       }
     }
 
+    .form-field-wrapper.quantity {
+      input#quantity {
+        width: 4.5rem;
+      }
+    }
+
     #decrement-quantity,
     #increment-quantity {
       background-color: #eeeeee;
@@ -121,6 +127,10 @@
 
 {% assign product_form_id = 'product-form-' | append: section.id %}
 {% assign available = the_product.selected_or_first_available_variant.available %}
+{% assign inventory_management = null %}
+{% if the_product.selected_or_first_available_variant.inventory_management == 'shopify' %}
+  {% assign inventory_management = 'shopify' %}
+{% endif %}
 
 <div class="container container-lg {% unless request.design_mode %}reveal-from-bottom{% endunless %}">
   <div class="alpha">
@@ -249,46 +259,58 @@
       {% liquid
         assign is_disabled = false
         assign button_text = 'Add to Cart'
-        unless available
-          assign is_disabled = true
-          assign button_text = 'Out of Stock'
-        endunless
+        if inventory_management == 'shopify'
+          unless available
+            assign is_disabled = true
+            assign button_text = 'Out of Stock'
+          endunless
+        endif
       %}
       <fieldset class="form-field-wrapper quantity">
         <legend class="heading-md">Quantity</legend>
         <div class="form-field">
+          {% assign quantity_min = 1 %}
+          {% if inventory_management == 'shopify' %}
+            {% unless the_product.selected_or_first_available_variant.inventory_quantity > 0 %}
+              {% assign quantity_min = 0 %}
+            {% endunless %}
+          {% endif %}
           <label for="quantity" style="display:none">Quantity</label>
           <button
             class="button"
             type="button"
             id="decrement-quantity"
-            {% if is_disabled %}
+            {% if is_disabled or quantity_min <= 1 %}
               disabled
             {% endif %}
           >
             -
           </button>
-          {% assign quantity_min = 1 %}
-          {% unless the_product.selected_or_first_available_variant.inventory_quantity > 0 %}
-            {% assign quantity_min = 0 %}
-          {% endunless %}
           <input
             id="quantity"
             name="quantity"
             type="number"
             value="{{ quantity_min }}"
             min="{{ quantity_min }}"
-            max="{{ the_product.selected_or_first_available_variant.inventory_quantity }}"
+            {% if inventory_management == 'shopify' %}
+              max="{{ the_product.selected_or_first_available_variant.inventory_quantity }}"
+            {% endif %}
             step="1"
             {% unless available %}
               disabled
             {% endunless %}
           >
+          {% assign disable_increment = false %}
+          {% if inventory_management == 'shopify'
+            and the_product.selected_or_first_available_variant.inventory_quantity <= 1
+          %}
+            {% assign disable_increment = true %}
+          {% endif %}
           <button
             class="button"
             type="button"
             id="increment-quantity"
-            {% if is_disabled %}
+            {% if is_disabled or disable_increment %}
               disabled
             {% endif %}
           >
@@ -315,6 +337,7 @@
     id: `{{ variant.id }}`,
     available: `{{ variant.available }}` === 'true',
     inventory_quantity: Number(`{{ variant.inventory_quantity }}`),
+    inventory_management: `{{ variant.inventory_management }}`,
     price: `{{ variant.price | money_without_trailing_zeros }}`
   });
   {% endfor %}
@@ -336,7 +359,15 @@
   quantityInput.addEventListener('input', validateQuantity);
 
   updateSelectedColor();
-  updateQuantityButtons();
+  updateVariant();
+
+function getMinQuantity() {
+  return quantityInput.hasAttribute('min') ? parseInt(quantityInput.min) : 1;
+}
+
+  function getMaxQuantity() {
+    return quantityInput.hasAttribute('max') ? parseInt(quantityInput.max) : Infinity;
+  }
 
   // Update the selected color
   function updateSelectedColor() {
@@ -352,9 +383,10 @@
   function adjustQuantity(delta) {
     let currentQuantity = parseInt(quantityInput.value) || 0;
     let newQuantity = currentQuantity + delta;
-    let maxQuantity = parseInt(quantityInput.max) || 0;
+    let minQuantity = getMinQuantity();
+    let maxQuantity = getMaxQuantity();
 
-    if (newQuantity >= 0 && newQuantity <= maxQuantity) {
+    if (newQuantity >= 0 && newQuantity <= maxQuantity && newQuantity >= getMinQuantity()) {
       quantityInput.value = newQuantity;
       updateQuantityButtons();
     }
@@ -363,7 +395,7 @@
   // Validate the quantity input
   function validateQuantity() {
     let value = parseInt(quantityInput.value) || 0;
-    let maxValue = parseInt(quantityInput.max) || 0;
+    let maxValue = getMaxQuantity();
 
     if (value < 0) {
       quantityInput.value = 0;
@@ -377,9 +409,11 @@
   // Update the quantity buttons based on the current quantity
   function updateQuantityButtons() {
     let value = parseInt(quantityInput.value) || 0;
-    let maxValue = parseInt(quantityInput.max) || 0;
+    let minValue = getMinQuantity();
+    console.debug('minValue', minValue);
+    let maxValue = getMaxQuantity();
 
-    if (value <= 0) {
+    if (value <= minValue) {
       decrementQuantityButton.disabled = true;
     } else {
       decrementQuantityButton.disabled = false;
@@ -446,13 +480,18 @@
 
 
       if (matchedVariant.available) {
-        console.debug('Variant is available');
-        
+        let tracked = matchedVariant.inventory_management === 'shopify';      
 
-        quantityInput.min = 1;
-        quantityInput.max = variants.find(variant => variant.id === matchedVariant.id.toString()).inventory_quantity;
+        quantityInput.min = 1;      
         quantityInput.value = 1;
         quantityInput.disabled = false;
+
+        if (tracked) {
+          let maxQty = variants.find(v => v.id === matchedVariant.id.toString()).inventory_quantity;
+          quantityInput.max = maxQty;
+        } else {
+          quantityInput.removeAttribute('max'); // allow any quantity
+        }
 
         addToCartButton.disabled = false;
         addToCartButton.innerHTML = 'Add to Cart - ' + variants.find(variant => variant.id === matchedVariant.id.toString()).price;

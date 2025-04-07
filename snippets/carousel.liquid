@@ -120,11 +120,13 @@
   </div>
   <button class="carousel-arrow prev">←</button>
   <button class="carousel-arrow next">→</button>
-  <div class="carousel-dots">
-    {% for media in items %}
-      <span class="carousel-dot {% if forloop.first %}active{% endif %}"></span>
-    {% endfor %}
-  </div>
+  {% if items.size > 1 %}
+    <div class="carousel-dots">
+      {% for media in items %}
+        <span class="carousel-dot {% if forloop.first %}active{% endif %}"></span>
+      {% endfor %}
+    </div>
+  {% endif %}
 </div>
 
 <script>

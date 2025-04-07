@@ -90,10 +90,23 @@
             </a>
             <div class="product-card-content">
               <a href="{{ product.url }}" class="heading-2xl">{{ product.title }}</a>
+
+              {% assign available_variant = null %}
+              {% assign button_text = 'Sold Out' %}
+              {% assign disabled_button = true %}
+              {% for variant in product.variants %}
+                {% if variant.available %}
+                  {% assign available_variant = variant %}
+                  {% assign button_text = 'Add to Cart' %}
+                  {% assign disabled_button = false %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+
               <form method="post" action="/cart/add">
-                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                <input type="hidden" name="id" value="{{ available_variant.id }}">
                 {% capture button_content %}
-                {% render 'button', text: 'Add to Cart', style: 'outline', class: 'text-sm', type: 'submit' %}
+                  {% render 'button', text: button_text, style: 'outline', class: 'text-sm', type: 'submit', disabled: disabled_button %}
                 {% endcapture %}
                 {% render 'buttons', content: button_content %}
               </form>

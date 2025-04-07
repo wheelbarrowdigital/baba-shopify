@@ -259,6 +259,14 @@
   &.green {
     background-color: var(--green-100);
   }
+
+  *,
+  a,
+  span {
+    ::selection {
+      background-color: var(--green-600);
+    }
+  }
 }
 
 .dark-theme,

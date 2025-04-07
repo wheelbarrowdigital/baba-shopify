@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "cover": {
-      "type": "relume-cover-007",
+    "cart": {
+      "type": "cart",
       "settings": {}
     }
   },
   "order": [
-    "cover"
+    "cart"
   ]
 }
